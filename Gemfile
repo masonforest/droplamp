@@ -8,6 +8,10 @@ gem 'high_voltage'
 gem 'dropbox'
 gem 'compass'
 gem 'formtastic'
+gem 'heroku'
+gem 'redcarpet'
+gem 'liquid'
+gem 'liquid-inheritance'
 
 group :test, :development do
 	gem 'rspec'

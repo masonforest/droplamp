@@ -12,10 +12,10 @@
       %td
         =form_for @site do |f|
           =f.hidden_field "path",:value=>file.path
-          =f.text_field "domain"
-          =f.select( "subdomain", Site::SUBDOMAINS)
+          =f.text_field "subdomain"
+          =f.select( "domain", Site::DOMAINS)
           =f.submit "Attach"
         -Site.find_by_path_and_dropbox_token(file.path,@dropbox_token).to_a.each do |existing_site|
-          .domain="#{existing_site.domain}.#{existing_site.subdomain}"
+          .domain="#{existing_site.subdomain}.#{existing_site.domain}"
           =link_to "Detach", site_path(existing_site), :confirm => "Are you sure?", :method=>:delete , :class=>"button"
           %br

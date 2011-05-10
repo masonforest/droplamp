@@ -16,7 +16,5 @@ constraints(IsKISSr.new) do
   resources :sites
   root :to =>'pages#home'
   end
-
-  root :to => "site#root"
-  match ":id" => "site#page", :id => "[:id]" 
+  match ":path" => "sites#show", :constraints => {:path => /.*/}  
 end
