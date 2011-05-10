@@ -12,6 +12,7 @@ gem 'heroku'
 gem 'redcarpet'
 gem 'liquid'
 gem 'liquid-inheritance'
+gem 'dalli'
 
 group :test, :development do
 	gem 'rspec'
