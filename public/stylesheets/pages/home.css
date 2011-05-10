@@ -1,0 +1,16 @@
+/* line 1, ../../../app/stylesheets/pages/home.sass */
+.pages-home {
+  text-align: center;
+}
+
+/* line 3, ../../../app/stylesheets/pages/home.sass */
+.pages-home .button {
+  float: none;
+  margin: 10px auto;
+}
+
+/* line 6, ../../../app/stylesheets/pages/home.sass */
+#description {
+  width: 400px;
+  margin: 0 auto;
+}
