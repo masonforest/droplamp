@@ -1,4 +1,16 @@
-%table
+%h2 Create a KISSr Folder
+=form_for @site do |f|
+  =hidden_field_tag "new","true"
+  =f.label "path","Folder Name"
+  =f.text_field "path"
+  =f.label "domain"
+  =f.text_field "subdomain"
+  %p .
+  =f.select( "domain", Site::DOMAINS)
+  =f.submit "Create"
+
+%h2 Or attach KISSr to an existing Dropbox folder
+%table.existing
   -@files.each do |file|
     %tr
       %td

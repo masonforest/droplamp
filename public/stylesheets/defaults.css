@@ -8,8 +8,9 @@ body {
 }
 
 /* line 7, ../../app/stylesheets/defaults.sass */
-h1 {
+h1, h2 {
   font-weight: bold;
   font-size: 2em;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  clear: both;
 }

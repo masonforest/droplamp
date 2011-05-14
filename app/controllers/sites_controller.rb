@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-caches_page :show
+#caches_page :show
   def new
     @site = Site.new
   end
@@ -9,6 +9,21 @@ caches_page :show
   end
   def create
     params[:site][:dropbox_token]=session[:dropbox]
+    if not params[:new].blank?
+      begin
+      Site.create_site_folder(params[:site][:path],session[:dropbox])
+      rescue Dropbox::FileExistsError
+        flash[:error]="The folder "+params[:site][:path]+" already exists in your dropbox"
+        @site=Site.new
+           return redirect_to '/dropbox/connect' unless session[:dropbox]
+    dropbox = Dropbox::Session.deserialize(session[:dropbox])
+    return redirect_to '/dropbox/connect' unless dropbox.authorized?
+   
+     dropbox.mode = :dropbox  
+     @files = dropbox.list ""
+         return render '/dropbox/show' 
+      end
+    end 
     @site = Site.new(params[:site])
     if @site.save
       redirect_to '/dropbox'

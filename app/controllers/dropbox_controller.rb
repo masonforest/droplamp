@@ -1,7 +1,5 @@
  class DropboxController < ApplicationController
    def show
-    puts "Searching for "+session[:dropbox]
-    @dropbox_token = session[:dropbox]
     @site = Site.new
     return redirect_to '/dropbox/connect' unless session[:dropbox]
     dropbox = Dropbox::Session.deserialize(session[:dropbox])

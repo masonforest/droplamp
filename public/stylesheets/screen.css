@@ -74,10 +74,11 @@ body {
 }
 
 /* line 7, ../../app/stylesheets/defaults.sass */
-h1 {
+h1, h2 {
   font-weight: bold;
   font-size: 2em;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  clear: both;
 }
 
 /* line 1, ../../app/stylesheets/header.sass */
@@ -146,29 +147,13 @@ header input[type=submit] {
 }
 
 /* line 1, ../../app/stylesheets/forms.sass */
-label {
-  display: block;
-  width: 100px;
-  float: left;
-  font-size: 18px;
+input, label, select {
+  margin: 10px 0;
 }
 
-/* line 6, ../../app/stylesheets/forms.sass */
-input[type=text], input[type=email], input[type=password] {
-  font-size: 16px;
-  float: left;
-}
-
-/* line 9, ../../app/stylesheets/forms.sass */
-select {
-  float: left;
-  display: block;
-  margin: 4px 0;
-}
-
-/* line 13, ../../app/stylesheets/forms.sass */
+/* line 3, ../../app/stylesheets/forms.sass */
 button, a.button, input[type=submit] {
-  padding: 2px 30px;
+  padding: 10px 30px;
   background-color: #aaaaaa;
   background-color: #dddddd;
   background-image: -moz-linear-gradient(top, white, #dddddd);
@@ -192,9 +177,10 @@ button, a.button, input[type=submit] {
   float: left;
   font-weight: bold;
   line-height: 1em;
+  margin: 20px 0;
 }
 
-/* line 38, ../../app/stylesheets/forms.sass */
+/* line 29, ../../app/stylesheets/forms.sass */
 button:hover, a.button:hover, input[type=submit]:hover {
   background-color: #aaaaaa;
   -moz-box-shadow: 0px 1px 1px white, 0 0 1px 1px white;
@@ -219,7 +205,55 @@ button:hover, a.button:hover, input[type=submit]:hover {
   margin: 0 auto;
 }
 
-/* line 1, ../../app/stylesheets/dropbox/show.sass */
+/* line 2, ../../app/stylesheets/dropbox/show.sass */
+.new_site label {
+  width: 100px;
+  display: block;
+  float: left;
+  clear: left;
+}
+/* line 7, ../../app/stylesheets/dropbox/show.sass */
+.new_site p {
+  margin: 10px 0;
+  float: left;
+}
+/* line 10, ../../app/stylesheets/dropbox/show.sass */
+.new_site input, .new_site select {
+  float: left;
+}
+/* line 12, ../../app/stylesheets/dropbox/show.sass */
+.new_site input[type=submit] {
+  clear: left;
+}
+
+/* line 16, ../../app/stylesheets/dropbox/show.sass */
+.existing .new_site label {
+  margin: 0;
+  display: block;
+  width: 100px;
+  float: left;
+  font-size: 18px;
+}
+/* line 22, ../../app/stylesheets/dropbox/show.sass */
+.existing .new_site input[type=text], .existing .new_site input[type=email], .existing .new_site input[type=password] {
+  font-size: 16px;
+  float: left;
+  margin: 2px;
+}
+/* line 26, ../../app/stylesheets/dropbox/show.sass */
+.existing .new_site input[type=submit] {
+  padding: 4px 10px;
+  clear: none;
+  margin: 2px;
+}
+/* line 30, ../../app/stylesheets/dropbox/show.sass */
+.existing .new_site select {
+  float: left;
+  display: block;
+  margin: 4px 0;
+}
+
+/* line 34, ../../app/stylesheets/dropbox/show.sass */
 .domain {
   clear: both;
   width: 320px;
