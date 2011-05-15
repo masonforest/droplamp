@@ -10,12 +10,15 @@
   end
   def connect
      if params[:oauth_token] then
-       dropbox = Dropbox::Session.deserialize(session[:dropbox])
+     dropbox = Dropbox::Session.deserialize(session[:dropbox])
      dropbox.mode = :dropbox  
-      dropbox.authorize(params)
-        session[:dropbox] = dropbox.serialize # re-serialize the authenticated session
-
-       redirect_to dropbox_path
+     dropbox.authorize(params)
+     session[:dropbox] = dropbox.serialize # re-serialize the authenticated session
+     user=User.find_or_create_by_dropbox_uid(dropbox.account.uid)
+     user.dropbox_token=session[:dropbox]
+    user.save
+    session[:user]=user
+      redirect_to dropbox_path
      else
        dropbox = Dropbox::Session.new('umiao80thn4qqqf', 'bs076zkmeeuxy1o')
        session[:dropbox] = dropbox.serialize

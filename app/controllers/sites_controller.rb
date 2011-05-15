@@ -8,7 +8,8 @@ class SitesController < ApplicationController
     render :text => @output[:content], :content_type => @output[:content_type]    
   end
   def create
-    params[:site][:dropbox_token]=session[:dropbox]
+    params[:site][:user_id]=session[:user]
+    params[:site][:path]='/'+params[:site][:path]
     if not params[:new].blank?
       begin
       Site.create_site_folder(params[:site][:path],session[:dropbox])

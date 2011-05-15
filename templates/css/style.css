@@ -1,0 +1,166 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+/* render html5 elements as block */
+header, footer, section, aside, nav, article {
+display: block;
+}
+
+body {
+line-height: 1;
+background: #D2E1F6;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+color: #666;
+font-size: 14px;
+line-height: 18px;
+}
+	
+/* layout */
+
+.container {
+width: 960px;
+margin: 0 auto;
+margin-top: 5px;
+margin-bottom: 5px;
+-webkit-box-shadow: 3px 3px 7px #777;
+-moz-box-shadow: 3px 3px 7px #777;
+background-color: #fff;
+border-radius: 10px;
+}
+section{
+padding:40px;
+}
+nav {
+width: 940px;
+height: 69px;
+margin: 0 auto;
+}
+nav .menu {
+font-size: 22px;
+font-weight: bold;
+}
+
+nav ul {
+margin: 0;
+padding: 25px 0 0 20px;
+list-style: none;
+line-height: normal;
+}
+
+nav  li {
+display: block;
+float: left;
+}
+
+nav a {
+display: block;
+float: left;
+margin-right: 5px;
+padding: 0px 15px;
+text-decoration: none;
+color: #1F4677;
+}
+
+nav a:hover {
+text-decoration: underline;
+}
+
+header h2{
+float:right;
+font-size: 18px;
+color:#d5d5d5;
+font-style: italic;
+}
+header h1{
+font-family: 'Syncopate', arial, serif;
+font-size: 60px;
+line-height: 60px;
+margin-top: 0;
+padding-top:0;
+float: left;
+display: block;
+width: 600px;
+clear: none;
+}
+header h1 a:hover{
+text-decoration: none;
+color: red;
+}
+header {
+padding: 20px;
+height: 80px;
+margin: 0 auto;
+ border-bottom: 1px solid #cccccc;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f2f2f2), color-stop(100%, #fefefe));
+  background-image: -webkit-linear-gradient(#f2f2f2, #fefefe);
+  background-image: -moz-linear-gradient(#f2f2f2, #fefefe);
+  background-image: -o-linear-gradient(#f2f2f2, #fefefe);
+  background-image: linear-gradient(#f2f2f2, #fefefe);
+border-radius:  10px 10px 0 0;
+}
+
+footer {
+width: 940px;
+margin: 0 auto;
+clear: both;
+}
+
+/* basics */
+
+h1,h2,h3,h4,h5,h6 {
+font-weight: bold;
+clear: both;
+color: #333;
+}
+
+a:link, a:visited {
+color:#1F4677;
+text-decoration: none;
+}
+
+a:hover, a:active {
+color: #333;
+text-decoration: underline;
+}
+
+p {
+margin-bottom: 18px;
+}
+
+li {
+padding-left: 5px;
+}
+
+/* nav */
+
+nav {
+font-size: 22px;
+font-weight: bold;
+}
+
+nav ul {
+margin: 0;
+padding: 25px 0 0 20px;
+list-style: none;
+line-height: normal;
+}
+
+nav li {
+display: block;
+float: left;
+}
+
+nav a {
+display: block;
+float: left;
+margin-right: 5px;
+padding: 0px 15px;
+text-decoration: none;
+color: #1F4677;
+}
+
+nav a:hover {
+text-decoration: underline;
+}

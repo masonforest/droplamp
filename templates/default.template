@@ -1,15 +1,36 @@
-<!DOCTYPE html> 
-<html> 
-  <head> 
-    <link href="/css/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> 
-    <link href="/css/print.css" media="print" rel="stylesheet" type="text/css" /> 
-    <!--[if IE]>
-      <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
-    <![endif]-->
-  </head> 
-  <body class='pages-home'> 
-    <header> 
 
-    </header> 
-	{{ content }}
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="utf-8" /> 
+	<title>My Website</title> 
+        <link href='http://fonts.googleapis.com/css?family=Syncopate:regular,bold' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" /> 
+	<link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" /> 
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> 
+</head> 
+<body> 
+<div class="container">
+	<header>
+		<h2>The best website... Ever</h2> 
+		<h1><a href="#">My Website</a></h1> 
+	</header>
+	
+	<nav> 
+			<ul> 
+				<li><a href="/">Home</a></li> 
+				<li><a href="about">About</a></li> 
+				<li><a href="contact">Contact Us</a></li> 
+			</ul> 
+	</nav>
+	
+	<section id="content">
+        {{content}}
+	</section>	
+		<footer>
+&copy; <a href="/">My Website</a> 
+</footer>
+</div> 
+</body> 
 </html> 
+

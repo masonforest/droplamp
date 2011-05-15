@@ -1,7 +1,7 @@
 class CreateSites < ActiveRecord::Migration
   def self.up
-    create_table :sites do |t|
-      t.string :dropbox_token
+   create_table :sites do |t|
+      t.references :user
       t.string :path
       t.string :domain
       t.string :subdomain

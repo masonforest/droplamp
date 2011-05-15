@@ -11,6 +11,12 @@
 
 %h2 Or attach KISSr to an existing Dropbox folder
 %table.existing
+  %thead
+    %tr
+      %th{:colspan=>"2"} Name
+      %th Size
+      %th Modified
+      %th Domain
   -@files.each do |file|
     %tr
       %td
@@ -27,7 +33,7 @@
           =f.text_field "subdomain"
           =f.select( "domain", Site::DOMAINS)
           =f.submit "Attach"
-        -Site.find_by_path_and_dropbox_token(file.path,@dropbox_token).to_a.each do |existing_site|
+        -Site.find_all_by_path_and_user_id(file.path,session[:user]).to_a.each do |existing_site|
           .domain="#{existing_site.subdomain}.#{existing_site.domain}"
           =link_to "Detach", site_path(existing_site), :confirm => "Are you sure?", :method=>:delete , :class=>"button"
           %br
