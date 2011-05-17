@@ -6,7 +6,8 @@ class SitesController < ApplicationController
   end
   def show
     @output  = Site.find_by_domain(request.host).render(params[:path])   
-    render :text => @output[:content], :content_type => @output[:content_type]    
+    puts   @output[:content_type]   
+   render :text => @output[:content], :content_type => @output[:content_type]    
   end
   def create
     params[:site][:user_id]=session[:user]
