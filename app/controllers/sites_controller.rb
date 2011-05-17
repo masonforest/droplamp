@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
 #caches_page :show
+
   def new
     @site = Site.new
   end
