@@ -7,7 +7,7 @@ class Site < ActiveRecord::Base
   def render(path)
     path='home' if path.blank?
     if path =~ /\/(.*\..*)/
-      type = MIME::Types.type_for($1).to_s[1..-2] # for some reason MIME::Types wraps the type in []'s
+      type = MIME::Types.type_for($1).to_s.sub(/\[/,"").sub(/\]/,"") # for some reason MIME::Types wraps the type in []'s
       { :content => get(self.path+'/'+path), :content_type => type }
     else
       @template = Liquid::Template.parse(get(self.path+'/default.template'))
