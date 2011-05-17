@@ -13,6 +13,7 @@ gem 'liquid-inheritance'
 gem 'dalli'
 gem 'redis'
 gem 'redis-objects'
+
 group :test, :development do
 	gem 'rspec'
 	gem 'rspec-rails'
