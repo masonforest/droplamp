@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20110515000845) do
   end
 
   create_table "users", :force => true do |t|
-    t.string "dropbox_token"
-    t.string "dropbox_uid"
+    t.string  "dropbox_token"
+    t.integer "dropbox_uid"
   end
 
 end
