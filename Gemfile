@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-
+gem 'redis'
 gem 'rails'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'haml'
@@ -12,7 +12,8 @@ gem 'redcarpet'
 gem 'liquid'
 gem 'liquid-inheritance'
 gem 'dalli'
-
+gem 'redis'
+gem 'redis-objects'
 group :test, :development do
 	gem 'rspec'
 	gem 'rspec-rails'

@@ -4,7 +4,7 @@ class SitesController < ApplicationController
     @site = Site.new
   end
   def show
-    @output  = Site.find_by_domain(request.host).render(params[:path])     
+    @output  = Site.find_by_domain(request.host).render(params[:path])   
     render :text => @output[:content], :content_type => @output[:content_type]    
   end
   def create

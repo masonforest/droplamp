@@ -131,6 +131,9 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     redcarpet (1.13.1)
+    redis (2.2.0)
+    redis-objects (0.5.0)
+      redis (>= 2.1.1)
     rest-client (1.6.1)
       mime-types (>= 1.16)
     rspec (2.6.0)
@@ -186,6 +189,8 @@ DEPENDENCIES
   nokogiri
   rails
   redcarpet
+  redis
+  redis-objects
   rspec
   rspec-rails
   sqlite3-ruby
