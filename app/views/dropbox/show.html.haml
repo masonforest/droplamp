@@ -29,7 +29,7 @@
         =time_ago_in_words file.modified
       %td
         =form_for @site do |f|
-          =f.hidden_field "path",:value=>file.path
+          =f.hidden_field "path",:value=>file.path[1..-1]
           =f.text_field "subdomain"
           =f.select( "domain", Site::DOMAINS)
           =f.submit "Attach"
