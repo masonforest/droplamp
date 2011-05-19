@@ -1,8 +1,10 @@
 @import "compass/css3/gradient"
+@import "blueprint"
+
 header
   height: 80px  
   border-bottom: 1px solid #ccc
-  +linear-gradient(color-stops(#fefefe,#f2f2f2))
+  @include background-image(linear-gradient(#fefefe,#f2f2f2))
   margin-bottom: 16px
 header h5
   padding-top: 10px
