@@ -38,4 +38,10 @@ class SitesController < ApplicationController
     dropbox.mode = :dropbox 
     @files = dropbox.list ""
   end
+ def destroy
+    @site = Site.find(params[:id])
+    flash[:message]="Deleted "+@site.subdomain+"."+@site.domain 
+    @site.destroy
+    redirect_to "/dropbox"
+ end
 end

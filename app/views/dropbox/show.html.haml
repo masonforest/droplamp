@@ -35,5 +35,5 @@
           =f.submit "Attach"
         -Site.find_all_by_path_and_user_id(file.path,session[:user]).to_a.each do |existing_site|
           .domain="#{existing_site.subdomain}.#{existing_site.domain}"
-          =link_to "Detach", site_path(existing_site), :confirm => "Are you sure?", :method=>:delete , :class=>"button"
+          =button_to "Detach", site_path(existing_site), :confirm => "Are you sure?", :method=>:delete , :class=>"button"
           %br
