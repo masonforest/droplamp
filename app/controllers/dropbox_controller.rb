@@ -20,7 +20,7 @@
     session[:user]=user
       redirect_to dropbox_path
      else
-       dropbox = Dropbox::Session.new('69vdq9pk8stjkb8', '6gc7j0bdw85uzohi')
+       dropbox = Dropbox::Session.new('69vdq9pk8stjkb8', '6gc7j0bdw85uzoh')
        session[:dropbox] = dropbox.serialize
        redirect_to dropbox.authorize_url(:oauth_callback => url_for(:action => 'connect'))
      end
