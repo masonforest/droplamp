@@ -9,31 +9,26 @@
   =f.select( "domain", Site::DOMAINS)
   =f.submit "Create"
 
--#%h2 Or attach KISSr to an existing Dropbox folder
--#%table.existing
--#  %thead
--#   %tr
--#      %th{:colspan=>"2"} Name
--#      %th Size
--#      %th Modified
--#      %th Domain
--#  -@files.each do |file|
--#    %tr
--#      %td
--#        =image_tag '/images/dropbox-icons/'+file.icon+'.png'
--#      %td
--#        =file.path[1..-1]
--#      %td
--#        =file.size
--#      %td
--#        =time_ago_in_words file.modified
--#      %td
--#        =form_for @site do |f|
--#          =f.hidden_field "path",:value=>file.path[1..-1]
--#          =f.text_field "subdomain"
--#          =f.select( "domain", Site::DOMAINS)
--#          =f.submit "Attach"
--#        -Site.find_all_by_path_and_user_id(file.path,session[:user]).to_a.each do |existing_site|
--#          .domain="#{existing_site.subdomain}.#{existing_site.domain}"
--#          =button_to "Detach", site_path(existing_site), :confirm => "Are you sure?", :method=>:delete , :class=>"button"
--#          %br
+%h2 Manage Existing KISSr Folders
+%table.existing
+  %thead
+    %tr
+      %th{:colspan=>"2"} Name
+      %th Domain
+  -@files.each do |file|
+    -if not Site.find_all_by_path_and_user_id(file.path,session[:user]).empty?
+      %tr
+        %td
+          =image_tag '/images/dropbox-icons/'+file.icon+'.png'
+        %td
+          =file.path[1..-1]
+        %td
+          =form_for @site do |f|
+            =f.hidden_field "path",:value=>file.path[1..-1]
+            =f.text_field "subdomain"
+            =f.select( "domain", Site::DOMAINS)
+            =f.submit "Attach"
+          -Site.find_all_by_path_and_user_id(file.path,session[:user]).to_a.each do |existing_site|
+            .domain="#{existing_site.subdomain}.#{existing_site.domain}"
+            =button_to "Detach", site_path(existing_site), :confirm => "Are you sure?", :method=>:delete , :class=>"button"
+            %br

@@ -1,2 +1,22 @@
+html,body
+  height: 100%
+.content
+  margin: 16px auto
 footer
-  display:none
+  @include background-image(linear-gradient(#f2f2f2,#fefefe))
+  border-top: 1px solid #ccc
+  h3
+    font-weight: bold
+    color: #aaa
+    font-size: 1.2em
+  a
+    color: #aaa
+    text-decoration: none
+    &:hover
+      color: #333
+  section
+    text-align: left
+    float: left
+    margin-left: 50px
+    ul
+      list-style-type: none

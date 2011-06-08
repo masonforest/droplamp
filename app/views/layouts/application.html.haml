@@ -13,7 +13,7 @@
       .container
         %h5
           %a{:id=> "logo",:href=>"/"} Kissr
-    .container
+    .container.content
       #flash
         - flash.each do |key, value|
           %div{:id => "flash_#{key}"}= h value
@@ -21,7 +21,21 @@
     %footer
       %nav
         %section
-          %h3 Documentation
+          %h3 Frequently Asked Questions
           %ul
             %li 
-              %a{:href=>"docs/domains"} Custom Domains
+              %a{:href=>"docs/domains"} KISSr?
+            %li 
+              %a{:href=>"docs/domains"} What is Dropbox?
+            %li 
+              %a{:href=>"docs/domains"} How does KISSr use Dropbox?
+            %li 
+              %a{:href=>"docs/domains"} How do I get my own domain name?
+        %section
+          %h3 KISSr
+          %ul
+            %li 
+              %a{:href=>"contact"} Contact
+          %ul
+            %li 
+              %a{:href=>"jobs"} Jobs
