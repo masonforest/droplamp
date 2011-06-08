@@ -1,0 +1,60 @@
+/* line 2, ../../../app/views/stylesheets/dropbox/show.sass */
+.new_site label {
+  width: 100px;
+  display: block;
+  float: left;
+  clear: left;
+}
+/* line 7, ../../../app/views/stylesheets/dropbox/show.sass */
+.new_site p {
+  margin: 10px 0;
+  float: left;
+}
+/* line 10, ../../../app/views/stylesheets/dropbox/show.sass */
+.new_site input, .new_site select {
+  float: left;
+}
+/* line 12, ../../../app/views/stylesheets/dropbox/show.sass */
+.new_site input[type=submit] {
+  clear: left;
+}
+
+/* line 16, ../../../app/views/stylesheets/dropbox/show.sass */
+.existing label {
+  margin: 0;
+  display: block;
+  width: 100px;
+  float: left;
+  font-size: 18px;
+}
+/* line 22, ../../../app/views/stylesheets/dropbox/show.sass */
+.existing input[type=text], .existing input[type=email], .existing input[type=password] {
+  font-size: 16px;
+  float: left;
+  margin: 2px;
+}
+/* line 26, ../../../app/views/stylesheets/dropbox/show.sass */
+.existing input[type=submit] {
+  padding: 4px 10px;
+  clear: none;
+  margin: 2px;
+}
+/* line 30, ../../../app/views/stylesheets/dropbox/show.sass */
+.existing .button_to {
+  position: relative;
+  left: -2px;
+  float: right;
+}
+/* line 34, ../../../app/views/stylesheets/dropbox/show.sass */
+.existing select {
+  float: left;
+  display: block;
+  margin: 4px 0;
+}
+
+/* line 38, ../../../app/views/stylesheets/dropbox/show.sass */
+.domain {
+  clear: both;
+  width: 320px;
+  float: left;
+}
