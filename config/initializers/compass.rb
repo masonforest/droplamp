@@ -1,5 +1,5 @@
 require 'fileutils'
-FileUtils.mkdir_p(Rails.root.join("tmp", "stylesheets"))
+#FileUtils.mkdir_p(Rails.root.join("tmp", "stylesheets"))
 
 #Compass::AppIntegration::Rails.initialize!
 
@@ -9,4 +9,4 @@ FileUtils.mkdir_p(Rails.root.join("tmp", "stylesheets"))
 #Rails.configuration.middleware.insert_before('Rack::Sendfile', 'Rack::Static',
 #    :urls => ['/stylesheets'],
 #    :root => "#{Rails.root}/tmp")
-ActionController::Dispatcher.middleware.use(Rack::Static, :root => "tmp/stylesheets", :urls => ["/stylesheets/"])
+#ActionController::Dispatcher.middleware.use(Rack::Static, :root => "tmp/stylesheets", :urls => ["/stylesheets/"])
