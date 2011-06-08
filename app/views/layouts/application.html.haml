@@ -18,3 +18,10 @@
         - flash.each do |key, value|
           %div{:id => "flash_#{key}"}= h value
       = yield
+    %footer
+      %nav
+        %section
+          %h3 Documentation
+          %ul
+            %li 
+              %a{:href=>"docs/domains"} Custom Domains

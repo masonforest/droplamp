@@ -11,20 +11,36 @@ class Site < ActiveRecord::Base
       { :content => get(self.path+'/'+path), :content_type => type }
     else
       @template = Liquid::Template.parse(get(self.path+'/default.template'))
-      @content=Redcarpet.new(get(self.path+'/'+path+'.markdown')).to_html
-      { :content => @template.render('content' => @content), :content_type => 'text/html'}
+      ['markdown','textile','html'].each do |extension|
+        @raw_content=get(self.path+'/'+path+'.'+extension)
+        next if @raw_content.nil?
+        case extension
+          when 'markdown'
+            @content=Redcarpet.new(@raw_content).to_html
+          when 'textile'
+            @content=RedCloth.new(@raw_content).to_html
+          when 'html'
+            @content=@raw_content
+        end
+      end
+      { :content => @template.render('content' => @content), :content_type => 'text/html'} 
     end
   end
   def get(path)
   dropbox=Dropbox::Session.deserialize(self.user.dropbox_token)
   dropbox.mode = :dropbox
-  url=self.subdomain+"."+self.domain+"/"+path
-  if (not cache[url].nil?) and  dropbox.metadata(path).modified <=  cache[url][:modified]
-    cache[url][:content]  
-  else
-    content=dropbox.download(path)
-    cache[url]={:modified=>dropbox.metadata(path).modified,:content=>content}
-    content
+  begin
+    url=self.subdomain+"."+self.domain+"/"+path
+    puts url
+    if (not cache[url].nil?) and  dropbox.metadata(path).modified <=  cache[url][:modified]
+      cache[url][:content]  
+    else
+      content=dropbox.download(path)
+      cache[url]={:modified=>dropbox.metadata(path).modified,:content=>content}
+      content
+   end
+  rescue Dropbox::UnsuccessfulResponseError
+    nil
   end
  end
  def self.find_by_domain(domain)

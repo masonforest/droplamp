@@ -8,11 +8,13 @@ gem 'compass'
 gem 'formtastic'
 gem 'heroku'
 gem 'redcarpet'
+gem 'RedCloth', ">= 4.2.7"
 gem 'liquid'
 gem 'liquid-inheritance'
 gem 'dalli'
 gem 'redis'
 gem 'redis-objects'
+gem "aws-ses", "~> 0.3.2", :require => 'aws/ses'
 
 group :test, :development do
 	gem 'rspec'

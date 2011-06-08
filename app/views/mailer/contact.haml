@@ -1,0 +1,7 @@
+!!!
+%html
+  %body
+    -@params.each do |key,value|
+      %strong= key.capitalize
+      %p :
+      =value

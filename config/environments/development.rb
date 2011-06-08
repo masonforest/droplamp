@@ -24,6 +24,6 @@ Kissr::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   config.action_mailer.default_url_options = { :host => 'kissr.local:3000' }
 
-  ENV["REDISTOGO_URL"] = 'redis://username:password@my.host:6789' 
+  ENV["REDISTOGO_URL"] = 'redis://localhost:6379' 
 end
 
