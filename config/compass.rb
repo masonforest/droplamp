@@ -3,6 +3,6 @@ project_path = Compass::AppIntegration::Rails.root
 environment  = Compass::AppIntegration::Rails.env
 preferred_syntax=:sass
 http_path = '/'
-css_dir   = 'public/stylesheets'
+css_dir   = 'tmp/stylesheets'
 sass_dir  = 'app/views/stylesheets'
 
