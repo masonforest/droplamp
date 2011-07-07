@@ -1,4 +1,5 @@
 require 'liquid_inheritance'
+
 require 'pathname'
 class Site < ActiveRecord::Base
   DOMAINS=["kissr.co","com","org","net","info"]
