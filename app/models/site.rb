@@ -1,6 +1,7 @@
 require 'liquid_inheritance'
-
 require 'pathname'
+require 'aws/s3'
+
 class Site < ActiveRecord::Base
   DOMAINS=["kissr.co","com","org","net","info"]
   before_create :heroku_add_domain#,:add_bucket
