@@ -50,7 +50,7 @@ class Site < ActiveRecord::Base
         if expired?(image['src']) then
           AWS::S3::S3Object.store(image['href'].to_s,get(image['href'].to_s),"kissr-macc",:access => :public_read)
         end
-        image['href']='http://s3.amazonaws.com/kissr-macc/'+  image['href'].to_s
+        image['href']='http://s3.amazonaws.com/kissr-macc'+  image['href'].to_s
       end
     end
 
