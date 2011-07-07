@@ -17,7 +17,9 @@ end
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
-
+Capybara.default_host = 'localhost'
+FakeWeb.allow_net_connect = false
+FakeWeb.register_uri(:post,'http://www.dropbox.com/0/oauth/request_token',:status => ["301", "Moved Permanently"], :location=>"http://kissr.local/oauth")
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 
 # your application behaves in the production environment, where an error page will 

@@ -33,6 +33,10 @@ GEM
     arel (2.0.9)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     aws-ses (0.3.2)
       builder
       builder
@@ -85,6 +89,7 @@ GEM
     factory_girl_rails (1.0.1)
       factory_girl (~> 1.3)
       railties (>= 3.0.0)
+    fakeweb (1.3.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
     formtastic (1.2.3)
@@ -94,6 +99,9 @@ GEM
     fssm (0.2.7)
     gherkin (2.3.7)
       json (>= 1.4.6)
+    google-storage (0.1.0)
+      nokogiri (>= 1.4.3.1)
+      typhoeus (>= 0.1.31)
     haml (3.1.1)
     heroku (2.1.4)
       launchy (>= 0.3.2)
@@ -172,6 +180,9 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
+    typhoeus (0.2.4)
+      mime-types
+      mime-types
     tzinfo (0.3.27)
     xml-simple (1.0.16)
     xpath (0.1.4)
@@ -183,6 +194,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth (>= 4.2.7)
   autotest
+  aws-s3
   aws-ses (~> 0.3.2)
   capybara
   compass
@@ -191,7 +203,9 @@ DEPENDENCIES
   database_cleaner
   dropbox
   factory_girl_rails
+  fakeweb
   formtastic
+  google-storage
   haml
   heroku
   high_voltage

@@ -1,6 +1,6 @@
 class IsKISSr
   def matches?(request)
-    ("kissr.local" "www.kissr.co" "kisser.co").include?(request.host)
+    ("" "127.0.0.1" "localhost" "kissr.local" "www.kissr.co" "kisser.co").include?(request.host)
   end
 end
 

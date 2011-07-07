@@ -94,38 +94,39 @@ header {
 /* line 8, ../../app/views/stylesheets/header.sass */
 header h5 {
   padding-top: 10px;
+  padding-left: 20px;
 }
 
-/* line 10, ../../app/views/stylesheets/header.sass */
+/* line 11, ../../app/views/stylesheets/header.sass */
 header form {
   float: right;
   margin-top: 15px;
 }
 
-/* line 13, ../../app/views/stylesheets/header.sass */
+/* line 14, ../../app/views/stylesheets/header.sass */
 header label {
   display: inline;
   float: none;
   font-size: 1em;
 }
 
-/* line 17, ../../app/views/stylesheets/header.sass */
+/* line 18, ../../app/views/stylesheets/header.sass */
 header input {
   font-size: 1em;
 }
 
-/* line 19, ../../app/views/stylesheets/header.sass */
+/* line 20, ../../app/views/stylesheets/header.sass */
 header .text-field {
   display: block;
   float: left;
 }
 
-/* line 22, ../../app/views/stylesheets/header.sass */
+/* line 23, ../../app/views/stylesheets/header.sass */
 header input[type=submit] {
   margin-left: 10px;
 }
 
-/* line 24, ../../app/views/stylesheets/header.sass */
+/* line 25, ../../app/views/stylesheets/header.sass */
 #logo {
   display: block;
   text-indent: -9999px;
@@ -136,7 +137,7 @@ header input[type=submit] {
   background-repeat: no-repeat;
 }
 
-/* line 33, ../../app/views/stylesheets/header.sass */
+/* line 34, ../../app/views/stylesheets/header.sass */
 .container {
   width: 1100px;
   margin: 0 auto;

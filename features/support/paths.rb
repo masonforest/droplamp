@@ -6,7 +6,7 @@ module NavigationHelpers
   # step definition in web_steps.rb
   #
   def path_to(page_name)
-    
+    host! "kissr.local"   
     Capybara.default_host= "kissr.local"
     case page_name
 

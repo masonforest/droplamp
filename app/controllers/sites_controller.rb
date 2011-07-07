@@ -5,6 +5,7 @@ class SitesController < ApplicationController
     @site = Site.new
   end
   def show
+    File.open('/tmp/debug', 'w') {|f| f.write('Host:'+request.host) }
     @output  = Site.find_by_domain(request.host).render(params[:path])   
    render :text => @output[:content], :content_type => @output[:content_type]    
   end

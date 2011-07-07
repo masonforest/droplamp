@@ -1,46 +1,90 @@
+require 'liquid_inheritance'
+require 'pathname'
 class Site < ActiveRecord::Base
   DOMAINS=["kissr.co","com","org","net","info"]
-  before_create :heroku_add_domain
+  before_create :heroku_add_domain#,:add_bucket
   belongs_to :user
   include Redis::Objects
   hash_key :cache, :marshal => true 
+  
   def render(path)
     path='home' if path.blank?
-    if path =~ /\/(.*\..*)/
-      type = MIME::Types.type_for($1).to_s.sub(/\[/,"").sub(/\]/,"") # for some reason MIME::Types wraps the type in []'s
-      { :content => get(self.path+'/'+path), :content_type => type }
-    else
-      @template = Liquid::Template.parse(get(self.path+'/default.template'))
-      ['markdown','textile','html'].each do |extension|
-        @raw_content=get(self.path+'/'+path+'.'+extension)
-        next if @raw_content.nil?
-        case extension
-          when 'markdown'
-            @content=Redcarpet.new(@raw_content).to_html
-          when 'textile'
-            @content=RedCloth.new(@raw_content).to_html
-          when 'html'
-            @content=@raw_content
+    Liquid::Template.file_system = KISSrFileSystem.new(self)
+    
+      content=get(path+'.html')   
+      template = Liquid::Template.parse(content)
+      content = template.render('content' => content, 'galleries' => {'practice'=>list_directory(self.path+"/galleries/practice")})
+      content=offload_assets(content)
+      url=self.subdomain+"."+self.domain+path
+    
+    { :content => content, :content_type => 'text/html'}
+ 
+  end
+  def offload_assets_css(css)
+    puts "alive"
+    css.scan(/url\((.*)\)/).each do |url|
+  if not expired?(url[0].to_s)
+    
+  AWS::S3::S3Object.store(url[0].to_s,get(url[0].to_s),"kissr-macc",:access => :public_read)
+    end  
+  end
+    css.gsub(/url\((.*)\)/,'url(http://s3.amazonaws.com/kissr-MACC\1)')
+  end
+  def offload_assets(content)
+    doc = Nokogiri::HTML(content)
+    doc.css('script,img').each do |image|
+      puts image
+      if not image['src'].to_s =~ /^http:\/\//  then
+      if not image['src'].blank? then      
+        if  expired?(image['src'])
+          AWS::S3::S3Object.store(image['src'].to_s,get(image['src'].to_s),"kissr-macc",:access => :public_read)
+        end
+  
+         image['src']='http://s3.amazonaws.com/kissr-macc'+image['src'].to_s
         end
       end
-      { :content => @template.render('content' => @content), :content_type => 'text/html'} 
     end
+    doc.css('link').each do |image|
+      puts image
+      if not image['href'].to_s =~ /^http:\/\//  then
+        if expired?(image['src']) then
+          AWS::S3::S3Object.store(image['href'].to_s,get(image['href'].to_s),"kissr-macc",:access => :public_read)
+        end
+        image['href']='http://s3.amazonaws.com/kissr-macc/'+  image['href'].to_s
+      end
+    end
+
+    doc.to_s
   end
-  def get(path)
-  dropbox=Dropbox::Session.deserialize(self.user.dropbox_token)
-  dropbox.mode = :dropbox
-  begin
-    url=self.subdomain+"."+self.domain+"/"+path
-    puts url
-    if (not cache[url].nil?) and  dropbox.metadata(path).modified <=  cache[url][:modified]
-      cache[url][:content]  
-    else
-      content=dropbox.download(path)
-      cache[url]={:modified=>dropbox.metadata(path).modified,:content=>content}
-      content
-   end
-  rescue Dropbox::UnsuccessfulResponseError
-    nil
+  def list_directory(path)
+    dropbox=Dropbox::Session.deserialize(self.user.dropbox_token)
+    dropbox.mode = :dropbox
+    dropbox.list(path).map{|file| Pathname.new(file.path).basename.to_s}
+  end
+  def expired?(path)
+   dropbox=Dropbox::Session.deserialize(self.user.dropbox_token)
+   dropbox.mode = :dropbox
+    path=path.to_s.gsub(/^\//,"")
+    path=self.path+'/'+path
+    url=self.subdomain+"."+self.domain+path
+   (cache[url].nil?) or  dropbox.metadata(path).modified >  cache[url][:modified]
+  end
+  def get(path,use_cache=nil)
+    dropbox=Dropbox::Session.deserialize(self.user.dropbox_token)
+    dropbox.mode = :dropbox
+    path=path.to_s.gsub(/^\//,"")
+    path=self.path+'/'+path
+    url=self.subdomain+"."+self.domain+path
+    begin
+      if not expired?(path) then 
+        cache[url][:content]  
+      else
+        content=dropbox.download(path)
+        cache[url]={:modified=>dropbox.metadata(path).modified,:content=>content}
+        content
+    end
+      rescue Dropbox::UnsuccessfulResponseError
+      nil
   end
  end
  def self.find_by_domain(domain)
@@ -74,3 +118,13 @@ class Site < ActiveRecord::Base
 #   end
 #  end
 end
+class KISSrFileSystem
+  def initialize(site)  
+    @site = site  
+  end  
+  
+  def read_template_file(path)
+    @site.get(path)
+  end
+end
+
