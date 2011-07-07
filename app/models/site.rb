@@ -13,7 +13,7 @@ class Site < ActiveRecord::Base
     
       content=get(path+'.html')   
       template = Liquid::Template.parse(content)
-      content = template.render('content' => content, 'galleries' => {'practice'=>list_directory(self.path+"/galleries/practice")})
+      content = template.render('content' => content)#, 'galleries' => {'practice'=>list_directory(self.path+"/galleries/practice")})
       content=offload_assets(content)
       url=self.subdomain+"."+self.domain+path
     
