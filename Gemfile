@@ -17,7 +17,6 @@ gem 'redis-objects'
 gem "aws-ses", "~> 0.3.2", :require => 'aws/ses'
 gem 'nokogiri'
 gem 'aws-s3'
-gem 'google-storage'
 gem 'fakeweb'
 group :test, :development do
 	gem 'rspec'
