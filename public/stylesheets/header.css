@@ -2,11 +2,12 @@
 header {
   height: 80px;
   border-bottom: 1px solid #cccccc;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f2f2f2));
-  background-image: -webkit-linear-gradient(#fefefe, #f2f2f2);
-  background-image: -moz-linear-gradient(#fefefe, #f2f2f2);
-  background-image: -o-linear-gradient(#fefefe, #f2f2f2);
-  background-image: linear-gradient(#fefefe, #f2f2f2);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eeeeee), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(#eeeeee, #ffffff);
+  background-image: -moz-linear-gradient(#eeeeee, #ffffff);
+  background-image: -o-linear-gradient(#eeeeee, #ffffff);
+  background-image: -ms-linear-gradient(#eeeeee, #ffffff);
+  background-image: linear-gradient(#eeeeee, #ffffff);
   margin-bottom: 16px;
 }
 
@@ -17,35 +18,39 @@ header h5 {
 }
 
 /* line 11, ../../app/views/stylesheets/header.sass */
-header form {
+header #welcome-message {
+  text-align: center;
   float: right;
-  margin-top: 15px;
+}
+/* line 14, ../../app/views/stylesheets/header.sass */
+header #welcome-message a {
+  margin: 10px;
 }
 
-/* line 14, ../../app/views/stylesheets/header.sass */
+/* line 16, ../../app/views/stylesheets/header.sass */
 header label {
   display: inline;
   float: none;
   font-size: 1em;
 }
 
-/* line 18, ../../app/views/stylesheets/header.sass */
+/* line 20, ../../app/views/stylesheets/header.sass */
 header input {
   font-size: 1em;
 }
 
-/* line 20, ../../app/views/stylesheets/header.sass */
+/* line 22, ../../app/views/stylesheets/header.sass */
 header .text-field {
   display: block;
   float: left;
 }
 
-/* line 23, ../../app/views/stylesheets/header.sass */
+/* line 25, ../../app/views/stylesheets/header.sass */
 header input[type=submit] {
   margin-left: 10px;
 }
 
-/* line 25, ../../app/views/stylesheets/header.sass */
+/* line 27, ../../app/views/stylesheets/header.sass */
 #logo {
   display: block;
   text-indent: -9999px;
@@ -56,7 +61,7 @@ header input[type=submit] {
   background-repeat: no-repeat;
 }
 
-/* line 34, ../../app/views/stylesheets/header.sass */
+/* line 36, ../../app/views/stylesheets/header.sass */
 .container {
   width: 950px;
   margin: 0 auto;

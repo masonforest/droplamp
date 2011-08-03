@@ -6,20 +6,12 @@ module NavigationHelpers
   # step definition in web_steps.rb
   #
   def path_to(page_name)
-    host! "kissr.local"   
-    Capybara.default_host= "kissr.local"
     case page_name
 
-    when /the home\s?page/
-      'http://kissr.local:3000'+'/'
+    when /^the home\s?page$/
+      '/'
 
     # Add more mappings here.
-    #when /the sign up page/i
-    #      'http://kissr.local:3000'+'/'
-    #    when /the sign in page/i
-    #      'http://kissr.local:3000'+'/'
-    #    when /the password reset request page/i
-    #      'http://kissr.local:3000'+new_password_path
     # Here is an example that pulls values out of the Regexp:
     #
     #   when /^(.*)'s profile page$/i
@@ -27,10 +19,10 @@ module NavigationHelpers
 
     else
       begin
-        page_name =~ /the (.*) page/
+        page_name =~ /^the (.*) page$/
         path_components = $1.split(/\s+/)
         self.send(path_components.push('path').join('_').to_sym)
-      rescue Object => e
+      rescue NoMethodError, ArgumentError
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"
       end

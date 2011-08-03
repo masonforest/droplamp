@@ -9,15 +9,18 @@ gem 'formtastic'
 gem 'heroku'
 gem 'redcarpet'
 gem 'RedCloth', ">= 4.2.7"
+gem 'rdiscount'
 gem 'liquid'
 gem 'liquid-inheritance'
 gem 'dalli'
 gem 'redis'
 gem 'redis-objects'
 gem "aws-ses", "~> 0.3.2", :require => 'aws/ses'
+gem "aws-s3"
 gem 'nokogiri'
-gem 'aws-s3'
 gem 'fakeweb'
+gem 'omniauth',:path => "vendor/omniauth"
+gem 'gstore'
 group :test, :development do
 	gem 'rspec'
 	gem 'rspec-rails'
@@ -26,8 +29,12 @@ group :test, :development do
 	gem 'autotest'
 	gem 'nokogiri'
 	gem 'capybara'
+	gem 'capybara-webkit'
 	gem 'database_cleaner'
-	gem 'capybara'
 	gem 'launchy'
+  gem 'spork','0.9.0.rc8'
+  gem 'rb-fsevent'
+  gem 'guard-spork'
+  gem 'shoulda-matchers'
 end
 

@@ -36,6 +36,15 @@ module Kissr
     # Configure the default encoding used in templates for Ruby 1.9.
     config.cache_store = :dalli_store
     config.encoding = "utf-8"
+    
+    config.generators do |g|
+      g.test_framework :rspec
+    end
+    if Rails.env.test? 
+      initializer :after => :initialize_dependency_mechanism do 
+        ActiveSupport::Dependencies.mechanism = :load 
+      end 
+    end
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]

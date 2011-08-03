@@ -1,5 +1,9 @@
-%h1 Choose a domain
-=semantic_form_for @site do |f|
-  = f.inputs
-  = f.submit "Connect to Dropbox"
+%h1 Step 2:
+%h2 Attach a Domain
+-semantic_form_for @site do |f|
+  =f.semantic_fields_for :domain do |d|
+    = d.input :domain, :label=> "Domain"
+    = d.select :tld, Domain::TLDS, :for => :domain
+  = f.input :path,:label=> "Dropbox Folder"
+  = f.submit "Attach Domain"
 

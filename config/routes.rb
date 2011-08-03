@@ -1,21 +1,35 @@
-class IsKISSr
-  def matches?(request)
-    ("" "127.0.0.1" "localhost" "kissr.local" "www.kissr.co" "kisser.co").include?(request.host)
-  end
+class OmniauthPassThru
+    def self.matches?(request)
+        !request.fullpath.start_with?('/auth/') 
+    end
 end
 
-
+class IsKISSr
+  def self.matches?(request)
+   
+  end
+end
 Kissr::Application.routes.draw do
+
+match "/auth/:provider/callback" => "sessions#create"
+
+
 # If we are on the kissr domain  
-  constraints(IsKISSr.new) do
+  scope :constraints => lambda{|req| ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr").include?(req.host) }  do
     resources :pages
     resource :dropbox, :controller => 'dropbox' do
      get 'connect'
    end
-   resources :sites
-   root :to =>'pages#home'
-   end
+  resources :sites
+  resources :domains
+  root :to =>'pages#home'
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match "/signout" => "sessions#destroy", :as => :signout 
+  end
+scope :constraints => lambda{|req| not ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr").include?(req.host) } do
   resource :contact, :only => "create"
-  resources :profiles
-  match ":path" => "sites#show", :constraints => {:path => /.*/}  
+  match ":path" => "sites#show", :constraints=>lambda{|req| !req.fullpath.start_with?('/auth/')}
+  root :to => "sites#show"
+  match '/auth/:provider/callback', :to => 'sessions#create'
+end
 end

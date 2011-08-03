@@ -8,7 +8,7 @@ body {
 }
 
 /* line 7, ../../app/views/stylesheets/defaults.sass */
-h1, h2 {
+h1 {
   font-weight: bold;
   font-size: 2em;
   margin: 20px 0;
@@ -16,6 +16,18 @@ h1, h2 {
 }
 
 /* line 12, ../../app/views/stylesheets/defaults.sass */
+h2 {
+  font-size: 0.9em;
+  margin-left: 10px;
+  font-style: italic;
+}
+
+/* line 16, ../../app/views/stylesheets/defaults.sass */
 a {
   color: #333333;
+}
+
+/* line 18, ../../app/views/stylesheets/defaults.sass */
+#site_domain {
+  float: left;
 }

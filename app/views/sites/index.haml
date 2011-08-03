@@ -1,0 +1,11 @@
+%h1 Manage Existing KISSr Folders
+%table.existing
+  %thead
+    %tr
+      %th Name
+      %th Domain
+    -@sites.each do |site|
+      %tr
+        %td=site.path
+        %td=site.domain
+ 

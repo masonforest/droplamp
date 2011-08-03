@@ -3,8 +3,7 @@ class CreateSites < ActiveRecord::Migration
    create_table :sites do |t|
       t.references :user
       t.string :path
-      t.string :domain
-      t.string :subdomain
+      
       t.timestamps
     end
   end

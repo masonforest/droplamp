@@ -10,20 +10,51 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515000845) do
+ActiveRecord::Schema.define(:version => 20110802020647) do
+
+  create_table "assets", :force => true do |t|
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buckets", :force => true do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "domains", :force => true do |t|
+    t.string   "domain"
+    t.string   "tld"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sites", :force => true do |t|
     t.integer  "user_id"
     t.string   "path"
-    t.string   "domain"
-    t.string   "subdomain"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
-    t.string  "dropbox_token"
-    t.integer "dropbox_uid"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "dropbox_token"
+    t.string   "dropbox_token_secret"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

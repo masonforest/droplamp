@@ -1,9 +1,32 @@
 /* line 1, ../../app/views/stylesheets/forms.sass */
-input, label, select {
-  margin: 10px 0;
+li {
+  list-style: none;
 }
 
 /* line 3, ../../app/views/stylesheets/forms.sass */
+form {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* line 7, ../../app/views/stylesheets/forms.sass */
+label {
+  clear: left;
+  width: 120px;
+}
+
+/* line 10, ../../app/views/stylesheets/forms.sass */
+input, label, select {
+  float: left;
+  margin: 10px 0;
+}
+
+/* line 13, ../../app/views/stylesheets/forms.sass */
+input[type=submit] {
+  clear: left;
+}
+
+/* line 15, ../../app/views/stylesheets/forms.sass */
 button, a.button, input[type=submit] {
   padding: 10px 30px;
   background-color: #aaaaaa;
@@ -32,7 +55,7 @@ button, a.button, input[type=submit] {
   margin: 20px 0;
 }
 
-/* line 29, ../../app/views/stylesheets/forms.sass */
+/* line 41, ../../app/views/stylesheets/forms.sass */
 button:hover, a.button:hover, input[type=submit]:hover {
   background-color: #aaaaaa;
   -moz-box-shadow: 0px 1px 1px white, 0 0 1px 1px white;
