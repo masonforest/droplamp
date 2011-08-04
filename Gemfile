@@ -20,7 +20,7 @@ gem "aws-s3"
 gem 'nokogiri'
 gem 'fakeweb'
 gem 'omniauth',:path => "vendor/omniauth"
-gem 'oa-core'
+gem 'oa-core',">= 0.3.0.rc1"
 gem 'gstore'
 group :test, :development do
 	gem 'rspec'

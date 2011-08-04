@@ -274,7 +274,7 @@ DEPENDENCIES
   liquid
   liquid-inheritance
   nokogiri
-  oa-core
+  oa-core (>= 0.3.0.rc1)
   omniauth!
   rails
   rb-fsevent
