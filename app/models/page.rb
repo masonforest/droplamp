@@ -1,11 +1,9 @@
 class Page < ActiveRecord::Base
   belongs_to :site
-  after_create :setup_liquid
-  def setup_liquid
+
+  def render
     Liquid::Template.file_system = KISSrFileSystem.new(self.site)
     Liquid::Template.register_tag('markdown',MarkdownTag)
-  end
-  def render
     content=dropbox.download("#{self.site.path}/#{self.path}.html")
     template = Liquid::Template.parse(content)
     content = template.render
