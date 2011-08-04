@@ -17,10 +17,8 @@ gem 'redis'
 gem 'redis-objects'
 gem "aws-ses", "~> 0.3.2", :require => 'aws/ses'
 gem "aws-s3"
-gem 'nokogiri'
 gem 'fakeweb'
-gem 'omniauth',:path => "vendor/omniauth"
-gem 'oa-core',">= 0.3.0.rc1"
+gem 'omniauth', ">= 0.2.0"#,:path => "vendor/omniauth"
 gem 'gstore'
 group :test, :development do
 	gem 'rspec'
