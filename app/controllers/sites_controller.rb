@@ -6,6 +6,7 @@ class SitesController < ApplicationController
     @site.domain = Domain.new
   end
   def show
+    response.headers['Cache-Control'] = 'public, max-age=300'
     @output  = Site.find_by_domain(request.host).render(params[:path])
    render :text => @output, :content_type => "text/html"
   end

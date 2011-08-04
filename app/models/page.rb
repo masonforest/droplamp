@@ -10,7 +10,7 @@ class Page < ActiveRecord::Base
     template = Liquid::Template.parse(content)
     content = template.render
     offload_assets(content)
-
+    self.modified=dropbox.metadata("#{self.site.path}/#{self.path}.html")
   end
   def offload_assets(content)
     doc = Nokogiri::HTML(content)
