@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 gem 'rails'
+gem "rake", "0.8.7"
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'haml'
 gem 'high_voltage'
