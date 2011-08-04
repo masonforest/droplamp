@@ -21,13 +21,13 @@ gem "aws-s3"
 gem 'fakeweb'
 gem 'omniauth', ">= 0.2.0"#,:path => "vendor/omniauth"
 gem 'gstore'
+gem 'nokogiri'
 group :test, :development do
 	gem 'rspec'
 	gem 'rspec-rails'
 	gem 'cucumber-rails'
 	gem 'factory_girl_rails'
 	gem 'autotest'
-	gem 'nokogiri'
 	gem 'capybara'
 	gem 'capybara-webkit'
 	gem 'database_cleaner'
