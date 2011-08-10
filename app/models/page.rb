@@ -9,21 +9,32 @@ class Page < ActiveRecord::Base
     content = template.render
     offload_assets(content)
   end
+  def css_offload_assets(content)
+    content.gsub(/url[ ]*\(['" ]*(.*?)['" ]*\)/) do
+      asset=$1.gsub(/^\//,"")
+      begin
+        self.site.bucket.put(asset,dropbox.download("#{self.site.path}/#{asset}"))
+      rescue
+      end
+      end
+
+    
+  end
   def offload_assets(content)
     doc = Nokogiri::HTML(content)
-    
-    # Upload to google storage and replace URLs
+    # Upload to S3 and replace URLs
     doc.css('script,img').each do |asset|
-      if not asset['src'].to_s =~ /^http:\/\//  then
-         asset['src']= asset['src'].gsub(/^\//,"")
+      if not  asset['src'].nil? and not asset['src'].to_s =~ /^http:\/\//  then
+      asset['src']= asset['src'].gsub(/^\//,"")
         asset['src']=self.site.bucket.put(asset["src"].to_s,dropbox.download("#{self.site.path}/#{asset["src"]}").to_s)
       end
     end
 
     doc.css('link').each do |asset|
-       if not asset['href'].to_s =~ /^http:\/\//  then
-         asset['href']= asset['href'].gsub(/^\//,"")
-         asset['href']=self.site.bucket.put(asset["href"].to_s,dropbox.download("#{self.site.path}/#{asset["href"]}").to_s)
+       if  not asset['href'].nil? and not asset['href'].to_s =~ /^http:\/\//  then
+        asset['href']= asset['href'].gsub(/^\//,"")
+         source=dropbox.download("#{self.site.path}/#{asset["href"]}").to_s
+         asset['href']=self.site.bucket.put(asset["href"].to_s,css_offload_assets(source))
        end
     end
     doc.to_s

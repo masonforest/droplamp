@@ -29,8 +29,6 @@ group :test, :development do
 	gem 'factory_girl_rails'
 	gem 'autotest'
 	gem 'capybara'
-	gem 'capybara-webkit'
-	gem 'database_cleaner'
 	gem 'launchy'
   gem 'spork','0.9.0.rc8'
   gem 'rb-fsevent'

@@ -56,8 +56,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.27)
       xpath (~> 0.1.3)
-    capybara-webkit (0.5.0)
-      capybara (~> 0.4.1)
     celerity (0.8.9)
     childprocess (0.2.0)
       ffi (~> 1.0.6)
@@ -78,7 +76,6 @@ GEM
       rack-test (>= 0.5.7)
     culerity (0.2.15)
     dalli (1.0.5)
-    database_cleaner (0.6.7)
     diff-lcs (1.1.2)
     dropbox (1.3.0)
       json (>= 1.2.0)
@@ -251,11 +248,9 @@ DEPENDENCIES
   aws-s3
   aws-ses (~> 0.3.2)
   capybara
-  capybara-webkit
   compass
   cucumber-rails
   dalli
-  database_cleaner
   dropbox
   factory_girl_rails
   fakeweb

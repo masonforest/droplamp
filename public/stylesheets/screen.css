@@ -1,11 +1,11 @@
-/* line 4, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 4, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 html {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-/* line 18, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 18, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 .bp-reset-element, body, h1, h2, h3, h4, h5, h6, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, blockquote, q, th, td, caption, table,
 div, span, object, iframe, p,
 pre, a, abbr, acronym, address,
@@ -23,21 +23,21 @@ caption, tbody, tfoot, thead, tr {
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 20, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
 
-/* line 21, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 21, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 blockquote, q {
   quotes: "" "";
 }
-/* line 67, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 67, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 blockquote:before, blockquote:after, q:before, q:after {
   content: "";
 }
 
-/* line 22, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 22, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 th, td, caption {
   float: none !important;
   text-align: left;
@@ -45,14 +45,14 @@ th, td, caption {
   vertical-align: middle;
 }
 
-/* line 23, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 23, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 table {
   border-collapse: separate;
   border-spacing: 0;
   vertical-align: middle;
 }
 
-/* line 24, ../../../../../../usr/local/Cellar/ruby/1.9.2-p180/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 24, ../../../../../../usr/local/Cellar/ruby/1.9.2-p290/lib/ruby/gems/1.9.1/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 a img {
   border: none;
 }
@@ -82,11 +82,16 @@ h2 {
 }
 
 /* line 16, ../../app/views/stylesheets/defaults.sass */
+p {
+  font-size: 1em;
+}
+
+/* line 18, ../../app/views/stylesheets/defaults.sass */
 a {
   color: #333333;
 }
 
-/* line 18, ../../app/views/stylesheets/defaults.sass */
+/* line 20, ../../app/views/stylesheets/defaults.sass */
 #site_domain {
   float: left;
 }
@@ -239,6 +244,12 @@ button:hover, a.button:hover, input[type=submit]:hover {
 }
 
 /* line 6, ../../app/views/stylesheets/pages/home.sass */
+.pages-home h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* line 9, ../../app/views/stylesheets/pages/home.sass */
 #description {
   width: 400px;
   margin: 100px auto;

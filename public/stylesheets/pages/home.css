@@ -10,6 +10,12 @@
 }
 
 /* line 6, ../../../app/views/stylesheets/pages/home.sass */
+.pages-home h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* line 9, ../../../app/views/stylesheets/pages/home.sass */
 #description {
   width: 400px;
   margin: 100px auto;

@@ -23,11 +23,16 @@ h2 {
 }
 
 /* line 16, ../../app/views/stylesheets/defaults.sass */
+p {
+  font-size: 1em;
+}
+
+/* line 18, ../../app/views/stylesheets/defaults.sass */
 a {
   color: #333333;
 }
 
-/* line 18, ../../app/views/stylesheets/defaults.sass */
+/* line 20, ../../app/views/stylesheets/defaults.sass */
 #site_domain {
   float: left;
 }
