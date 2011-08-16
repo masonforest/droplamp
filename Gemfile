@@ -1,11 +1,19 @@
 source 'http://rubygems.org'
-gem 'rails'
-gem "rake", "0.8.7"
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'rails', '3.1.0.rc5'
+gem 'haml'
+gem 'devise'
+group :assets do
+  gem 'sass-rails', "~> 3.1.0.rc"
+  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'uglifier'
+end
+gem 'jquery-rails'
+
+gem 'sqlite3'
 gem 'haml'
 gem 'high_voltage'
 gem 'dropbox'
-gem 'compass'
+gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'
 gem 'formtastic'
 gem 'heroku'
 gem 'redcarpet'
@@ -16,7 +24,6 @@ gem 'liquid-inheritance'
 gem 'dalli'
 gem 'redis'
 gem 'redis-objects'
-gem "aws-ses", "~> 0.3.2", :require => 'aws/ses'
 gem "aws-s3"
 gem 'fakeweb'
 gem 'omniauth', ">= 0.2.0"#,:path => "vendor/omniauth"
