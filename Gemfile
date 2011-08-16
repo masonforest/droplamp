@@ -29,6 +29,7 @@ gem 'fakeweb'
 gem 'omniauth', ">= 0.2.0"#,:path => "vendor/omniauth"
 gem 'gstore'
 gem 'nokogiri'
+gem 'pg'
 gem 'therubyracer-heroku', :group => :production
 group :test, :development do
 	gem 'rspec'
