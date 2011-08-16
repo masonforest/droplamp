@@ -3,5 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/sass-cache
 tmp/capybara
+tmp/pids
+tmp/cache
 *.swo
 *.swp
