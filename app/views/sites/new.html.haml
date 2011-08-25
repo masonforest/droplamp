@@ -3,6 +3,7 @@
     = d.input :domain, :label=> "Domain"
     %span{:id=>"dot"}.
     = d.select :tld, Domain::TLDS, :for => :domain
+  #domain_status
   = f.input :path,:label=> "Dropbox Folder"
   = f.submit "Attach Domain"
 

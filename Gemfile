@@ -31,6 +31,8 @@ gem 'gstore'
 gem 'nokogiri'
 gem 'pg'
 gem 'therubyracer-heroku', :group => :production
+gem 'name-dot-com'
+
 group :test, :development do
 	gem 'rspec'
 	gem 'rspec-rails'

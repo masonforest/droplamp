@@ -17,14 +17,15 @@ match "/auth/:provider/callback" => "sessions#create"
 # If we are on the kissr domain  
   scope :constraints => lambda{|req| ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr" "www.kissr.co").include?(req.host) }  do
     resources :pages
-    resource :dropbox, :controller => 'dropbox' do
-     get 'connect'
-   end
-  resources :sites
-  resources :domains
-  root :to =>'pages#home'
-  match '/auth/:provider/callback', :to => 'sessions#create'
-  match "/signout" => "sessions#destroy", :as => :signout 
+    resources :domains do
+     get 'status', :on => :collection
+    end
+    resources :sites
+  
+    root :to =>'pages#home'
+
+    match '/auth/:provider/callback', :to => 'sessions#create'
+    match "/signout" => "sessions#destroy", :as => :signout 
   end
 scope :constraints => lambda{|req| not ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr").include?(req.host) } do
   resource :contact, :only => "create"
