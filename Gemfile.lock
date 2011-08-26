@@ -222,9 +222,6 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.9.3)
     redcarpet (1.17.2)
-    redis (2.2.2)
-    redis-objects (0.5.1)
-      redis (>= 2.1.1)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.6.0)
@@ -312,8 +309,6 @@ DEPENDENCIES
   rb-fsevent
   rdiscount
   redcarpet
-  redis
-  redis-objects
   rspec
   rspec-rails
   sass-rails (~> 3.1.0.rc)

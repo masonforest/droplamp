@@ -22,8 +22,6 @@ gem 'rdiscount'
 gem 'liquid'
 gem 'liquid-inheritance'
 gem 'dalli'
-gem 'redis'
-gem 'redis-objects'
 gem "aws-s3"
 gem 'fakeweb'
 gem 'omniauth', ">= 0.2.0"#,:path => "vendor/omniauth"
