@@ -22,7 +22,7 @@ class SitesController < ApplicationController
     end
   end
   def index
-    @sites = Site.find :all
+    @sites = Site.where(:user_id=>current_user)
     @site = Site.new
   end
  def destroy
