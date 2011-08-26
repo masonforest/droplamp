@@ -15,7 +15,7 @@ match "/auth/:provider/callback" => "sessions#create"
 
 
 # If we are on the kissr domain  
-  scope :constraints => lambda{|req| ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr" "www.kissr.co").include?(req.host) }  do
+  scope :constraints => lambda{|req| ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr" "www.kissr.co" "kissr-staging.herokuapp.com").include?(req.host) }  do
     resources :pages
     resources :domains do
      get 'status', :on => :collection
