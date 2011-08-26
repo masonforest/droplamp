@@ -35,7 +35,7 @@ module Kissr
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
     # Configure the default encoding used in templates for Ruby 1.9.
-    config.cache_store = :dalli_store
+    #config.cache_store = :dalli_store
     config.encoding = "utf-8"
     
     config.generators do |g|
