@@ -18,7 +18,7 @@ class Site < ActiveRecord::Base
     end
   
   def create_heroku_domain
-    heroku = Heroku::Client.new("moocowmason@gmail.com", "password")
+    heroku = Heroku::Client.new("mason@stirltech.com", "password")
     heroku.add_domain("kissr",self.domain.to_s)
   end
   def create_bucket
