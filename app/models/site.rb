@@ -8,7 +8,8 @@ class Site < ActiveRecord::Base
   validates_uniqueness_of :path, :scope => :user_id
 
   def self.find_by_domain(domain)
-    domain = domain.split(".")
+    domain = domain.gsub(/www\./,"").split(".")
+    puts domain.inspect
     Site.joins(:domain).where("domains.domain"=>domain[0], "domains.tld"=>domain[1..-1].join('.')).first
   end
   def render(path)
@@ -29,7 +30,7 @@ class Site < ActiveRecord::Base
     # TODO add upload folder
     dropbox.create_folder(path)
     dropbox.create_folder(path+'/css')
-    dropbox.upload( Rails.root.join("templates","default", "home.html").to_s ,path)
+    dropbox.upload( Rails.root.join("templates","default", "index.html").to_s ,path)
     dropbox.upload( Rails.root.join("templates","default",  "about.html").to_s ,path)
     dropbox.upload( Rails.root.join("templates","default",  "contact.html").to_s ,path)
     dropbox.upload( Rails.root.join("templates","default",  "template.html").to_s ,path)
