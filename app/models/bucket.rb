@@ -7,10 +7,7 @@ class Bucket < ActiveRecord::Base
     bucket.save
   end
   def put(object_name,object)
-    
-    puts "Uploading #{self.name} to #{object_name}"
-    #GOOGLE_STORAGE.put_object(self.name,object_name, {:data=>object, :headers => {:x_goog_acl => 'public-read',"Content-type"=>"text/css"}})
-    #"http://commondatastorage.googleapis.com/#{self.name}/#{object_name}"
+    puts "Pushing to #{object_name}"
     AWS::S3::S3Object.store("#{self.site.domain}/#{object_name}",object,"kissr",:access => :public_read)
     "http://kissr.s3.amazonaws.com/#{self.site.domain}/#{object_name}"
   end

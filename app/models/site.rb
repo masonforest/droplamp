@@ -12,7 +12,7 @@ class Site < ActiveRecord::Base
     Site.joins(:domain).where("domains.domain"=>domain[0], "domains.tld"=>domain[1..-1].join('.')).first
   end
   def render(path)
-    path ||= "home"
+    path ||= "index"
     Page.find_or_create_by_path_and_site_id(path,self.id).render
     
     end

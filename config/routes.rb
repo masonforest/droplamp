@@ -29,7 +29,7 @@ match "/auth/:provider/callback" => "sessions#create"
   end
 scope :constraints => lambda{|req| not ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr").include?(req.host) } do
   resource :contact, :only => "create"
-  match ":path" => "sites#show", :constraints=>lambda{|req| !req.fullpath.start_with?('/auth/')}
+  match "*path" => "sites#show", :constraints=>lambda{|req| !req.fullpath.start_with?('/auth/')}
   root :to => "sites#show"
   match '/auth/:provider/callback', :to => 'sessions#create'
 end

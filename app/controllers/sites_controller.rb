@@ -7,8 +7,13 @@ class SitesController < ApplicationController
   end
   def show
     #response.headers['Cache-Control'] = 'public, max-age=300'
-    @output  = Site.find_by_domain(request.host).render(params[:path])
-   render :text => @output, :content_type => "text/html"
+    @site  = Site.find_by_domain(request.host)
+    if @site then
+      @output=@site.render(params[:path])
+      render :text => @output, :content_type => "text/html"
+    else
+      render "missing", status => 404
+    end
   end
   def create
     params[:site][:user_id]=current_user.id

@@ -14,7 +14,8 @@ class Page < ActiveRecord::Base
       asset=$1.gsub(/^\//,"")
       begin
         self.site.bucket.put(asset,dropbox.download("#{self.site.path}/#{asset}"))
-      rescue
+      rescue Dropbox::UnsuccessfulResponseError
+        puts $!
       end
       end
 
