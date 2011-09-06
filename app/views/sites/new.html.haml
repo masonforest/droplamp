@@ -1,3 +1,15 @@
+=content_for :head do
+  :coffeescript
+    $().ready ->
+      $("#already_registered,label[for=site_already_registered]").hide()
+      $("#site_domain_attributes_tld").change ->
+        if $(this).val() != "kissr.co"
+          $("#already_registered,label[for=site_already_registered]").slideDown()
+        else
+          $("#already_registered,label[for=site_already_registered]").slideUp()
+      $("#already_registered").click ->
+        alert "Support for registering domains on site is coming soon! Until then, please follow the turorial on setting up a domain with GoDaddy."
+        false
 =semantic_form_for @site do |f|
   =f.semantic_fields_for :domain do |d|
     = d.input :domain, :label=> "Domain"
@@ -5,5 +17,7 @@
     = d.select :tld, Domain::TLDS, :for => :domain
   #domain_status
   = f.input :path,:label=> "Dropbox Folder"
+  = f.label "already_registered", "I've already registered this domain"
+  = check_box_tag "already_registered",1,{:checked=>:checked}
   = f.submit "Attach Domain"
 

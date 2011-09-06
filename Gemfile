@@ -11,6 +11,7 @@ gem 'jquery-rails'
 
 
 gem 'haml'
+gem 'coffee-filter'
 gem 'high_voltage'
 gem 'dropbox'
 gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'

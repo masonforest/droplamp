@@ -1,0 +1,16 @@
+%h1 Manage Existing KISSr Folders
+%table.existing
+  %thead
+    %tr
+      %th Name
+      %th Domain
+      %th Actions
+    -@sites.each do |site|
+      %tr
+        %td=site.path
+        %td=site.domain
+        %td
+          %img{:src => "/assets/icons/pencil.png"}
+          =form_tag site, :method => "delete" do
+            %input{:type => "image", :src => "/assets/icons/cross.png"}
+ 

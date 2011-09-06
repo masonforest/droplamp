@@ -28,6 +28,7 @@
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
       })();
       
+    = yield :head
     = csrf_meta_tag
   %body{:class => "#{controller_name}-#{action_name}"}
     .container

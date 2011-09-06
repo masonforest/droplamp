@@ -32,8 +32,8 @@ class SitesController < ApplicationController
   end
  def destroy
     @site = Site.find(params[:id])
-    flash[:message]="Deleted "+@site.subdomain+"."+@site.domain 
+    flash[:message]="Deleted #{@site.domain}"
     @site.destroy
-    redirect_to "/dropbox"
+    redirect_to "/sites"
  end
 end
