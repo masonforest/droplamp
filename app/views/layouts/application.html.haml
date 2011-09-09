@@ -35,7 +35,7 @@
       %header
         -unless current_user.nil? then
           #welcome-message
-            %p="Hi, #{current_user.name.split(' ')[0]}!"
+            %p="Hi, #{User.find(current_user.id).first_name}!"
             =link_to "Sign Out", signout_path, :class=> :button 
         %h5
           %a{:id=> "logo",:href=>"/"} Kissr

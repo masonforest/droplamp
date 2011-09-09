@@ -1,9 +1,14 @@
 class SitesController < ApplicationController
 #caches_page :show
-
+  before_filter :authenticate_user
   def new
     @site = Site.new
     @site.domain = Domain.new
+  end
+  def activate
+    @site = Site.find(params[:id])
+    flash[:message] = render_to_string :partial=>"sites/welcome_message"
+    redirect_to sites_path
   end
   def show
     #response.headers['Cache-Control'] = 'public, max-age=300'
@@ -20,8 +25,9 @@ class SitesController < ApplicationController
     params[:site][:path]=params[:site][:path]
    @site = Site.new(params[:site])
     if @site.save
-      flash[:message] = render_to_string :partial=>"sites/welcome_message"
-      redirect_to '/sites'
+      redirect_to "https://kissr-test.recurly.com/subscribe/domain_preregistered/#{@site.id}?first_name=#{@site.user.first_name}&last_name=#{@site.user.last_name}"
+      #flash[:message] = render_to_string :partial=>"sites/welcome_message"
+      #redirect_to '/sites'
     else
       render 'new'
     end

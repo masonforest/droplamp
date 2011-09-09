@@ -20,9 +20,11 @@ match "/auth/:provider/callback" => "sessions#create"
     resources :domains do
      get 'status', :on => :collection
     end
-    resources :sites
+    resources :sites do
+      get 'activate', :on => :member
+    end
   
-    root :to =>'pages#home'
+    root :to =>'application#index'
 
     match '/auth/:provider/callback', :to => 'sessions#create'
     match "/signout" => "sessions#destroy", :as => :signout 

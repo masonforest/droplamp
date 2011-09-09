@@ -17,7 +17,7 @@ $(document).ready ->
     queue.add
        url : "/domains/status?domain=#{$("#site_domain_attributes_domain").val()}&tld=#{$("#site_domain_attributes_tld").val()}"
        success : (data, textStatus, jqXHR)->
-          switch data.status
+          switch data
             when "available"
               $("#domain_status").html("Available").removeClass("taken").addClass("available")
             else
