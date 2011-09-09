@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery  
   helper_method :current_user  
   def index
+    puts "don"
     if current_user then
       redirect_to sites_path
     else
