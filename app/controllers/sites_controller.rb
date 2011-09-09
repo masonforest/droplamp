@@ -25,9 +25,12 @@ class SitesController < ApplicationController
     params[:site][:path]=params[:site][:path]
    @site = Site.new(params[:site])
     if @site.save
-      redirect_to "https://kissr-test.recurly.com/subscribe/domain_preregistered/#{@site.id}?first_name=#{@site.user.first_name}&last_name=#{@site.user.last_name}"
-      #flash[:message] = render_to_string :partial=>"sites/welcome_message"
-      #redirect_to '/sites'
+      if @site.domain.tld == "kissr.co"
+        flash[:message] = render_to_string :partial=>"sites/welcome_message"
+        redirect_to '/sites'
+      else
+        redirect_to "https://kissr-test.recurly.com/subscribe/domain_preregistered/#{@site.id}?first_name=#{@site.user.first_name}&last_name=#{@site.user.last_name}"
+      end
     else
       render 'new'
     end
