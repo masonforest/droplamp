@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.0.rc6'
+gem 'rails', '3.1.0'
 gem 'haml'
 gem 'devise'
 group :assets do
@@ -8,7 +8,7 @@ group :assets do
   gem 'uglifier'
 end
 gem 'jquery-rails'
-
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 gem 'haml'
 gem 'coffee-filter'

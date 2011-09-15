@@ -27,7 +27,7 @@ class Site < ActiveRecord::Base
   end
   def create_dropbox_folder
     path=self.path
-    # TODO add upload folder
+    # TODO add upload folder method to dropbox gem
     dropbox.create_folder(path)
     dropbox.create_folder(path+'/css')
     dropbox.upload( Rails.root.join("templates","default", "index.html").to_s ,path)
@@ -37,7 +37,6 @@ class Site < ActiveRecord::Base
     dropbox.upload( Rails.root.join("templates","default",  "css","style.css").to_s ,path+'/css')
     dropbox.upload( Rails.root.join("templates","default",  "css","screen.css").to_s ,path+'/css')
     
-    #Dropbox.upload('templates/default',self.path)
   end
   def dropbox
    @dropbox ||= begin

@@ -11,6 +11,10 @@ class IsKISSr
 end
 Kissr::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+  devise_for :users
+
 match "/auth/:provider/callback" => "sessions#create"
 
 

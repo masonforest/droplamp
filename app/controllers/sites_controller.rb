@@ -1,5 +1,4 @@
 class SitesController < ApplicationController
-#caches_page :show
   before_filter :authenticate_user, :except => "show"
   def new
     @site = Site.new
@@ -11,8 +10,6 @@ class SitesController < ApplicationController
     redirect_to sites_path
   end
   def show
-    puts "hey"
-    #response.headers['Cache-Control'] = 'public, max-age=300'
     @site  = Site.find_by_domain(request.host)
     if @site then
       @output=@site.render(params[:path])
