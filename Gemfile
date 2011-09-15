@@ -9,7 +9,6 @@ group :assets do
 end
 gem 'jquery-rails'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
-
 gem 'haml'
 gem 'coffee-filter'
 gem 'high_voltage'
