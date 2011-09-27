@@ -51,5 +51,6 @@ module Kissr
     config.filter_parameters += [:password]
     config.assets.enabled = true
     config.generators.stylesheet_engine = :sass
+    
   end
 end

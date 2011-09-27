@@ -14,7 +14,7 @@ gem 'haml'
 gem 'coffee-filter'
 gem 'high_voltage'
 gem 'dropbox'
-gem "compass-rails31", "~> 0.12.0.alpha.0.91a748a"
+gem "compass", :git => "git://github.com/chriseppstein/compass.git"
 gem 'formtastic'
 gem 'heroku'
 gem 'redcarpet'

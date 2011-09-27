@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/chriseppstein/compass.git
+  revision: 067fb963df8fb68692ce45ab2140ca394a2b40cd
+  specs:
+    compass (0.12.alpha.0.067fb96)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+
+GIT
   remote: git://github.com/sferik/rails_admin.git
   revision: f7eea5336b7cd2e6f38bbeed2d0eea1ed6901738
   specs:
@@ -73,10 +82,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
-    compass-rails31 (0.12.0.alpha.0.91a748a)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
     cucumber (1.1.0)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.2)
@@ -305,7 +310,7 @@ DEPENDENCIES
   capybara
   coffee-filter
   coffee-rails (~> 3.1.0.rc)
-  compass-rails31 (~> 0.12.0.alpha.0.91a748a)
+  compass!
   cucumber-rails
   dalli
   devise
