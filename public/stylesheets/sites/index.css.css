@@ -1,0 +1,29 @@
+/* line 1, ../../../app/assets/stylesheets/sites/index.css.sass */
+table tr td:nth-child(1) {
+  min-width: 200px;
+}
+
+/* line 3, ../../../app/assets/stylesheets/sites/index.css.sass */
+input[type=image] {
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 7, ../../../app/assets/stylesheets/sites/index.css.sass */
+table form {
+  float: left;
+  width: auto;
+}
+
+/* line 10, ../../../app/assets/stylesheets/sites/index.css.sass */
+table img {
+  padding: 0;
+  margin: 0;
+  float: left;
+}
+
+/* line 14, ../../../app/assets/stylesheets/sites/index.css.sass */
+form div {
+  display: inline !important;
+}

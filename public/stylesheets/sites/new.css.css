@@ -1,0 +1,39 @@
+/* line 1, ../../../app/assets/stylesheets/sites/new.css.sass */
+#site_domain_tld, #domain_status {
+  float: left;
+}
+
+/* line 3, ../../../app/assets/stylesheets/sites/new.css.sass */
+#domain_status {
+  margin-left: 5px;
+  line-height: 2.3em;
+}
+
+/* line 6, ../../../app/assets/stylesheets/sites/new.css.sass */
+label[for=site_already_registered] {
+  width: 285px;
+}
+
+/* line 8, ../../../app/assets/stylesheets/sites/new.css.sass */
+#domain_preregistered {
+  width: 30px;
+  height: 30px;
+}
+
+/* line 12, ../../../app/assets/stylesheets/sites/new.css.sass */
+#dot {
+  float: left;
+  font-family: Times;
+  font-size: 2.2em;
+  line-height: 1em;
+}
+
+/* line 17, ../../../app/assets/stylesheets/sites/new.css.sass */
+.taken {
+  color: red;
+}
+
+/* line 19, ../../../app/assets/stylesheets/sites/new.css.sass */
+.available {
+  color: lime;
+}
