@@ -7,13 +7,14 @@ group :assets do
   gem 'coffee-rails', "~> 3.1.0.rc"
   gem 'uglifier'
 end
+gem 'log4r', '1.1.9'
 gem 'jquery-rails'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'haml'
 gem 'coffee-filter'
 gem 'high_voltage'
 gem 'dropbox'
-gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => 'rails31'
+gem 'compass', :git => 'https://github.com/chriseppstein/compass.git', :branch => '~> 0.12.alpha'
 gem 'formtastic'
 gem 'heroku'
 gem 'redcarpet'

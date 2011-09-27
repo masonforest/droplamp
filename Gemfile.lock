@@ -9,10 +9,10 @@ GIT
 
 GIT
   remote: https://github.com/chriseppstein/compass.git
-  revision: 22e2458b77519e8eb8463170c1a1fe4bab105f3e
-  branch: rails31
+  revision: 
+  branch: ~> 0.12.alpha
   specs:
-    compass (0.12.0.alpha.0.22e2458)
+    compass (0.11.5.1dd2563)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
@@ -115,7 +115,7 @@ GEM
     faraday (0.7.4)
       addressable (~> 2.2.6)
       multipart-post (~> 1.1.0)
-      rack (>= 1.1.0, < 2)
+      rack (< 2, >= 1.1.0)
     faraday_middleware (0.7.0)
       faraday (~> 0.7.3)
     ffi (1.0.9)
@@ -327,6 +327,7 @@ DEPENDENCIES
   launchy
   liquid
   liquid-inheritance
+  log4r (= 1.1.9)
   name-dot-com
   nokogiri
   omniauth (>= 0.2.0)
