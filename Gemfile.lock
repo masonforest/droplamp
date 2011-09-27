@@ -73,7 +73,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
-    compass (0.11.5)
+    compass-rails31 (0.12.0.alpha.0.91a748a)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
@@ -305,7 +305,7 @@ DEPENDENCIES
   capybara
   coffee-filter
   coffee-rails (~> 3.1.0.rc)
-  compass
+  compass-rails31 (~> 0.12.0.alpha.0.91a748a)
   cucumber-rails
   dalli
   devise
