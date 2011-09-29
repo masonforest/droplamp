@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     pp auth['extra']['access_token'].token
     create do |user|
       user.provider = auth['provider']
-      user.uid = auth['uid']
+      user.uid = auth['uid'].to_s
       user.dropbox_token=auth['extra']['access_token'].token
       user.dropbox_token_secret=auth['extra']['access_token'].secret
       user.name = auth['info']['name'] if auth['info']['name']
