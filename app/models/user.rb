@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
  
   def self.create_with_omniauth(auth)
     puts 'still alive!'
-    pp auth['extra']['access_token'].token
+    puts auth.inspect
+    #pp auth['extra']['access_token'].token
     create do |user|
       user.provider = auth['provider']
       user.uid = auth['uid'].to_s
