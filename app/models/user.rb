@@ -8,19 +8,19 @@ class User < ActiveRecord::Base
  
   def self.create_with_omniauth(auth)
     puts 'still alive!'
-    puts auth['provider']
-    puts auth['uid']
-    create! do |user|
+    pp auth['extra']['access_token'].token
+    create do |user|
       user.provider = auth['provider']
       user.uid = auth['uid']
-     # if auth['user_info']
-     #   user.name = auth['user_info']['name'] if auth['user_info']['name'] # Twitter, Google, Yahoo, GitHub
-     #   user.email = auth['user_info']['email'] if auth['user_info']['email'] # Google, Yahoo, GitHub
-     # end
-     # if auth['extra'] && auth['extra']['user_hash']
-     #   user.name = auth['extra']['user_hash']['name'] if auth['extra']['user_hash']['name'] # Facebook
-    #    user.email = auth['extra']['user_hash']['email'] if auth['extra']['user_hash']['email'] # Facebook
-    #  end
+      user.dropbox_token=auth['extra']['access_token'].token
+      user.dropbox_token_secret=auth['extra']['access_token'].secret
+      #user.name = auth['info']['name'] if auth['info']['name']
+      #puts auth.inspect
+      #if auth['info']
+      #  user.name = auth['info']['name'] if auth['info']['name'] # Twitter, Google, Yahoo, GitHub
+      #  user.email = auth['info']['email'] if auth['info']['email'] # Google, Yahoo, GitHub
+      #end
+
     end
   end
 
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     self.name=="Mason Fischer"
   end
   def first_name
-    self.name.split(' ')[0]
+    self.name.nil? ? "" : self.name.split(' ')[0]
   end
 
   def last_name

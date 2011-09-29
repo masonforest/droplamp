@@ -27,6 +27,7 @@ class Site < ActiveRecord::Base
   end
   def create_dropbox_folder
     path=self.path
+    puts self.user.inspect
     # TODO add upload folder method to dropbox gem
     dropbox.create_folder(path)
     dropbox.create_folder(path+'/css')
