@@ -25,7 +25,10 @@ gem 'liquid-inheritance'
 gem 'dalli'
 gem "aws-s3"
 gem 'fakeweb'
-gem 'omniauth', ">= 0.2.0"#,:path => "vendor/omniauth"
+gem 'omniauth', :git => "git://github.com/intridea/omniauth"
+gem 'omniauth-oauth', :git =>  "git://github.com/intridea/omniauth-oauth"
+gem 'omniauth-contrib', :git => 'git://github.com/intridea/omniauth-contrib'
+
 gem 'nokogiri'
 gem 'pg'
 gem 'name-dot-com'

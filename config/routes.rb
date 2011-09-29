@@ -15,8 +15,11 @@ Kissr::Application.routes.draw do
 
   devise_for :users
 
-match "/auth/:provider/callback" => "sessions#create"
-
+  #match '/auth/failure' => 'sessions#failure'
+  #match '/signout' => 'sessions#destroy', :as => :signout
+  #match '/signin' => 'sessions#new', :as => :signin
+  match '/auth/:provider/callback' => 'sessions#create'
+ 
 
 # If we are on the kissr domain  
   scope :constraints => lambda{|req| ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr" "www.kissr.co" "kissr-staging.herokuapp.com" "kissr.herokuapp.com").include?(req.host) }  do
@@ -30,13 +33,11 @@ match "/auth/:provider/callback" => "sessions#create"
   
     root :to =>'application#index'
 
-    match '/auth/:provider/callback', :to => 'sessions#create'
     match "/signout" => "sessions#destroy", :as => :signout 
   end
 scope :constraints => lambda{|req| not ("localhost" "kissr.local" "127.0.0.1" "kissr.co" "kissr").include?(req.host) } do
   resource :contact, :only => "create"
   match "*path" => "sites#show", :constraints=>lambda{|req| !req.fullpath.start_with?('/auth/')}
   root :to => "sites#show"
-  match '/auth/:provider/callback', :to => 'sessions#create'
 end
 end

@@ -1,44 +1,44 @@
-require 'omniauth/oauth'
-require 'multi_json'
-
 module OmniAuth
   module Strategies
     class Dropbox < OmniAuth::Strategies::OAuth
-      def initialize(app, consumer_key=nil, consumer_secret=nil, options={}, &block)
-        client_options = {
-          :authorize_url => 'https://www.dropbox.com/0/oauth/authorize',
-          :access_token_url => 'https://api.dropbox.com/0/oauth/access_token',
-          :proxy => ENV['HTTP_PROXY'] || ENV['http_proxy'],
-          :request_token_url => 'https://api.dropbox.com/0/oauth/request_token',
-          :site => 'https://api.dropbox.com',
-        }
-        super(app, :dropbox, consumer_key, consumer_secret, client_options, options, &block)
+      option :name, 'dropbox'
+      option :client_options, {:site => 'https://www.dropbox.com'}
+      option :sign_in, true
+      option :force_sign_in, false
+
+      def initialize(*args)
+        super
+        options.client_options[:authorize_path] = '/0/oauth/authorize' if options.sign_in?
+        options.client_options[:access_token_path] = '/0/oauth/access_token' if options.sign_in?
+        options.client_options[:request_token_path] = '/0/oauth/request_token' if options.sign_in?
+
+        options.authorize_params[:force_sign_in] = 'true' if options.force_sign_in?
       end
 
-      def auth_hash
-        OmniAuth::Utils.deep_merge(
-          super, {
-            'uid' => user_data['uid'],
-            'user_info' => user_info,
-          }
-        )
+      def uid
+        raw_info['uid']
       end
 
-      def user_data
-        @data ||= MultiJson.decode(@access_token.get('/0/account/info').body)
-      end
-
-      def user_info
+      def info
         {
-          'name' => user_data['display_name'],
+          'name' => raw_info['display_name'],
+          'country' => raw_info['country'],
+          'email' => raw_info['email'],
+          'quota' => raw_info['quota_info']
         }
+      end
+
+      def raw_info
+        @raw_info ||= MultiJson.decode(access_token.get('/0/account/info').body)
+      rescue ::Errno::ETIMEDOUT
+        raise ::Timeout::Error
       end
     end
   end
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twitter, 'DXpXtOqNTYvyhJTLVYOpnw', 'KjqMaFY8qqdO0oEiYK9D0Z5vZE6HuJW4BqCgOd9I'
   provider :dropbox, '69vdq9pk8stjkb8', '6gc7j0bdw85uzoh'
 end
-
 

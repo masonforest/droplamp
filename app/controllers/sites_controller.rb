@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  before_filter :authenticate_user, :except => "show"
+ # before_filter :authenticate_user, :except => "show"
   def new
     @site = Site.new
     @site.domain = Domain.new
