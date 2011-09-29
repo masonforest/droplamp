@@ -7,21 +7,13 @@ class User < ActiveRecord::Base
   #attr_accessible :provider,:uid, :password, :password_confirmation, :remember_me
  
   def self.create_with_omniauth(auth)
-    puts 'still alive!'
-    puts auth.inspect
-    #pp auth['extra']['access_token'].token
     create do |user|
       user.provider = auth['provider']
       user.uid = auth['uid'].to_s
       user.dropbox_token=auth['extra']['access_token'].token
       user.dropbox_token_secret=auth['extra']['access_token'].secret
       user.name = auth['info']['name'] if auth['info']['name']
-      #puts auth.inspect
-      #if auth['info']
-      #  user.name = auth['info']['name'] if auth['info']['name'] # Twitter, Google, Yahoo, GitHub
-      #  user.email = auth['info']['email'] if auth['info']['email'] # Google, Yahoo, GitHub
-      #end
-
+      user.email = auth['info']['email'] if auth['info']['email']
     end
   end
 
