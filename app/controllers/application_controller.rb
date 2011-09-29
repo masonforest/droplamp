@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user  
   def index
     if current_user then
+      puts current_user.name
       redirect_to  sites_path
     else
       render "pages/home"

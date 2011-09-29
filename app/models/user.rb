@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
       user.uid = auth['uid']
       user.dropbox_token=auth['extra']['access_token'].token
       user.dropbox_token_secret=auth['extra']['access_token'].secret
-      #user.name = auth['info']['name'] if auth['info']['name']
+      user.name = auth['info']['name'] if auth['info']['name']
       #puts auth.inspect
       #if auth['info']
       #  user.name = auth['info']['name'] if auth['info']['name'] # Twitter, Google, Yahoo, GitHub
