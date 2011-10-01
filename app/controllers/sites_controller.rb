@@ -12,9 +12,13 @@ class SitesController < ApplicationController
   def show
     @site  = Site.find_by_domain(request.host)
     if @site then
-      @output=@site.render(params[:path])
-      render :text => @output, :content_type => "text/html"
-    else
+      begin
+        @output=@site.render(params[:path])
+        render :text => @output, :content_type => "text/html"
+      rescue Dropbox::UnsuccessfulResponseError => error
+      render "404", status => 404
+      end
+      else
       render "missing", status => 404
     end
   end
