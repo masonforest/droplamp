@@ -32,7 +32,7 @@ gem 'omniauth-contrib', :git => 'git://github.com/intridea/omniauth-contrib'
 gem 'nokogiri'
 gem 'pg'
 gem 'name-dot-com'
-
+gem 'thin'
 group :test, :development do
   gem 'sqlite3'
 	gem 'rspec'
