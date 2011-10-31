@@ -1,12 +1,10 @@
 class SessionsController < ApplicationController
- def create
+  def create
     auth = request.env["omniauth.auth"]
+    logger.debug auth
     user = User.where(:provider => auth['provider'], 
                       :uid => auth['uid'].to_s).first|| User.create_with_omniauth(auth)
-    puts 'yep'
-    puts user.inspect
-    session[:user_id] = user.id
-    puts 'even still'
+    session[:user_id]=user.id
     redirect_to new_site_path, :notice => 'Signed in!'
   end
  def failure

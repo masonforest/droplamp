@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
 gem 'haml'
 gem 'devise'
 group :assets do
@@ -14,7 +14,7 @@ gem 'haml'
 gem 'coffee-filter'
 gem 'high_voltage'
 gem 'dropbox'
-gem "compass", :git => "git://github.com/chriseppstein/compass.git"
+gem 'bourbon'
 gem 'formtastic'
 gem 'heroku'
 gem 'redcarpet'
@@ -42,9 +42,11 @@ group :test, :development do
 	gem 'autotest'
 	gem 'capybara'
 	gem 'launchy'
-  gem 'spork','0.9.0.rc8'
+  gem 'spork','0.9.0.rc9'
   gem 'rb-fsevent'
   gem 'guard-spork'
+  gem 'guard-cucumber'
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
 end
 

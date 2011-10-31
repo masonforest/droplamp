@@ -1,30 +1,71 @@
 html,body
   @include background-image(linear-gradient(#1870ab,#0c2c57))
   height: 100%
+  margin: 0
 .content
   padding: 20px
   margin: 16px auto
 .container
   height: 100%
-  //margin-top: 10px
-  //@include border-radius(4px)
   background-color: #fff
+
+header
+  height: 80px  
+  border-bottom: 1px solid #ccc
+  @include background-image(linear-gradient(#eeeeee,#ffffff))
+  margin-bottom: 16px
+header 
+  #welcome-message, a[href="/users/sign_out"]
+    text-align: center
+    float: right
+    margin: 0 10px
+    width: 200px
+    padding: 5px 10px
+    clear: right
+header label
+  display: inline
+  float: none
+  font-size: 1em
+header input
+  font-size: 1em
+header .text-field
+  display: block
+  float: left
+header input[type=submit]
+  margin-left: 10px
+#logo
+  text-align: left
+  text-decoration: none
+  width: 200px
+  margin: 0
+  padding: 0
+
+.container
+  width: 960px
+  margin: 0 auto
+h5
+  text-align: left
+  float: left
+  margin: 10px
+  padding: 0
 footer
-  background-color: red
-  //@include background-image(linear-gradient(#f2f2f2,#fefefe))
   border-top: 1px solid #ccc
   h3
+    text-align: left
     font-weight: bold
     color: #aaa
     font-size: 1.2em
+    margin: 0
   a
     color: #aaa
     text-decoration: none
     &:hover
       color: #333
-  section
+  ul
     text-align: left
+    padding: 0
+    margin: 0
+  section
+    width: 192px
     float: left
-    margin-left: 50px
-    ul
-      list-style-type: none
+    padding: 0 10px

@@ -1,16 +1,21 @@
-%h1 Manage Existing KISSr Folders
-%table.existing
-  %thead
-    %tr
-      %th Name
-      %th Domain
-      %th Actions
-    -@sites.each do |site|
+#sidebar
+  %a{:href=>new_site_path,:class=> "button" } Create Site
+
+#content
+  %h1 Manage Existing KISSr Folders
+  %table
+    %thead
       %tr
-        %td=site.path
-        %td=site.domain
-        %td
-          %img{:src => "/assets/icons/pencil.png"}
-          =form_tag site, :method => "delete" do
-            %input{:type => "image", :src => "/assets/icons/cross.png"}
- 
+        %th Name
+        %th Domain
+        %th Actions
+      -@sites.each do |site|
+        %tr
+          %td=site.path
+          %td=site.hostname
+          %td
+            %a{:href=>edit_site_path(site)}
+              %img{:src => "/assets/icons/pencil.png"}
+            =form_tag site, :method => "delete" do
+              %input{:type => "image", :src => "/assets/icons/cross.png"}
+   

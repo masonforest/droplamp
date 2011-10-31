@@ -2,7 +2,10 @@ class SitesController < ApplicationController
  # before_filter :authenticate_user, :except => "show"
   def new
     @site = Site.new
-    @site.domain = Domain.new
+    render 'edit'
+  end
+  def edit
+    @site = Site.find(params[:id])
   end
   def activate
     @site = Site.find(params[:id])
@@ -23,11 +26,12 @@ class SitesController < ApplicationController
     end
   end
   def create
-    params[:site][:user_id]=current_user.id
+    params[:site][:owner_id]=current_user.id
     params[:site][:path]=params[:site][:path]
+    params[:site][:hostname]=params[:domain][:domain]+"."+params[:domain][:tld]
    @site = Site.new(params[:site])
     if @site.save
-      if @site.domain.tld == "kissr.co"
+      if params[:domain][:tld] == "kissr.co"
         flash[:message] = render_to_string :partial=>"sites/welcome_message"
         redirect_to '/sites'
       else
@@ -38,12 +42,12 @@ class SitesController < ApplicationController
     end
   end
   def index
-    @sites = Site.where(:user_id=>current_user)
+    @sites = Site.where(:owner_id=>current_user)
     @site = Site.new
   end
  def destroy
     @site = Site.find(params[:id])
-    flash[:message]="Deleted #{@site.domain}"
+    flash[:message]="Deleted #{@site.hostname}"
     @site.destroy
     redirect_to "/sites"
  end

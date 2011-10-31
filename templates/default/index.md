@@ -1,6 +1,7 @@
-{% extends "template.html"%}
-{% block content %}
-{% markdown %}
+---
+layout: default
+title: Home
+---
 Welcome To My Website!
 ================
 
@@ -11,5 +12,3 @@ This website was made with
 * HTML5
 * CSS3
 * _Kissr_
-{% endmarkdown %}
-{% endblock %}

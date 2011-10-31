@@ -19,11 +19,21 @@ end
 Capybara.default_selector = :css
 OmniAuth.config.test_mode = true
 OmniAuth.config.add_mock(:dropbox, {
-  :uid => '12345',
-  :user_info => {
-    :name => 'Mason Fischer',
-  }
-})
+  'uid' => '12345',
+  'email' =>"mason@kissr.co",
+  'info' => {
+    'name' => 'Mason Fischer',
+  },
+  'extra'=>
+      
+        Hashie::Mash.new({'access_token'=>
+          {
+              'token'=>nil,
+              "secret"=>nil
+          }
+        })
+        
+  })
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how 

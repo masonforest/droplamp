@@ -9,7 +9,7 @@ $(document).ready ->
       color: '#000'
       speed: 1.4
       trail: 100
-    spinner=$("<div id=\"spinner\" style=\"margin-top:20px;margin-left:20px\"></div>")
+    spinner=$("<div id=\"spinner\" style=\"padding-top:20px;padding-left:20px\"></div>")
     $("#domain_status").html(spinner)
     target = document.getElementById('spinner')
     spinner = new Spinner(opts).spin(target)

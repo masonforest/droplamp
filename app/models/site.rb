@@ -1,11 +1,10 @@
 class Site < ActiveRecord::Base
-  after_create :create_heroku_domain,:create_bucket,:create_dropbox_folder
+  after_create :create_heroku_domain,:create_dropbox_folder
   belongs_to :user
-  has_one :domain
   has_one :bucket
   has_many :pages
-  accepts_nested_attributes_for :domain, :allow_destroy => true
-  validates_uniqueness_of :path, :scope => :user_id
+  belongs_to :owner, :class_name =>"User"
+
 
   def self.find_by_domain(domain)
     domain = domain.gsub(/www\./,"").split(".")
@@ -20,21 +19,21 @@ class Site < ActiveRecord::Base
   
   def create_heroku_domain
     heroku = Heroku::Client.new("mason@stirltech.com", "password")
-    heroku.add_domain("kissr",self.domain.to_s)
+    puts "Adding #"+self.hostname+"#"
+    heroku.add_domain("kissr",self.hostname)
   end
-  def create_bucket
-    Bucket.create(:site_id=>self.id)
-  end
+
   def create_dropbox_folder
     path=self.path
     puts self.user.inspect
     # TODO add upload folder method to dropbox gem
     dropbox.create_folder(path)
     dropbox.create_folder(path+'/css')
-    dropbox.upload( Rails.root.join("templates","default", "index.html").to_s ,path)
-    dropbox.upload( Rails.root.join("templates","default",  "about.html").to_s ,path)
-    dropbox.upload( Rails.root.join("templates","default",  "contact.html").to_s ,path)
-    dropbox.upload( Rails.root.join("templates","default",  "template.html").to_s ,path)
+    dropbox.create_folder(path+'/_layouts')
+    dropbox.upload( Rails.root.join("templates","default", "index.md").to_s ,path)
+    dropbox.upload( Rails.root.join("templates","default",  "about.md").to_s ,path)
+    dropbox.upload( Rails.root.join("templates","default",  "contact.md").to_s ,path)
+    dropbox.upload( Rails.root.join("templates","default",  "_layouts","default.html").to_s ,path)
     dropbox.upload( Rails.root.join("templates","default",  "css","style.css").to_s ,path+'/css')
     dropbox.upload( Rails.root.join("templates","default",  "css","screen.css").to_s ,path+'/css')
     
@@ -42,7 +41,7 @@ class Site < ActiveRecord::Base
   def dropbox
    @dropbox ||= begin
     dropbox=Dropbox::Session.new('69vdq9pk8stjkb8', '6gc7j0bdw85uzoh')
-    dropbox.set_access_token(self.user.dropbox_token,self.user.dropbox_token_secret)
+    dropbox.set_access_token(self.owner.dropbox_token,self.owner.dropbox_token_secret)
     dropbox.mode = :dropbox
     dropbox 
    end

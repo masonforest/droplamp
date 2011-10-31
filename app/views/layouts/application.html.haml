@@ -5,40 +5,20 @@
     %meta{:name=>"description",:value=>"KISSr enables you to host websites out of your Dropbox"}
     %meta{:name=>"keywords",:value=>"kissr,hosting,web,web hosting,dropbox"}
     = stylesheet_link_tag 'application.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'print.css', :media => 'print'
-    /[if IE]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
 
     = javascript_include_tag :application
-    :javascript
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-25354023-1']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-      
-      var uvOptions = {};
-      (function() {
-      var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-      uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/t2KQD9b4S3imXDfVmH8ug.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-      })();
-      
+    = render "layouts/google_analytics"
+         
     = yield :head
     = csrf_meta_tag
   %body{:class => "#{controller_name}-#{action_name}"}
     .container
       %header
-        -unless current_user.nil? then
-          #welcome-message
-            %p="Hi, #{current_user.first_name}!"
-            =link_to "Sign Out", signout_path, :class=> :button 
         %h5
           %a{:id=> "logo",:href=>"/"} Kissr
+        -unless current_user.nil? then
+          #welcome-message="Hi, #{current_user.first_name}!"
+          = link_to 'Sign Out', destroy_user_session_path, :class=> 'button'
       .content
         #flash
           - flash.each do |key, value|
@@ -47,23 +27,18 @@
       %footer
         %nav
           %section
-            %h3 Tutorials
-            %ul
-              %li 
-                %a{:href=>"http://docs.kissr.co/tutorials/godaddy-domain-setup"} Setting up a domain through GoDaddy
-          %section
-            %h3 Links
-            %ul
-              %li 
-                %a{:href=>"http://www.dropbox.com/"} Dropbox
-              %li
-                %a{:href=>"http://www.godaddy.com"} GoDaddy
-              %li
-                %a{:href=>"http://en.wikipedia.org/wiki/Markdown"} Markdown
-
-          %section
             %h3 KISSr
             %ul
               %li 
-                %a{:href=>"/pages/about"} About
-
+                %a{:href=>"http://docs.kissr.co/pricing"} About
+              %li 
+                %a{:href=>"http://docs.kissr.co/about"} Pricing
+          %section
+            %h3 Resources
+            %ul
+              %li 
+                %a{:href=>"http://www.dropbox.com/"} Getting Started
+              %li
+                %a{:href=>"http://www.godaddy.com"} File Layout
+              %li
+                %a{:href=>"http://en.wikipedia.org/wiki/Markdown"} Tutorials
