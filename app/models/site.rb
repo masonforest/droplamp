@@ -20,7 +20,7 @@ class Site < ActiveRecord::Base
   def create_heroku_domain
     heroku = Heroku::Client.new("mason@stirltech.com", "password")
     puts "Adding #"+self.hostname+"#"
-    heroku.add_domain("kissr",self.hostname)
+    heroku.add_domain(ENV['KISSR_SERVER'],self.hostname)
   end
 
   def create_dropbox_folder
