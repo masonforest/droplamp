@@ -1,25 +1,5 @@
-body 
-  font-size: 1.2em
-  line-height: 1.5em
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
-  font-weight: 300 
-  color: #333 
-h1
-  font-weight: bold
-  font-size: 2em
-  margin: 20px 0 
-  clear: both
-h2
-  font-size: .9em
-  margin-left: 10px
-  font-style: italic
-p
-  font-size: 1em
-th
-  font-weight: bold
-td
-  padding-right: 20px
-a
-  color: #333
-#site_domain
-  float: left
+//button,input[type=submit],.button
+  @include button(shiny,red)
+  &:hover
+    color: #fff
+    text-decoration: none

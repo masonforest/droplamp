@@ -3,8 +3,8 @@ gem 'rails', '3.1.1'
 gem 'haml'
 gem 'devise'
 group :assets do
-  gem 'sass-rails', "~> 3.1.0.rc"
-  gem 'coffee-rails', "~> 3.1.0.rc"
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier'
 end
 gem 'log4r', '1.1.9'
@@ -15,6 +15,7 @@ gem 'coffee-filter'
 gem 'high_voltage'
 gem 'dropbox'
 gem 'bourbon'
+gem 'bootstrap-sass'
 gem 'formtastic'
 gem 'heroku'
 gem 'redcarpet'
@@ -33,6 +34,9 @@ gem 'nokogiri'
 gem 'pg'
 gem 'name-dot-com'
 gem 'thin'
+gem 'chosen_rails'
+gem 'twitter_bootstrap_form_for'
+
 group :test, :development do
   gem 'sqlite3'
 	gem 'rspec'

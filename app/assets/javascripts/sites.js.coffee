@@ -1,21 +1,21 @@
 $(document).ready ->
   queue = $.manageAjax.create('queue', {queue: 'clear'});
-  $("#site_domain_attributes_domain").keyup ->
+  $("#site_hostname").keyup ->
     opts = 
       lines: 8
       length: 3
-      width: 4
-      radius: 5
+      width: 2
+      radius: 2
       color: '#000'
       speed: 1.4
       trail: 100
-    spinner=$("<div id=\"spinner\" style=\"padding-top:20px;padding-left:20px\"></div>")
+    spinner=$("<span id=\"spinner\" style=\"padding-top:2px;padding-left:5px\"></span>")
     $("#domain_status").html(spinner)
     target = document.getElementById('spinner')
     spinner = new Spinner(opts).spin(target)
     
     queue.add
-       url : "/domains/status?domain=#{$("#site_domain_attributes_domain").val()}&tld=#{$("#site_domain_attributes_tld").val()}"
+       url : "/domains/status?domain=#{$("#site_hostname").val()}&tld=#{$("#hostname_suffix").val()}"
        success : (data, textStatus, jqXHR)->
           switch data
             when "available"

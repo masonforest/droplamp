@@ -1,27 +1,57 @@
 html,body
-  @include background-image(linear-gradient(#004,#06c))
-  height: 100%
+  //@include background-image(linear-gradient(#004,#06c))
+  @include background-image(linear-gradient(#ddd,#fff))
+  background-size: 400px
+  background-repeat: repeat-x
   margin: 0
 .content
   padding: 20px
-  margin: 16px auto
+  margin: 0 auto
 .container
-  height: 100%
   background-color: #fff
-
+  box-shadow: 0 0 3px #666
+  width: 960px
+  margin: 10px auto
 header
-  height: 80px  
+  overflow: auto
+  padding: 10px 0 20px
   border-bottom: 1px solid #ccc
-  @include background-image(linear-gradient(#eeeeee,#ffffff))
-  margin-bottom: 16px
-header 
+  border-radius: 3px 0 3px 0
+  #logo
+    text-align: left
+    text-decoration: none
+    width: 200px
+    height: 80px
+    float: left
+    margin-left: 10px
+    padding: 0
+
+
   #welcome-message, a[href="/users/sign_out"]
     text-align: center
     float: right
     margin: 0 10px
-    width: 200px
+    width: 120px
     padding: 5px 10px
     clear: right
+  ul
+    float: left
+    margin: 0
+    padding: 0
+    border-top: 1px solid #ccc
+    list-style: none
+    padding-top: 10px
+    width: 960px
+    height: 10px
+  nav li
+    margin: 0
+    padding: 0 50px
+    float: left
+    font-weight: bold
+    text-align: center
+    a
+      text-decoration: none
+      font-size: 2em
 header label
   display: inline
   float: none
@@ -33,39 +63,12 @@ header .text-field
   float: left
 header input[type=submit]
   margin-left: 10px
-#logo
-  text-align: left
-  text-decoration: none
-  width: 200px
-  margin: 0
-  padding: 0
 
-.container
-  width: 960px
-  margin: 0 auto
 h5
   text-align: left
   float: left
-  margin: 10px
+  margin: 0
   padding: 0
-footer
-  border-top: 1px solid #ccc
-  h3
-    text-align: left
-    font-weight: bold
-    color: #aaa
-    font-size: 1.2em
-    margin: 0
-  a
-    color: #aaa
-    text-decoration: none
-    &:hover
-      color: #333
-  ul
-    text-align: left
-    padding: 0
-    margin: 0
-  section
-    width: 192px
-    float: left
-    padding: 0 10px
+
+
+

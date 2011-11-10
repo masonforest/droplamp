@@ -4,7 +4,7 @@ class Site < ActiveRecord::Base
   has_one :bucket
   has_many :pages
   belongs_to :owner, :class_name =>"User"
-
+  validates :path, :presence => true
 
   def self.find_by_domain(domain)
     domain = domain.gsub(/www\./,"").split(".")

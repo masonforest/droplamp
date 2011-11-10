@@ -8,18 +8,16 @@
         else
           $("#domain_preregistered,label[for=site_already_registered]").slideUp()
         false
-=semantic_form_for @site do |f|
-  = label :domain, "Domain"
-  = text_field_tag 'domain[domain]'
-  %span{:id=>"dot"}.
-  = select :domain,:tld, [".kissr.co ($0.00 Setup + $0.00/mo)","com ($9.99 Setup + 4.99/mo)","org ($9.99 Setup  + 4.99/mo)","net ($9.99 Setup  + 4.99/mo)","info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS)
-  #domain_status
-  = f.label "already_registered", "I've already registered this domain"
-  -if current_user.name=="Mason Fischer" then
-    = check_box_tag "domain_preregistered",0,{:checked=>:checked}
-  -else
-    = check_box_tag "domain_pregistered",1,{:checked=>:checked}
+=twitter_bootstrap_form_for @site do |f|
+  = f.text_field :hostname, "Domain" do
+    = select :hostname,:suffix, [".kissr.co ($0.00 Setup + $0.00/mo)",".com ($9.99 Setup + 4.99/mo)",".org ($9.99 Setup  + 4.99/mo)",".net ($9.99 Setup  + 4.99/mo)",".info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS), :html_options=>{:class=>"chzn-select"}
+    #domain_status
+    -#.help-block I've already registered this domain
+    -#-if current_user.name=="Mason Fischer" then
+    -#  = check_box_tag "domain_preregistered",0,{:checked=>:checked}
+    -#-else
+    -#  = check_box_tag "domain_pregistered",1,{:checked=>:checked}
 
-  = f.input :path,:label=> "Dropbox Folder"
+  = f.text_field :path,:label=> "Dropbox Folder"
   = f.submit
 
