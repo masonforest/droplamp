@@ -33,7 +33,7 @@ class Site < ActiveRecord::Base
     dropbox.upload( Rails.root.join("templates","default", "index.md").to_s ,path)
     dropbox.upload( Rails.root.join("templates","default",  "about.md").to_s ,path)
     dropbox.upload( Rails.root.join("templates","default",  "contact.md").to_s ,path)
-    dropbox.upload( Rails.root.join("templates","default",  "_layouts","default.html").to_s ,path)
+    dropbox.upload( Rails.root.join("templates","default",  "_layouts","default.html").to_s ,path+"/_layouts")
     dropbox.upload( Rails.root.join("templates","default",  "css","style.css").to_s ,path+'/css')
     dropbox.upload( Rails.root.join("templates","default",  "css","screen.css").to_s ,path+'/css')
     
