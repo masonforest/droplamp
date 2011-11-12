@@ -4,18 +4,9 @@ class Site < ActiveRecord::Base
   has_one :bucket
   has_many :pages
   belongs_to :owner, :class_name =>"User"
-  validates :path, :presence => true
+  validates :dropbox_folder, :presence => true
 
-  def self.find_by_domain(domain)
-    domain = domain.gsub(/www\./,"").split(".")
-    puts domain.inspect
-    Site.joins(:domain).where("domains.domain"=>domain[0], "domains.tld"=>domain[1..-1].join('.')).first
-  end
-  def render(path)
-    path ||= "index"
-    Page.find_or_create_by_path_and_site_id(path,self.id).render
-    
-    end
+
   
   def create_heroku_domain
     heroku = Heroku::Client.new("mason@stirltech.com", "password")
@@ -24,7 +15,7 @@ class Site < ActiveRecord::Base
   end
 
   def create_dropbox_folder
-    path=self.path
+    path=self.dropbox_folder
     puts self.user.inspect
     # TODO add upload folder method to dropbox gem
     dropbox.create_folder(path)

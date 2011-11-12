@@ -11,12 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110915030138) do
+ActiveRecord::Schema.define(:version => 20111112153336) do
 
   create_table "assets", :force => true do |t|
     t.integer  "page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "path"
+    t.integer  "revision"
   end
 
   create_table "buckets", :force => true do |t|
@@ -40,6 +42,11 @@ ActiveRecord::Schema.define(:version => 20110915030138) do
     t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "dropbox_path"
+    t.text     "content"
+    t.string   "front_matter"
+    t.string   "format"
+    t.integer  "revision"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -56,10 +63,12 @@ ActiveRecord::Schema.define(:version => 20110915030138) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "sites", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "path"
+    t.integer  "owner_id"
+    t.string   "dropbox_folder"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "hostname"
+    t.string   "hash"
   end
 
   create_table "users", :force => true do |t|
@@ -70,6 +79,19 @@ ActiveRecord::Schema.define(:version => 20110915030138) do
     t.string   "dropbox_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

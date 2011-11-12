@@ -8,7 +8,7 @@
         %th Actions
       -@sites.each do |site|
         %tr
-          %td=site.path
+          %td=site.dropbox_folder
           %td=site.hostname
           %td
             %a{:href=>edit_site_path(site)}
