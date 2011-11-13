@@ -31,7 +31,7 @@ class Site < ActiveRecord::Base
   end
   def dropbox
    @dropbox ||= begin
-    dropbox=Dropbox::Session.new('69vdq9pk8stjkb8', '6gc7j0bdw85uzoh')
+    dropbox=Dropbox::Session.new(ENV['DROPBOX_KEY'], ENV['DROPBOX_SECRET'])
     dropbox.set_access_token(self.owner.dropbox_token,self.owner.dropbox_token_secret)
     dropbox.mode = :dropbox
     dropbox 

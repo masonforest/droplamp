@@ -8,16 +8,28 @@
         else
           $("#domain_preregistered,label[for=site_already_registered]").slideUp()
         false
-=twitter_bootstrap_form_for @site do |f|
-  = f.text_field :hostname, "Domain" do
-    = select :hostname,:suffix, [".kissr.co ($0.00 Setup + $0.00/mo)",".com ($9.99 Setup + 4.99/mo)",".org ($9.99 Setup  + 4.99/mo)",".net ($9.99 Setup  + 4.99/mo)",".info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS), :html_options=>{:class=>"chzn-select"}
-    #domain_status
-    -#.help-block I've already registered this domain
+=form_for @site do |f|
+  %fieldset
+    .clearfix
+      = f.label :hostname, "Domain"
+      .input
+        = f.text_field :hostname,:placeholder=>"mywebsite"
+        = select :hostname,:suffix, [".kissr.co ($0.00 Setup + $0.00/mo)",".com ($9.99 Setup + 4.99/mo)",".org ($9.99 Setup  + 4.99/mo)",".net ($9.99 Setup  + 4.99/mo)",".info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS), :html_options=>{:class=>"chzn-select"}
+        #domain_status
+      
+      -#.help-block I've already registered this domain
     -#-if current_user.name=="Mason Fischer" then
     -#  = check_box_tag "domain_preregistered",0,{:checked=>:checked}
     -#-else
     -#  = check_box_tag "domain_pregistered",1,{:checked=>:checked}
-
-  = f.text_field :dropbox_folder, "Dropbox Folder"
-  = f.submit
+  
+  -#=text_field_tag :site, :dropbox
+  .clearfix
+    = f.label :dropbox_folder, "Dropbox Folder"
+    .input
+      .input-prepend
+        %span.add-on Dropbox/KISSr/
+        = f.text_field :dropbox_folder, :placeholder => "My Website"
+      .help-block Name of the folder KISSr will create in your Dropbox
+  = f.submit :class => "btn primary"
 

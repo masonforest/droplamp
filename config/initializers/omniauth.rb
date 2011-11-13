@@ -39,6 +39,6 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, 'DXpXtOqNTYvyhJTLVYOpnw', 'KjqMaFY8qqdO0oEiYK9D0Z5vZE6HuJW4BqCgOd9I'
-  provider :dropbox, '69vdq9pk8stjkb8', '6gc7j0bdw85uzoh'
+  provider :dropbox, ENV['DROPBOX_KEY'], ENV['DROPBOX_SECRET']
 end
 
