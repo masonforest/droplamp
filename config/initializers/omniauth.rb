@@ -8,9 +8,9 @@ module OmniAuth
 
       def initialize(*args)
         super
-        options.client_options[:authorize_path] = '/0/oauth/authorize' if options.sign_in?
-        options.client_options[:access_token_path] = '/0/oauth/access_token' if options.sign_in?
-        options.client_options[:request_token_path] = '/0/oauth/request_token' if options.sign_in?
+        options.client_options[:authorize_path] = '/1/oauth/authorize' if options.sign_in?
+        options.client_options[:access_token_path] = '/1/oauth/access_token' if options.sign_in?
+        options.client_options[:request_token_path] = '/1/oauth/request_token' if options.sign_in?
 
         options.authorize_params[:force_sign_in] = 'true' if options.force_sign_in?
       end
@@ -29,7 +29,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= MultiJson.decode(access_token.get('/0/account/info').body)
+        @raw_info ||= MultiJson.decode(access_token.get('/1/account/info').body)
       rescue ::Errno::ETIMEDOUT
         raise ::Timeout::Error
       end
