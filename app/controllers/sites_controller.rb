@@ -14,7 +14,7 @@ class SitesController < ApplicationController
   end
   def create
     puts "Createing site for user ID:#{current_user.id}"
-    params[:site][:owner_id]=current_user.id
+    params[:site][:owner_id]=current_user.id.to_i
     params[:site][:hostname]=params[:site][:hostname]+"."+params[:hostname][:suffix]
    @site = Site.new(params[:site])
     if @site.save
