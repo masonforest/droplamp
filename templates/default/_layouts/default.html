@@ -3,25 +3,32 @@
 <head> 
  <meta charset="utf-8" /> 
  <title>My Website</title> 
-        <link href='http://fonts.googleapis.com/css?family=Syncopate:regular,bold' rel='stylesheet' type='text/css'>
- <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen" /> 
+ <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css" media="screen" /> 
  <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" /> 
  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]--> 
 </head> 
-<body> 
-<div class="container">
- <header>
-  <h2>The best website... Ever</h2> 
-  <h1><a href="#">My Website</a></h1> 
- </header>
+<body>
+ <div class="topbar-wrapper clearfix" style="z-index: 5;">
+    <div class="topbar" data-dropdown="dropdown" >
+      <div class="topbar-inner">
+        <div class="container">
+          <h3><a href="#">My Website</a></h3>
+          <ul class="nav">
+            <li class="active"><a href="">Home</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="contact">Contact</a></li>
+        </div>
+      </div><!-- /topbar-inner -->
+    </div><!-- /topbar -->
+  </div><!-- /topbar-wrapper -->
+    <br style="clear:both" /> 
+      <br style="clear:both" /> 
+        <br style="clear:both" /> 
+
+  <div class="container">
  
- <nav> 
-   <ul> 
-    <li><a href="/">Home</a></li> 
-    <li><a href="about">About</a></li> 
-    <li><a href="contact">Contact Us</a></li> 
-   </ul> 
- </nav>
+
+
  
  <section id="content">
   {{ content }}
