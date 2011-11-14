@@ -13,6 +13,7 @@ class SitesController < ApplicationController
     redirect_to sites_path, notice: 'Site was successfully updated.'
   end
   def create
+    puts "Createing site for user ID:#{current_user.id}"
     params[:site][:owner_id]=current_user.id
     params[:site][:hostname]=params[:site][:hostname]+"."+params[:hostname][:suffix]
    @site = Site.new(params[:site])
