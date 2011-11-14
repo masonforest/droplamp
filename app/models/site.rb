@@ -19,6 +19,7 @@ class Site < ActiveRecord::Base
     Dir["#{Rails.root}/templates/default/**/**"].each do |file|
       next if File.directory?(file)
       to_path=self.dropbox_folder+file.sub("#{Rails.root}/templates/default","")
+      puts "putting "+to_path
       dropbox.put_file( to_path,File.new(file,"r") )
     end
   end
