@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111112153336) do
+ActiveRecord::Schema.define(:version => 20111115183745) do
 
   create_table "assets", :force => true do |t|
     t.integer  "page_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20111112153336) do
     t.string   "front_matter"
     t.string   "format"
     t.integer  "revision"
+    t.string   "layout_revision"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
