@@ -1,6 +1,22 @@
+-content_for :head do
+  =javascript_include_tag "//platform.twitter.com/widgets.js"
+#fb-root
+=javascript_tag do
+  (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=303242933026774"; fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
+    
 #description
   %h1 KISSr enables you to host websites out of your Dropbox 
   
-  =link_to "Login with Dropbox",'/auth/dropbox', :class=> "btn primary"
+
   %br
+  =link_to "Login with Dropbox",'/auth/dropbox', :class=> "btn primary"
+  
   %a{:href=>"http://docs.kissr.co/faq#what-is-dropbox"} What is Dropbox?
+
+  %br 
+  .fb-like{ "data-href" => "http://www.kissr.co/", "data-send"=>"false", "data-layout"=>"box_count", "data-width"=>"450", "data-show-faces"=>"false", "data-font"=>"arial" }
+
+
+  %a{ href: "https://twitter.com/share", class: "twitter-share-button", "data-url" => "http://www.kissr.co/", "data-counturl" => "http://www.kissr.co/", "data-count"=>"vertical", "data-text" => "Checkout KISSr! KISSr lets you host websites out of your Dropbox"} Tweet
+
+
