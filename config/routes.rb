@@ -1,5 +1,5 @@
 Kissr::Application.routes.draw do
-
+  mount Resque::Server, :at => "/resque"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   devise_for :users do
@@ -14,7 +14,7 @@ Kissr::Application.routes.draw do
     get 'status', :on => :collection
   end
   resources :sites do
-    get 'activate', :on => :member
+    post 'refresh', :on => :member
   end
   
   root :to =>'application#index'

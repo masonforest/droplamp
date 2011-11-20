@@ -13,6 +13,7 @@ gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'haml'
 gem 'coffee-filter'
 gem 'high_voltage'
+gem 'resque', :require => "resque/server"
 gem 'dropbox-sdk'
 gem 'bourbon'
 gem 'bootstrap-sass'

@@ -13,6 +13,8 @@
           %td
             %a{:href=>edit_site_path(site)}
               %img{:src => "/assets/icons/pencil.png"}
+            =link_to refresh_site_path(site), :method => "post" do
+              =image_tag "/assets/icons/arrow_refresh.png"
             =link_to site, :method => "delete" do
               =image_tag "/assets/icons/cross.png"
       %tr

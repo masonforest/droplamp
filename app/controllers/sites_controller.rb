@@ -7,6 +7,11 @@ class SitesController < ApplicationController
   def edit
     @site = Site.find(params[:id])
   end
+  def refresh
+    @site = Site.find(params[:id])
+    @site.refresh
+    redirect_to sites_path, notice: "Refreshing #{@site.hostname}"
+  end
   def update
     @site = Site.find(params[:id])
     @site.update_attributes(params[:site])

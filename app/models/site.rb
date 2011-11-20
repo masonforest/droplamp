@@ -14,7 +14,9 @@ class Site < ActiveRecord::Base
     puts "Adding #"+self.hostname+"#"
     heroku.add_domain(ENV['KISSR_SERVER'],self.hostname)
   end
-
+  def refresh
+    Resque.enqueue(RunJekyll,self.id) 
+  end
   def create_dropbox_folder
     Dir["#{Rails.root}/templates/default/**/**"].each do |file|
       next if File.directory?(file)
@@ -33,12 +35,5 @@ class Site < ActiveRecord::Base
   end
 
 end
-class KISSrFileSystem
-  def initialize(site)  
-    @site = site  
-  end  
-  
-  def read_template_file(path)
-    @site.dropbox.download("#{@site.path}/#{path}")
-  end
-end
+
+

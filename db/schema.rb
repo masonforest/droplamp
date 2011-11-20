@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115183745) do
+ActiveRecord::Schema.define(:version => 20111117162346) do
 
   create_table "assets", :force => true do |t|
     t.integer  "page_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20111115183745) do
     t.datetime "updated_at"
     t.string   "hostname"
     t.string   "hash"
+    t.text     "cached_metadata"
   end
 
   create_table "users", :force => true do |t|
