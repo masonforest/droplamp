@@ -1,9 +1,6 @@
 require 'dropbox_sdk'
 class Site < ActiveRecord::Base
   after_create :create_heroku_domain,:create_dropbox_folder
-  belongs_to :user
-  has_one :bucket
-  has_many :pages
   belongs_to :owner, :class_name =>"User"
   validates :dropbox_folder, :presence => true
 
