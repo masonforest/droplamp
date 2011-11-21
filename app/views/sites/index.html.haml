@@ -3,8 +3,8 @@
 :coffeescript
   $ ->
     pusher = new Pusher('7b5057202078c330cc5d')
-    $("#refresh").modal();
-    $("#refresh").bind "click", (event)->
+    $(".refresh").modal();
+    $(".refresh").bind "click", (event)->
       $("#refresh-modal").find('h4').html("Waiting")
       console.log(event)
       $.post("/sites/\#{$(this).attr("data-site-id")}/refresh")
@@ -36,7 +36,7 @@
           %td
             %a{:href=>edit_site_path(site)}
               %img{:src => "/assets/icons/pencil.png"}
-            %a{ :id=>"refresh","data-site-id"=>site.id,"data-controls-modal"=>"refresh-modal","data-backdrop"=>"static"}
+            %a{ :class=>"refresh","data-site-id"=>site.id,"data-controls-modal"=>"refresh-modal","data-backdrop"=>"static"}
               =image_tag "/assets/icons/arrow_refresh.png"
               #refresh-modal{ class: "modal hide fade"}
                 .modal-header
