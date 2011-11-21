@@ -5,7 +5,6 @@
     pusher = new Pusher('7b5057202078c330cc5d')
     $(".refresh").modal();
     $(".refresh").bind "click", (event)->
-      $("#refresh-modal").find('h4').html("Waiting")
       console.log(event)
       $.post("/sites/\#{$(this).attr("data-site-id")}/refresh")
       $(this).find('h4').html('boom')
@@ -21,6 +20,13 @@
           location.reload(true)
     
 #content
+  #refresh-modal{ class: "modal hide fade"}
+    .modal-header
+      %a{ href: "#", class: "close"} &times;
+      %h2 Refreshing Site
+    .modal-body
+      #spinner
+      %h4 Waiting
   %h1 Manage Sites
   %table{:class=>"zebra-striped"}
     %thead
@@ -38,13 +44,7 @@
               %img{:src => "/assets/icons/pencil.png"}
             %a{ :class=>"refresh","data-site-id"=>site.id,"data-controls-modal"=>"refresh-modal","data-backdrop"=>"static"}
               =image_tag "/assets/icons/arrow_refresh.png"
-              #refresh-modal{ class: "modal hide fade"}
-                .modal-header
-                  %a{ href: "#", class: "close"} &times;
-                  %h2 Refreshing Site
-                .modal-body
-                  #spinner
-                  %h4 Waiting
+
             
             =link_to site, :method => "delete" do
               =image_tag "/assets/icons/cross.png"
