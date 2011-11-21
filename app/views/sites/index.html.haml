@@ -1,3 +1,25 @@
+-content_for :head do
+  =javascript_include_tag "http://js.pusherapp.com/1.9/pusher.min.js"
+:coffeescript
+  $ ->
+    pusher = new Pusher('7b5057202078c330cc5d')
+    $("#refresh").modal();
+    $("#refresh").bind "click", (event)->
+      $("#refresh-modal").find('h4').html("Waiting")
+      console.log(event)
+      $.post("/sites/\#{$(this).attr("data-site-id")}/refresh")
+      $(this).find('h4').html('boom')
+      opts = { lines: 12, length: 7, width: 4, radius: 10, color: '#000', speed: 1, trail: 60, shadow: false }
+      target = document.getElementById('spinner');
+      spinner = new Spinner(opts).spin(target);
+      siteChannel = pusher.subscribe('site')
+      siteChannel.bind 'update_status', (site) ->
+        console.log(site)
+        $("#refresh-modal").find('h4').html(site.status)
+        if site.status == "Complete"
+          $("#refresh-modal").modal('hide')
+          location.reload(true)
+    
 #content
   %h1 Manage Sites
   %table{:class=>"zebra-striped"}
@@ -6,17 +28,27 @@
         %th Name
         %th Domain
         %th Actions
+        %th Last Update
       -@sites.each do |site|
         %tr
           %td=site.dropbox_folder
-          %td=site.hostname
+          %td=hostname_link(site)
           %td
             %a{:href=>edit_site_path(site)}
               %img{:src => "/assets/icons/pencil.png"}
-            =link_to refresh_site_path(site), :method => "post" do
+            %a{ :id=>"refresh","data-site-id"=>site.id,"data-controls-modal"=>"refresh-modal","data-backdrop"=>"static"}
               =image_tag "/assets/icons/arrow_refresh.png"
+              #refresh-modal{ class: "modal hide fade"}
+                .modal-header
+                  %a{ href: "#", class: "close"} &times;
+                  %h2 Refreshing Site
+                .modal-body
+                  #spinner
+                  %h4 Waiting
+            
             =link_to site, :method => "delete" do
               =image_tag "/assets/icons/cross.png"
+          %td=time_ago_in_words site.updated_at.in_time_zone
       %tr
         %td{:cospan=>3}
           %a{:href=>new_site_path,:class=> "btn" } Create Site
