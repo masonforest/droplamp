@@ -1,5 +1,9 @@
 :coffeescript
   $ ->
+    pusher.connection.bind('failed', ->
+      flashVersionInfo = swfobject.getFlashPlayerVersion()
+      if(!swfobject.getFlashPlayerVersion().major >= 10)
+        alert("Please upgeade your browser or install Flash Player 10")
     pusher = new Pusher('7b5057202078c330cc5d')
     $(".refresh").modal();
     $(".refresh").bind "click", (event)->
