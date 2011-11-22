@@ -1,6 +1,6 @@
 :coffeescript
   $ ->
-    pusher.connection.bind('failed', ->
+    pusher.connection.bind 'failed', ->
       flashVersionInfo = swfobject.getFlashPlayerVersion()
       if(!swfobject.getFlashPlayerVersion().major >= 10)
         alert("Please upgeade your browser or install Flash Player 10")
