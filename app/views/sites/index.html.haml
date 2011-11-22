@@ -5,7 +5,6 @@
     pusher = new Pusher('7b5057202078c330cc5d')
     $(".refresh").modal();
     $(".refresh").bind "click", (event)->
-      console.log(event)
       $.post("/sites/\#{$(this).attr("data-site-id")}/refresh")
       $(this).find('h4').html('boom')
       opts = { lines: 12, length: 7, width: 4, radius: 10, color: '#000', speed: 1, trail: 60, shadow: false }
@@ -13,7 +12,6 @@
       spinner = new Spinner(opts).spin(target);
       siteChannel = pusher.subscribe('site')
       siteChannel.bind 'update_status', (site) ->
-        console.log(site)
         $("#refresh-modal").find('h4').html(site.status)
         if site.status == "Complete"
           $("#refresh-modal").modal('hide')
