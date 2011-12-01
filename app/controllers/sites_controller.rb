@@ -23,7 +23,7 @@ class SitesController < ApplicationController
     params[:site][:hostname]=params[:site][:hostname]+"."+params[:hostname][:suffix]
    @site = Site.new(params[:site])
     if @site.save
-      if params[:hostname][:suffix] == "kissr.co"
+      if params[:hostname][:suffix] == "droplamp.com"
         flash[:message] = render_to_string :partial=>"sites/welcome_message"
         redirect_to '/sites'
       else
