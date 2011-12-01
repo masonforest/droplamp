@@ -7,9 +7,9 @@ class Site < ActiveRecord::Base
 
   
   def create_heroku_domain
-    heroku = Heroku::Client.new("mason@stirltech.com", "password")
+    heroku = Heroku::Client.new(ENV['HEROKU_USERNAME'],ENV['HEROKU_PASSWORD'])
     puts "Adding #"+self.hostname+"#"
-    heroku.add_domain(ENV['KISSR_SERVER'],self.hostname)
+    heroku.add_domain(ENV['DROPLAMP_SERVER'],self.hostname)
   end
   def refresh
     Resque.enqueue(RunJekyll,self.id) 
