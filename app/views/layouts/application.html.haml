@@ -17,7 +17,7 @@
     .container
       %header
         %h5
-          %a{:id=> "logo",:href=>"/"} Kissr
+          %a{:id=> "logo",:href=>"/"} DropLamp
         -unless current_user.nil? then
           #welcome-message="Hi, #{current_user.first_name}!"
           = link_to 'Sign Out', destroy_user_session_path, :class=> 'btn primary'

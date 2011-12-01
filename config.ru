@@ -6,4 +6,4 @@ if ((ENV['RACK_ENV'] || 'development') != 'development') then
 end
 
 require ::File.expand_path('../config/environment',  __FILE__)
-run Kissr::Application
+run Droplamp::Application

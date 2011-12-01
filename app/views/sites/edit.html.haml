@@ -3,7 +3,7 @@
     $().ready ->
       $("#domain_preregistered,label[for=site_already_registered]").hide()
       $("#domain_tld").change ->
-        if $(this).val() != "kissr.co"
+        if $(this).val() != "droplamp.com"
           $("#domain_preregistered,label[for=site_already_registered]").slideDown()
         else
           $("#domain_preregistered,label[for=site_already_registered]").slideUp()
@@ -14,7 +14,7 @@
       = f.label :hostname, "Domain"
       .input
         = f.text_field :hostname,:placeholder=>"mywebsite"
-        = select :hostname,:suffix, [".kissr.co ($0.00 Setup + $0.00/mo)",".com ($9.99 Setup + 4.99/mo)",".org ($9.99 Setup  + 4.99/mo)",".net ($9.99 Setup  + 4.99/mo)",".info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS), :html_options=>{:class=>"chzn-select"}
+        = select :hostname,:suffix, [".droplamp.com ($0.00 Setup + $0.00/mo)",".com ($9.99 Setup + 4.99/mo)",".org ($9.99 Setup  + 4.99/mo)",".net ($9.99 Setup  + 4.99/mo)",".info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS), :html_options=>{:class=>"chzn-select"}
         #domain_status
       
       -#.help-block I've already registered this domain
@@ -28,8 +28,8 @@
     = f.label :dropbox_folder, "Dropbox Folder"
     .input
       .input-prepend
-        %span.add-on Dropbox/Apps/KISSr/
+        %span.add-on Dropbox/Apps/DropLamp/
         = f.text_field :dropbox_folder, :placeholder => "My Website"
-      .help-block Name of the folder KISSr will create in your Dropbox
+      .help-block Name of the folder DropLamp will create in your Dropbox
   = f.submit :class => "btn primary"
 

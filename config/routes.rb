@@ -1,4 +1,4 @@
-Kissr::Application.routes.draw do
+Droplamp::Application.routes.draw do
   mount Resque::Server, :at => "/resque"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 

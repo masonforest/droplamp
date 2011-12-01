@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Kissr::Application.load_tasks
+Droplamp::Application.load_tasks
