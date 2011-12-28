@@ -2,8 +2,8 @@
 %html
   %head
     %title DropLamp - Dropbox Web Hosting
-    %meta{:name=>"description",:value=>"KISSr enables you to host websites out of your Dropbox"}
-    %meta{:name=>"keywords",:value=>"kissr,hosting,web,web hosting,dropbox"}
+    %meta{:name=>"description",:value=>"DropLamp enables you to host websites out of your Dropbox"}
+    %meta{:name=>"keywords",:value=>"droplamp,hosting,web,web hosting,dropbox"}
     =javascript_include_tag "http://js.pusherapp.com/1.9/pusher.min.js"
     = stylesheet_link_tag 'application.css', :media => 'screen, projection'
 
@@ -24,13 +24,13 @@
         %nav
           %ul
             %li 
-              %a{:href=>"http://docs.kissr.co/getting_started/"} Getting Started
+              %a{:href=>"http://docs.droplamp.com/getting_started/"} Getting Started
             %li 
-              %a{:href=>"http://docs.kissr.co/"} Documentation
+              %a{:href=>"http://docs.droplamp.com/"} Documentation
             %li 
-              %a{:href=>"http://docs.kissr.co/pricing.html"} Pricing
+              %a{:href=>"http://docs.droplamp.com/pricing.html"} Pricing
             %li
-              %a{:href=>"http://docs.kissr.co/about.html"} About
+              %a{:href=>"http://docs.droplamp.com/about.html"} About
       .content
         - flash.each do |type, message|
           %div.alert-message.fade.in{ "data-alert" => "alert", :class => twitterized_flash_type(type) }
