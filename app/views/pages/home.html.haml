@@ -9,14 +9,25 @@
   
 
   %br
-  =link_to "Login with Dropbox",'/auth/dropbox', :class=> "btn primary"
-  
-  %a{:href=>"http://www.dropbox.com/"} What is Dropbox?
+  - @site=Site.new
+  - @site.domain = Domain.new
+  = form_for @site, html: {class: "form-inline"} do |f|
+    =# f.label :dropbox_folder
+    = f.text_field :dropbox_folder, placeholder: "Dropbox Folder"
+    &raquo;
+    = f.fields_for :domain do |d|
+      =#d.label :domain
+      =d.text_field :domain, placeholder: "Domain"
+      =#d.label :tld, "Suffix"
+      =d.select :tld, [".droplamp.com ($0.00 Setup + $0.00/mo)",".com ($9.99 Setup + 4.99/mo)",".org ($9.99 Setup  + 4.99/mo)",".net ($9.99 Setup  + 4.99/mo)",".info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS)
+    = f.submit "Publish", class: "btn-primary"
+    -#%p Choose a name for the dropbox folder you would like to create and the domain name of your choice. Domains that end in droplamp.com are free!
+  -#%a{:href=>"http://www.dropbox.com/"} What is Dropbox?
 
-  %br 
-  %br 
-  %br 
-  %a{ href: "https://twitter.com/share", class: "twitter-share-button", "data-url" => "http://www.droplamp.com/", "data-counturl" => "http://www.kissr.co/", "data-count"=>"vertical", "data-text" => "Checkout DropLamp! DropLamp lets you host websites out of your Dropbox"} Tweet
-  .fb-like{ "data-href" => "http://www.droplamp.com/", "data-send"=>"false", "data-layout"=>"box_count", "data-width"=>"450", "data-show-faces"=>"false", "data-font"=>"arial" }
+  -#%br 
+  -#%br 
+  -#%br 
+  -#%a{ href: "https://twitter.com/share", class: "twitter-share-button", "data-url" => "http://www.droplamp.com/", "data-counturl" => "http://www.kissr.co/", "data-count"=>"vertical", "data-text" => "Checkout DropLamp! DropLamp lets you host websites out of your Dropbox"} Tweet
+  -#.fb-like{ "data-href" => "http://www.droplamp.com/", "data-send"=>"false", "data-layout"=>"box_count", "data-width"=>"450", "data-show-faces"=>"false", "data-font"=>"arial" }
 
 

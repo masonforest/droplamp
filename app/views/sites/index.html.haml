@@ -1,24 +1,3 @@
-:coffeescript
-  $ ->
-    pusher = new Pusher('7b5057202078c330cc5d')
-    pusher.connection.bind 'failed', ->
-      flashVersionInfo = swfobject.getFlashPlayerVersion()
-      if(!swfobject.getFlashPlayerVersion().major >= 10)
-        alert("Please upgeade your browser or install Flash Player 10")
-    $(".refresh").modal();
-    $(".refresh").bind "click", (event)->
-      $.post("/sites/\#{$(this).attr("data-site-id")}/refresh")
-      $(this).find('h4').html('boom')
-      opts = { lines: 12, length: 7, width: 4, radius: 10, color: '#000', speed: 1, trail: 60, shadow: false }
-      target = document.getElementById('spinner');
-      spinner = new Spinner(opts).spin(target);
-      siteChannel = pusher.subscribe('site')
-      siteChannel.bind 'update_status', (site) ->
-        $("#refresh-modal").find('h4').html(site.status)
-        if site.status == "Complete"
-          $("#refresh-modal").modal('hide')
-          location.reload(true)
-    
 #content
   #refresh-modal{ class: "modal hide fade"}
     .modal-header
@@ -38,7 +17,7 @@
       -@sites.each do |site|
         %tr
           %td=site.dropbox_folder
-          %td=hostname_link(site)
+          %td=link_to site.domain, site.domain.url, target: :blank
           %td
             %a{:href=>edit_site_path(site)}
               %img{:src => "/assets/icons/pencil.png"}

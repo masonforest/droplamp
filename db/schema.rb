@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(:version => 20111117162346) do
     t.integer  "page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "path"
-    t.integer  "revision"
   end
 
   create_table "buckets", :force => true do |t|
@@ -42,11 +40,6 @@ ActiveRecord::Schema.define(:version => 20111117162346) do
     t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "dropbox_path"
-    t.text     "content"
-    t.string   "front_matter"
-    t.string   "format"
-    t.integer  "revision"
     t.string   "layout_revision"
   end
 
@@ -55,7 +48,7 @@ ActiveRecord::Schema.define(:version => 20111117162346) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month"
+    t.integer  "month",      :limit => 2
     t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -68,8 +61,6 @@ ActiveRecord::Schema.define(:version => 20111117162346) do
     t.string   "dropbox_folder"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "hostname"
-    t.string   "hash"
     t.text     "cached_metadata"
   end
 
@@ -81,19 +72,6 @@ ActiveRecord::Schema.define(:version => 20111117162346) do
     t.string   "dropbox_token_secret"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
   end
-
-  add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

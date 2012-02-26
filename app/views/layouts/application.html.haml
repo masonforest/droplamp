@@ -21,16 +21,6 @@
         -unless current_user.nil? then
           #welcome-message="Hi, #{current_user.first_name}!"
           = link_to 'Sign Out', destroy_user_session_path, :class=> 'btn primary'
-        %nav
-          %ul
-            %li 
-              %a{:href=>"http://docs.droplamp.com/getting_started/"} Getting Started
-            %li 
-              %a{:href=>"http://docs.droplamp.com/"} Documentation
-            %li 
-              %a{:href=>"http://docs.droplamp.com/pricing.html"} Pricing
-            %li
-              %a{:href=>"http://docs.droplamp.com/about.html"} About
       .content
         - flash.each do |type, message|
           %div.alert-message.fade.in{ "data-alert" => "alert", :class => twitterized_flash_type(type) }

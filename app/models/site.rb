@@ -3,13 +3,14 @@ class Site < ActiveRecord::Base
   after_create :create_heroku_domain,:create_dropbox_folder
   belongs_to :owner, :class_name =>"User"
   validates :dropbox_folder, :presence => true
-
+  has_one :domain
+  accepts_nested_attributes_for :domain
 
   
   def create_heroku_domain
     heroku = Heroku::Client.new(ENV['HEROKU_USERNAME'],ENV['HEROKU_PASSWORD'])
-    puts "Adding #"+self.hostname+"#"
-    heroku.add_domain(ENV['DROPLAMP_SERVER'],self.hostname)
+    puts "Adding #"+self.domain.to_s
+    #heroku.add_domain(ENV['DROPLAMP_SERVER'],self.domain)
   end
   def refresh
     Resque.enqueue(RunJekyll,self.id) 

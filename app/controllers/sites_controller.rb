@@ -1,5 +1,8 @@
 class SitesController < ApplicationController
- # before_filter :authenticate_user, :except => "show"
+  before_filter :set_cookie,:authenticate_user, :except => "show"
+  def set_cookie
+    session[:site]=params[:site].to_json
+  end
   def new
     @site = Site.new
     render 'edit'
@@ -20,8 +23,7 @@ class SitesController < ApplicationController
   def create
     puts "Createing site for user ID:#{current_user.id}"
     params[:site][:owner_id]=current_user.id.to_i
-    params[:site][:hostname]=params[:site][:hostname]+"."+params[:hostname][:suffix]
-   @site = Site.new(params[:site])
+    @site = Site.new(params[:site])
     if @site.save
       if params[:hostname][:suffix] == "droplamp.com"
         flash[:message] = render_to_string :partial=>"sites/welcome_message"

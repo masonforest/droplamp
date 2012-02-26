@@ -1,7 +1,7 @@
 class CreateSites < ActiveRecord::Migration
   def self.up
    create_table :sites do |t|
-      t.references :user
+      t.references :owner
       t.string :path
       
       t.timestamps
