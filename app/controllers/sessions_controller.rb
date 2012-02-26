@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
     session[:user_id]=user.id
     
     if session[:site]
-      puts "creating #{ActiveSupport::JSON.decode(session[:site]).merge( owner: user)}"
-      @site = Site.create(ActiveSupport::JSON.decode(session[:site]).merge( owner: user))
+      puts "creating #{ActiveSupport::JSON.decode(session[:site]).merge( owner: user.id)}"
+      @site = Site.create(ActiveSupport::JSON.decode(session[:site]).merge( owner: user.id))
     end
     
     redirect_to sites_path, :notice => 'Signed in!'
