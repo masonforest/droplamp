@@ -9,6 +9,13 @@ RailsAdmin.config do |config|
     redirect_to '/' unless current_user.try(:admin?)
   end
 
+  config.model Site do
+    list do
+      field :owner
+      field :dropbox_folder
+      field :domain
+    end
+  end
 
 end
 

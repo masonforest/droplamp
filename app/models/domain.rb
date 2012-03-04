@@ -5,6 +5,9 @@ class Domain < ActiveRecord::Base
   def to_s
     "#{self.domain}.#{self.tld}"
   end
+  def name
+    self.to_s
+  end
   def self.available(domain,tld)
     begin
       not tld.include?(".") and NameDotCom::API.new.check_domain( :keyword =>domain.to_s, :tlds => [tld],:services=>["availablity"] )['domains']["#{domain}.#{tld}"].avail
