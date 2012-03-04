@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       @site = Site.create(ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id))
     end
     
-    redirect_to sites_path, :notice => 'Signed in!'
+    redirect_to sites_path, :notice => (render_to_string :partial=>"sites/welcome_message")
   end
  def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"

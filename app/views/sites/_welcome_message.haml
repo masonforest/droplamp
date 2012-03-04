@@ -1,10 +1,11 @@
 Your site is now live at: 
-%a{:href=>"http://#{@site.hostname}",:target=>"_blank"}#{@site.hostname}
+%a{:href=>"http://#{@site.domain}",:target=>"_blank"}#{@site.domain}
 ! 
 %br
 KISSr has created the folder /Dropbox/Apps/KISSr/ 
 %strong=@site.dropbox_folder
 which contains your new website. 
 %br
-To edit your frontpage open the file:
-%strong index.md
+To edit your site open the file: /Dropbox/Apps/KISSr/ 
+%strong="#{@site.dropbox_folder}/index.html"
+

@@ -13,9 +13,6 @@
     .clearfix
       = f.label :hostname, "Domain"
       .input
-        = f.text_field :hostname,:placeholder=>"mywebsite"
-        = select :hostname,:suffix, [".droplamp.com ($0.00 Setup + $0.00/mo)",".com ($9.99 Setup + 4.99/mo)",".org ($9.99 Setup  + 4.99/mo)",".net ($9.99 Setup  + 4.99/mo)",".info ($9.99 Setup  + 4.99/mo)"].zip(Domain::TLDS), :html_options=>{:class=>"chzn-select"}
-        #domain_status
       
       -#.help-block I've already registered this domain
     -#-if current_user.name=="Mason Fischer" then

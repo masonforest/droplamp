@@ -5,13 +5,13 @@ module ApplicationHelper
   def twitterized_flash_type(type)
   case type
     when :alert
-      "warning"
+      "alert"
     when :error
-      "error"
+      "alert alert-error"
     when :notice
-      "info"
+      "alert alert-info"
     when :success
-      "success"
+      "alert alert-success"
     else
       type.to_s
   end
