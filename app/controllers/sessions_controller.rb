@@ -9,9 +9,10 @@ class SessionsController < ApplicationController
     if session[:site]
       puts "creating #{ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id)}"
       @site = Site.create(ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id))
+      flash[:notice] = render_to_string :partial=>"sites/welcome_message"
     end
     
-    redirect_to sites_path, :notice => (render_to_string :partial=>"sites/welcome_message")
+    redirect_to sites_path
   end
  def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"
