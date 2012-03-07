@@ -22,8 +22,8 @@ class SitesController < ApplicationController
     redirect_to sites_path, notice: 'Site was successfully updated.'
   end
   def create
-    @site = Site.create(params[:site])
     params[:site][:owner_id]=current_user.id.to_i
+    @site = Site.create(params[:site])
     flash[:notice] = render_to_string :partial=>"sites/welcome_message"
     
     redirect_to sites_path
