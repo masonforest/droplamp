@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
-  def show
-    render params[:id]
+  def home
+    @site = Site.new
+    @site.domain = Domain.new
   end
 end
 

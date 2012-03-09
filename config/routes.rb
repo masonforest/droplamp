@@ -17,7 +17,7 @@ Droplamp::Application.routes.draw do
     post 'refresh', :on => :member
   end
   
-  root :to =>'application#index'
+  root :to =>'pages#home'
 
   match "/signout" => "sessions#destroy", :as => :signout 
 

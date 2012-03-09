@@ -35,7 +35,6 @@ gem 'nokogiri'
 gem 'pg'
 gem 'name-dot-com'
 gem 'thin'
-gem 'chosen_rails'
 gem 'twitter_bootstrap_form_for'
 
 group :test, :development do
