@@ -11,7 +11,7 @@ RailsAdmin.config do |config|
 
   config.model Site do
     list do
-      #field :owner
+      field :owner
       field :dropbox_folder
       field :domain
     end
