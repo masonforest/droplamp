@@ -11,20 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117162346) do
-
-  create_table "assets", :force => true do |t|
-    t.integer  "page_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "buckets", :force => true do |t|
-    t.string   "name"
-    t.integer  "site_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120312195317) do
 
   create_table "domains", :force => true do |t|
     t.string   "domain"
@@ -32,15 +19,6 @@ ActiveRecord::Schema.define(:version => 20111117162346) do
     t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "preregistered"
-  end
-
-  create_table "pages", :force => true do |t|
-    t.integer  "site_id"
-    t.string   "path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "layout_revision"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -61,17 +39,24 @@ ActiveRecord::Schema.define(:version => 20111117162346) do
     t.string   "dropbox_folder"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "cached_metadata"
   end
 
   create_table "users", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "dropbox_token"
-    t.string   "dropbox_token_secret"
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end
