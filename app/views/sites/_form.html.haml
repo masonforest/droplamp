@@ -3,7 +3,7 @@
     $().ready ->
       $("#domain_preregistered,label[for=site_already_registered]").hide()
       $("#domain_tld").change ->
-        if $(this).val() != "droplamp.com"
+        if $(this).val() != "kissr.co"
           $("#domain_preregistered,label[for=site_already_registered]").slideDown()
         else
           $("#domain_preregistered,label[for=site_already_registered]").slideUp()
@@ -16,7 +16,7 @@
         .controls
           .input-append
             =d.text_field :domain, placeholder: "mysite"
-            = d.select :tld, [".droplamp.com (Free!)",".com ($7.99 per month)",".org ($7.99 per month)",".net ($7.99 per month)",".info ($7.99 per month)"].zip(Domain::TLDS), html: {:class => "add-on"}
+            = d.select :tld, [".kissr.co (Free!)",".com ($7.99 per month)",".org ($7.99 per month)",".net ($7.99 per month)",".info ($7.99 per month)"].zip(Domain::TLDS), html: {:class => "add-on"}
 
           %p.help-block The domain you want to point to your Dropbox
     .control-group

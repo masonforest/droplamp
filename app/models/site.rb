@@ -10,7 +10,7 @@ class Site < ActiveRecord::Base
   def create_heroku_domain
     heroku = Heroku::Client.new(ENV['HEROKU_USERNAME'],ENV['HEROKU_PASSWORD'])
     puts "Adding #"+self.domain.to_s
-    heroku.add_domain(ENV['DROPLAMP_SERVER'],self.domain.to_s) if Rails.env.eql? 'production'  
+    heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s) if Rails.env.eql? 'production'  
   end
   def refresh
     Resque.enqueue(RunJekyll,self.id) 

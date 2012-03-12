@@ -1,9 +1,9 @@
 !!!
 %html
   %head
-    %title DropLamp - Dropbox Web Hosting
-    %meta{:name=>"description",:value=>"DropLamp enables you to host websites out of your Dropbox"}
-    %meta{:name=>"keywords",:value=>"droplamp,hosting,web,web hosting,dropbox"}
+    %title KISSr - Dropbox Web Hosting
+    %meta{:name=>"description",:value=>"KISSr enables you to host websites out of your Dropbox"}
+    %meta{:name=>"keywords",:value=>"kissr,hosting,web,web hosting,dropbox"}
     =javascript_include_tag "http://js.pusherapp.com/1.9/pusher.min.js"
     = stylesheet_link_tag 'application.css', :media => 'screen, projection'
 
@@ -17,7 +17,7 @@
     .container
       %header
         %h5
-          %a{:id=> "logo",:href=>"/"} DropLamp
+          %a{:id=> "logo",:href=>"/"} KISSr
         -unless current_user.nil? then
           #welcome-message="Hi, #{current_user.first_name}!"
           = link_to 'Sign Out', destroy_user_session_path, :class=> 'btn primary'
