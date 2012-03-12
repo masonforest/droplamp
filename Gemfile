@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.1'
 gem 'haml'
 gem 'devise'
+gem 'pry'
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'

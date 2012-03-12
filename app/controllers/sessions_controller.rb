@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
+    puts "creating with #{auth}"
     logger.debug auth
     user = User.where(:provider => auth['provider'], 
                       :uid => auth['uid'].to_s).first|| User.create_with_omniauth(auth)
+    puts user.errors.inspect
     session[:user_id]=user.id
     
     if session[:site]

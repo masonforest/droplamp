@@ -15,13 +15,14 @@ class User < ActiveRecord::Base
  
   def self.create_with_omniauth(auth)
     logger.debug auth.inspect
-    create do |user|   
+    create do |user|
       user.provider = auth['provider']
       user.uid = auth['uid'].to_s
       user.dropbox_token=auth['extra']['access_token'].token
       user.dropbox_token_secret=auth['extra']['access_token'].secret
       user.name = auth['info']['name'] if auth['info']['name']
-     # user.email = auth['info']['email'] if auth['info']['email']
+      user.password="password"
+      user.email = auth['info']['email'] if auth['info']['email']
     end
   end
 
