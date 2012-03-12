@@ -7,6 +7,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ## Recoverable
       t.string   :provider
+      t.string   :uid
+      t.string   :dropbox_token
+      t.string   :dropbox_token_secret
+      t.string   :name
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
 

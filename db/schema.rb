@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(:version => 20120312195317) do
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "provider"
+    t.string   "uid"
+    t.string   "dropbox_token"
+    t.string   "dropbox_token_secret"
+    t.string   "name"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
