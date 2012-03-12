@@ -1,4 +1,6 @@
 Kissr::Application.routes.draw do
+  devise_for :users
+
   mount Resque::Server, :at => "/resque"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
