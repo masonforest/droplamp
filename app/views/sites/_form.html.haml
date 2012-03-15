@@ -19,7 +19,7 @@
             = d.select :tld, [".kissr.co (Free!)",".com ($7.99 per month)",".org ($7.99 per month)",".net ($7.99 per month)",".info ($7.99 per month)"].zip(Domain::TLDS), html: {:class => "add-on"}
 
           %p.help-block The domain you want to point to your Dropbox
-    .control-group
+    -#.control-group
       = f.label :dropbox_folder, "Dropbox Folder", :class=>"control-label"
       .controls
         .input-prepend

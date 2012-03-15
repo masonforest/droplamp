@@ -18,12 +18,15 @@
       %header
         %h5
           %a{:id=> "logo",:href=>"/"} KISSr
-        -unless current_user.nil? then
-          #welcome-message="Hi, #{current_user.first_name}!"
-          = link_to 'Sign Out', destroy_user_session_path, :class=> 'btn primary'
+        =render "shared/nav"
+        //%nav.user
+        //  -unless current_user.nil? then
+        //    #welcome-message="Hi, #{current_user.first_name}!"
+        //    = link_to 'Sign Out', destroy_user_session_path, :class=> 'btn primary'
+       
       .content
         - flash.each do |type, message|
-          %div.alert-message.fade.in{ "data-alert" => "alert", :class => twitterized_flash_type(type) }
+          %div.alert.fade.in{ "data-alert" => "alert", :class => twitterized_flash_type(type) }
             %a.close{:href => "#"} ×
             %p
               = raw message
