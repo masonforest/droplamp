@@ -23,7 +23,7 @@ class SitesController < ApplicationController
   end
   def create
     params[:site][:owner_id]=current_user.id.to_i
-    params[:site][:dropbox_folder]=params[:site][:domain_attributes][:domain].to_s+"."+params[:site][:domain_attributes][:tld].to_s+
+    params[:site][:dropbox_folder]=params[:site][:domain_attributes][:domain].to_s+"."+params[:site][:domain_attributes][:tld].to_s
     @site = Site.create(params[:site])
     flash[:notice] = render_to_string :partial=>"sites/welcome_message"
     
