@@ -1,0 +1,21 @@
+-if current_user.nil? then
+  .user-menu
+    %a{:href => sites_path, :class =>"btn" } Sign In
+-else
+  .btn-group.user-menu
+    %a.btn{:href => "#"}
+      %i.icon-user.icon-black
+      =current_user.name
+    %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      %span.caret
+    %ul.dropdown-menu
+      %li
+        %a{:href => sites_path}
+          %i.icon-pencil
+          Manage Sites
+      %li.divider
+      %li
+        %a{:href => destroy_user_session_path}
+          %i.i
+          Sign Out
+
