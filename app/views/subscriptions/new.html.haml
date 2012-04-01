@@ -1,0 +1,29 @@
+.well.alert.alert-info
+  You will be charged $9.99 today and $9.99 every month until you cancel this plan.
+=form_for @subscription do |f|
+  -if @subscription.errors.any?
+    -@subscription.errors.full_messages.each do |msg|
+      %p= msg
+  = f.hidden_field :stripe_card_token
+  = f.hidden_field :site_id
+  = f.hidden_field :plan_id, value: 1
+  - if @subscription.stripe_card_token.present?
+    Credit card has been provided.
+  - else
+    #stripe_error
+      %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+    %fieldset
+      %legend  Credit Card Information
+      .field
+        = label_tag :card_number, "Credit Card Number"
+        = text_field_tag :card_number, nil, name: nil
+      .field
+        = label_tag :card_code, "Security Code on Card (CVV)"
+        = text_field_tag :card_code, nil, name: nil
+      .field
+        = label_tag :card_month, "Card Expiration"
+        = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+        = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+
+  .form-actions
+    = f.submit "Purchase", :class => "btn btn-primary btn-large"

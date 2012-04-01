@@ -8,6 +8,9 @@ class Domain < ActiveRecord::Base
   def name
     self.to_s
   end
+  def free?
+    tld == "kissr"
+  end
   def self.available(domain,tld)
     begin
       not tld.include?(".") and NameDotCom::API.new.check_domain( :keyword =>domain.to_s, :tlds => [tld],:services=>["availablity"] )['domains']["#{domain}.#{tld}"].avail
@@ -16,7 +19,7 @@ class Domain < ActiveRecord::Base
     end
   end
   def self.status(domain,tld)
-    return :available  if tld=="kissr.co" and !Site.where(:hostname=>"#{domain}.#{tld}").exists?
+    return :available  if tld=="kissr.co" and !Domain.where(domain: domain, tld: tld ).exists?
     if available(domain,tld) 
     #   return ("75.101.163.44" "75.101.145.87" "174.129.212.2").include?(Resolv.getaddress("www.#{domain}.#{tld}")) ? :pointed : :taken
       :available

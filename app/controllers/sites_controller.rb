@@ -24,10 +24,19 @@ class SitesController < ApplicationController
   def create
     params[:site][:owner_id]=current_user.id.to_i
     params[:site][:dropbox_folder]=params[:site][:domain_attributes][:domain].to_s+"."+params[:site][:domain_attributes][:tld].to_s
-    @site = Site.create(params[:site])
-    flash[:notice] = render_to_string :partial=>"sites/welcome_message"
+    @site = Site.new(params[:site])
     
-    redirect_to sites_path
+    if @site.save
+      if @site.domain.free? 
+        flash[:notice] = render_to_string :partial=>"sites/welcome_message"
+        redirect_to sites_path
+      else
+        redirect_to new_subscription_path( site_id: @site.id )
+      end
+    else
+      render :edit
+    end
+
   end
   def index
     @sites = Site.where(:owner_id=>current_user)

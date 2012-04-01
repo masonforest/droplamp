@@ -37,6 +37,7 @@ gem 'pg'
 gem 'name-dot-com'
 gem 'thin'
 gem 'twitter_bootstrap_form_for'
+gem 'stripe'
 
 group :test, :development do
   gem 'sqlite3'

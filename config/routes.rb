@@ -12,6 +12,7 @@ Kissr::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'sessions#create'
   resources :pages
+  resources :subscriptions
   resources :domains do
     get 'status', :on => :collection
   end

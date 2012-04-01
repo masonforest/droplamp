@@ -1,5 +1,17 @@
-Your site is now live at: 
-%a{:href=>"http://#{@site.domain}",:target=>"_blank"}=@site.domain.to_s
+-if @site.domain.tld == "kissr.co"
+  Your site is now live at: 
+  %a{:href=>"http://#{@site.domain}",:target=>"_blank"}=@site.domain.to_s
+-else
+  %p KISSr has created the domain #{@site.domain}!
+
+  %p
+    It will take up to 48 hours for your domain to be registered and propigate through the name servers throughout the world.
+    KISSr will send you am email when that proccess is complete.
+
+  %p
+    Until then you can view your site here:
+    %a{:href=>"http://#{@site.domain}.kissr.co/",:target=>"_blank"} http://#{@site.domain}.kissr.co/
+
 %br
 To edit your site open the file: <strong>Dropbox/Apps/KISSr/#{@site.dropbox_folder}/index.html</strong>
 This file will be in "Recently Changed Files" in your Dropbox menu

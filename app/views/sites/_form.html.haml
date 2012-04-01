@@ -6,16 +6,40 @@
         clearTimeout timer
         timer = setTimeout(callback, ms)
       $("#domain_preregistered,label[for=site_already_registered]").hide()
-      $("#site_domain_attributes_domain").keyup -> delay( 500, ->
-        $("#site_domain_attributes_domain").parent().parent().find('.help-block').text("Taken")
-        $("#site_domain_attributes_domain").parent().parent().parent().toggleClass("error")
-      )
-        #if $(this).val() != "kissr.co"
-        #  $("#domain_preregistered,label[for=site_already_registered]").slideDown()
-        #else
-        #  $("#domain_preregistered,label[for=site_already_registered]").slideUp()
-        #false
+      $("#site_domain_attributes_domain").keyup -> domainChange() 
+      $("#site_domain_attributes_tld").change -> domainChange() 
+      $("[type=submit]").click (e)->
+        if $(".control-group").hasClass("error")
+
+          if $("#site_domain_attributes_tld").val() == "kissr.co"
+            $("#alreadyRegisteredKISSr").modal("show")
+          else
+            $("#alreadyRegistered").modal("show")
+
+          e.preventDefault()
+
+      domainChange = -> 
+        delay(500, ->
+          domain = $("#site_domain_attributes_domain").val()
+          tld = $("#site_domain_attributes_tld").val()
+          $.get "/domains/status?domain=\#{domain}&tld=\#{tld}", (response) ->
+            if response == "taken"
+              $("#site_domain_attributes_domain").parent().parent().find('.help-block').text("Taken")
+              $(".control-group").addClass("error")
+              $(".control-group").removeClass("success")
+            else
+              $("#site_domain_attributes_domain").parent().parent().find('.help-block').text("Available")
+              $(".control-group").removeClass("error")
+              $(".control-group").addClass("success")
+
+        )
+        $(".ownership_verified").click ->
+          $(".control-group").removeClass("error")
+          $("form").submit()
 =form_for @site, html: { class: "form-horizontal" } do |f|
+  -if @site.errors.any?
+    -@site.errors.full_messages.each do |msg|
+      %p.alert.alert-box= msg
   %fieldset
     = f.fields_for :domain do |d|
       .control-group
@@ -35,4 +59,26 @@
         %p.help-block Name of the folder KISSr will create in your Dropbox
     .form-actions
       = f.submit "Publish", :class => "btn btn-primary btn-large"
+
+#alreadyRegistered.modal.hide
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3 Warning
+  .modal-body
+    %p
+      Sorry but that domain #{tag("span", :class =>"already_registered_domain" )} has already been registered. 
+      %strong You will not be able to use KISSr with this domain unless you own this domain and have access to set a CNAME record on that domain. 
+  .modal-footer
+    %a.btn.btn-danger{:href => "#", :class=> "ownership_verified"} I Own This Domain 
+    %a.btn{:href => "#","data-dismiss" => "modal"} I'll Pick Another Domain
+
+#alreadyRegisteredKISSr.modal.hide
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3 Warning
+  .modal-body
+    %p Sorry but that domain #{tag("span", :class =>"already_registered_domain" )} has already been taken.
+  .modal-footer
+    %a.btn.btn-primary{:href => "#","data-dismiss" => "modal"} I'll Pick Another Domain
+
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312195317) do
+ActiveRecord::Schema.define(:version => 20120401193057) do
 
   create_table "domains", :force => true do |t|
     t.string   "domain"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20120312195317) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "subscriptions", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "stripe_customer_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "plan_id"
+  end
+
+  add_index "subscriptions", ["site_id"], :name => "index_subscriptions_on_site_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
