@@ -9,7 +9,7 @@ class Domain < ActiveRecord::Base
     self.to_s
   end
   def free?
-    tld == "kissr"
+    tld == "kissr.co"
   end
   def self.available(domain,tld)
     begin
