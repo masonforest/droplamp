@@ -8,7 +8,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
 end
-gem 'log4r', '1.1.9'
+gem 'resque_mailer'
 gem 'jquery-rails'
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'haml'

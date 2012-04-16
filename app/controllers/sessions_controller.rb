@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
                       :uid => auth['uid'].to_s).first|| User.create_with_omniauth(auth)
     puts user.errors.inspect
     session[:user_id]=user.id
-    if not session[:site].blank?
+    if not session[:site] == "null"
       puts "creating #{ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id)}"
       @site = Site.create(ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id))
       flash[:notice] = render_to_string :partial=>"sites/welcome_message"

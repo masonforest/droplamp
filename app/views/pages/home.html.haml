@@ -5,13 +5,50 @@
   (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) {return;} js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=303242933026774"; fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
 
 
+.row
+  .well.player.span4
+    .welcome
+      %h1 Welcome to KISSr
+      =image_tag "play.png", class: "play"
+      %p KISSr lets you host websites out of your dropbox
+    .scene
+      %h1 So you want you own domain name…
+    .scene
+      %h1 What does that mean exactly?
+    .scene
+      %h1 When someone goes to yourdomain.com you want them to see your website.
+    .scene
+      %h1 But how will the internet know where to find your website?
+    .scene
+      %h1 That's where KISSr comes in.
+    .scene
+      %h1 You enter the domain you want to register 
+    .scene
+      %h1 and choose the domain extension.
+    .scene
+      %h1 KISSr will then register that domain for you.
+    .scene
+      %h1 And whenever someone goes to that domain
+    .scene
+      %h1 KISSr will look in your Dropbox where you will put your website.
+    .scene
+      %h1 Try it out now. Domains that end in kissr.co are free!
+    .stop
+      %i.icon-stop
+    .mute
+      %i.icon-volume-off
+      %i.icon-volume-up
 
--#.well.player
-  .scene-1
-    %h1 Welcome to KISSr
-    =image_tag "play.png", class: "play"
 
-.well.alert.alert-info
+  .about.span5
+    %h3 Register a domain.
+    %p Kissr will let you register a domain name with one click. Domains that end in KISSr.co are free!
+    %h3 Put your website in a Dropbox folder.
+    %p With KISSr you manage your entire website from a folder in your Dropbox. KISSr will only have access to one folder in your Dropbox.
+    %h3 Enjoy scaleable secure hosting in the cloud!
+    %p KISSr is built on top of Dropbox and the Amazon Cloud platform. Your site will load quickly even under high traffic. No servers to manage. No nonsense.
+
+-#.well.alert.alert-info
   %h3 KISSr enables you to host websites out of your Dropbox
 
 =render 'sites/form'
