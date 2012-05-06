@@ -11,12 +11,19 @@ class SessionsController < ApplicationController
       puts "creating #{ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id)}"
       domain = JSON.parse(session[:site])["domain_attributes"]
       dropbox_folder = domain["domain"].to_s+"."+domain["tld"].to_s
-      @site = Site.create(ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id, dropbox_folder: dropbox_folder ))
-      puts @site.errors.inspect
-      flash[:notice] = render_to_string :partial=>"sites/welcome_message"
+      @site = Site.new(ActiveSupport::JSON.decode(session[:site]).merge( owner_id: user.id, dropbox_folder: dropbox_folder ))
+      if @site.save
+        if @site.domain.free? 
+          flash[:notice] = render_to_string :partial=>"sites/welcome_message"
+          redirect_to sites_path
+        else
+          redirect_to new_subscription_path( site_id: @site.id )
+        end
+      else
+        render :edit
+      end
     end
     
-    redirect_to sites_path
   end
  def failure
     redirect_to root_url, :alert => "Authentication error: #{params[:message].humanize}"

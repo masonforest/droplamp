@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401193057) do
+ActiveRecord::Schema.define(:version => 20120422233008) do
+
+  create_table "assets", :force => true do |t|
+    t.integer  "page_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buckets", :force => true do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "domains", :force => true do |t|
     t.string   "domain"
@@ -21,18 +34,36 @@ ActiveRecord::Schema.define(:version => 20120401193057) do
     t.datetime "updated_at"
   end
 
+  create_table "pages", :force => true do |t|
+    t.integer  "site_id"
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "layout_revision"
+  end
+
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
+    t.integer  "month"
     t.integer  "year",       :limit => 8
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "refferals", :force => true do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "refferals", ["from_user_id"], :name => "index_refferals_on_from_user_id"
+  add_index "refferals", ["to_user_id"], :name => "index_refferals_on_to_user_id"
 
   create_table "sites", :force => true do |t|
     t.integer  "owner_id"
@@ -69,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20120401193057) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "delta_cursor"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

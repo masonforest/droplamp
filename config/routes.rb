@@ -23,5 +23,6 @@ Kissr::Application.routes.draw do
   root :to =>'pages#home'
 
   match "/signout" => "sessions#destroy", :as => :signout 
+  match "/fivebucksoff/:user_id" => "refferals#create"
 
 end
