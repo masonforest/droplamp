@@ -22,6 +22,8 @@ class SessionsController < ApplicationController
       else
         render :edit
       end
+    else
+      redirect_to sites_path
     end
     
   end
