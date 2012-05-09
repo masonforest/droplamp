@@ -3,6 +3,8 @@ class Site < ActiveRecord::Base
   after_create :create_heroku_domain, :if => Proc.new { |site| site.domain.free? }
   after_create :create_dropbox_folder, :if => Proc.new { |site| site.domain.free? }
   after_create :sync, :if => Proc.new { |site| site.domain.free? }
+  after_destroy :remove_heroku_domain
+
   belongs_to :owner, :class_name =>"User"
   validates :dropbox_folder, :presence => true
   has_one :domain, :dependent => :destroy
@@ -17,6 +19,12 @@ class Site < ActiveRecord::Base
       heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s+".kissr.co")
     end
   end
+  def remove_heroku_domain
+    heroku = Heroku::Client.new(ENV['HEROKU_USERNAME'],ENV['HEROKU_PASSWORD'])
+    puts "Removing #"+self.domain.to_s
+    heroku.remove_domain(ENV['KISSR_SERVER'],self.domain.to_s)# if Rails.env.eql? 'production'
+  end
+
   def refresh
   end
   def create_dropbox_folder
