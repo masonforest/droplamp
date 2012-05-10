@@ -2,7 +2,6 @@ require 'dropbox_sdk'
 class Site < ActiveRecord::Base
   after_create :create_heroku_domain, :if => Proc.new { |site| site.domain.free? }
   after_create :create_dropbox_folder, :if => Proc.new { |site| site.domain.free? }
-  after_create :sync, :if => Proc.new { |site| site.domain.free? }
   after_destroy :remove_heroku_domain
 
   belongs_to :owner, :class_name =>"User"
@@ -33,16 +32,6 @@ class Site < ActiveRecord::Base
       to_path=self.dropbox_folder+file.sub("#{Rails.root}/templates/default","")
       puts "putting "+to_path
       dropbox.put_file( to_path,File.new(file,"r") )
-    end
-  end
-  def sync
-    begin
-   SimpleHttp.get "http://#{dropbox_folder}/" 
-    rescue
-    end
-        begin
-   SimpleHttp.get "http://#{dropbox_folder}/" 
-    rescue
     end
   end
   def dropbox
