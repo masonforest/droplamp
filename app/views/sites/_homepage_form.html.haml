@@ -37,12 +37,11 @@
           $(".control-group").removeClass("error")
           $("form").submit()
 .row
-  .span12
-    -if @site.errors.any?
-      -@site.errors.full_messages.each do |msg|
-        %p.alert.alert-box= msg
   =form_for @site, html: { class: "form-horizontal" } do |f|
     .span7
+      -if @site.errors.any?
+        -@site.errors.full_messages.each do |msg|
+          %p.alert.alert-box= msg
       %fieldset
         = f.fields_for :domain do |d|
           .control-group
@@ -58,7 +57,7 @@
 
               %p.help-block The domain you want to point to your Dropbox
     .span4
-      = f.submit :class => "btn btn-primary"
+      = f.submit "Try it!", :class => "btn btn-primary btn-huge"
 
 #alreadyRegistered.modal.hide
   .modal-header

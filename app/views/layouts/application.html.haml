@@ -21,10 +21,17 @@
         %h5
           %a{:id=> "logo",:href=>"/"} KISSr
         =render "shared/nav"
-        //%nav.user
-        //  -unless current_user.nil? then
-        //    #welcome-message="Hi, #{current_user.first_name}!"
-        //    = link_to 'Sign Out', destroy_user_session_path, :class=> 'btn primary'
+      -#%nav
+        %ul
+          %li 
+            %a{href: '/'} Home
+          %li 
+            %a{href: '/'} Blog
+          %li 
+            %a{href: 'https://vimeo.com/user11705925/videos'} Sceencasts
+          %li 
+            %a{href: '/'} FAQ
+
        
       .content
         - flash.each do |type, message|
