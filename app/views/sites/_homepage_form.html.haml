@@ -49,11 +49,10 @@
             .controls
               .input-append
                 =d.text_field :domain, placeholder: "mysite", autocomplete: "off"
-                -if @refferal
-                  -price = " $4.99 per month (5 bucks off! Thanks #{@refferal.from_user.first_name}!)"
-                  = d.select :tld, [".kissr.co (Free!)",".com"+price,".org"+price, ".net" + price ,".info"+ price].zip(Domain::TLDS), html: {:class => "add-on"}
+                -if session[:reffered_by_id] 
+                  = d.select :tld, [".kissr.co - Free!",".com - $79.99 today (Down from $99.99)",".org - $79.99 today (Down from $99.99)",".net - $79.99 today (Down from $99.99)",".info - $79.99 today (Down from $99.99)"].zip(Domain::TLDS), html: {:class => "add-on"}
                 -else  
-                  = d.select :tld, [".kissr.co (Free!)",".com ($99.99 per year)",".org ($99.99 per year)",".net ($99.99 per year)",".info ($99.99 per year)"].zip(Domain::TLDS), html: {:class => "add-on"}
+                  = d.select :tld, [".kissr.co - Free!",".com - $99.99 per year",".org - $99.99 per year",".net - $99.99 per year",".info - $99.99 per year"].zip(Domain::TLDS), html: {:class => "add-on"}
 
               %p.help-block The domain you want to point to your Dropbox
     .span4

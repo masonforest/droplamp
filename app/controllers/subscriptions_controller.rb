@@ -5,11 +5,8 @@ class SubscriptionsController < ApplicationController
   end
   def create
     @subscription = Subscription.new(params[:subscription])
-    if @subscription.save_with_payment
-      @site = @subscription.site
-      @site.create_heroku_domain
-      @site.create_dropbox_folder
-      flash[:notice] = render_to_string :partial=>"sites/welcome_message"
+    current_user.update_stripe_card(params[:subscription][:stripe_card_token])
+    if @subscription.save
       redirect_to sites_path
     else
       render :new

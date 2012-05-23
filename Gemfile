@@ -32,6 +32,7 @@ gem 'fakeweb'
 gem 'omniauth', :git => "git://github.com/intridea/omniauth"
 gem 'omniauth-oauth', :git =>  "git://github.com/intridea/omniauth-oauth"
 gem 'omniauth-contrib', :git => 'git://github.com/intridea/omniauth-contrib'
+gem "tweet-button"
 
 gem 'nokogiri'
 gem 'pg'
@@ -55,5 +56,9 @@ group :test, :development do
   gem 'guard-cucumber'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'vcr'
+  gem 'capybara-webkit'
 end
-
+group :test do
+  gem 'webmock'
+end

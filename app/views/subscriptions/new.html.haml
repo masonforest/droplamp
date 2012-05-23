@@ -1,13 +1,13 @@
 .well.alert.alert-info
-  You will be charged $99.99 today and $99.99 every year until you cancel this plan.
+  You will be charged #{number_to_currency @subscription.signup_price/100} today and #{number_to_currency @subscription.monthly_price/100}  every year until you cancel this plan.
+
 =form_for @subscription do |f|
   -if @subscription.errors.any?
     -@subscription.errors.full_messages.each do |msg|
       %p= msg
   = f.hidden_field :stripe_card_token
-  = f.hidden_field :site_id
-  = f.hidden_field :plan_id, value: 1
-  - if @subscription.stripe_card_token.present?
+  = f.hidden_field :site_id, value: params[:site_id]
+  - if current_user.stripe_card_token.present?
     Credit card has been provided.
   - else
     #stripe_error

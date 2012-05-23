@@ -18,18 +18,19 @@ end
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
 OmniAuth.config.test_mode = true
+Capybara.javascript_driver = :webkit
 OmniAuth.config.add_mock(:dropbox, {
   'uid' => '12345',
-  'email' =>"mason@kissr.co",
   'info' => {
+    'email' =>"mason@stirltech.com",
     'name' => 'Mason Fischer',
   },
   'extra'=>
       
         Hashie::Mash.new({'access_token'=>
           {
-              'token'=>nil,
-              "secret"=>nil
+              'token'=> "ek8u9cwpb6jujnp",
+              "secret"=> "p0r1d5vwbo9dji7"
           }
         })
         

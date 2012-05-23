@@ -18,11 +18,12 @@ Kissr::Application.routes.draw do
   end
   resources :sites do
     post 'refresh', :on => :member
+    get 'upgrade', :on => :member
   end
   
   root :to =>'pages#home'
 
   match "/signout" => "sessions#destroy", :as => :signout 
-  match "/fivebucksoff/:user_id" => "refferals#create"
+  match "/twenty-bucks-off/:user_id" => "refferals#create"
 
 end

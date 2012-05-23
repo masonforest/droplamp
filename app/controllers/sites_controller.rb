@@ -16,10 +16,19 @@ class SitesController < ApplicationController
     @site.refresh
     redirect_to sites_path, notice: "Refreshing #{@site.hostname}"
   end
-  def update
+  def upgrade
     @site = Site.find(params[:id])
-    @site.update_attributes(params[:site])
-    redirect_to sites_path, notice: 'Site was successfully updated.'
+  end
+  def update
+    if params[:submit] == "Purchase"
+      @site.create_heroku_domain
+      @site.create_dropbox_folder
+      current_user.str
+    else
+      @site = Site.find(params[:id])
+      @site.update_attributes(params[:site])
+      redirect_to sites_path, notice: 'Site was successfully updated.'
+    end
   end
   def create
     params[:site][:owner_id]=current_user.id.to_i
@@ -31,7 +40,7 @@ class SitesController < ApplicationController
         flash[:notice] = render_to_string :partial=>"sites/welcome_message"
         redirect_to sites_path
       else
-        redirect_to new_subscription_path( site_id: @site.id )
+        redirect_to new_subscription_path( site_id: @site)
       end
     else
       render :edit

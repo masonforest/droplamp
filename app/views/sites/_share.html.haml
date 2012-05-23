@@ -1,0 +1,10 @@
+%div.alert.alert-success.fade.in{ "data-alert" => "alert"}
+  %a.close{:href => "#", "data-dismiss" => "alert"} ×
+  %h3.alert-success Like what you have seen so far? Want $20?
+  %p
+    Share the love! Share the link below for $20 off the first year of hosting with KISSr! Every time someone reedeems the coupon you will get $20 added to your account balance as well!
+  =link_to "#{root_url}/twenty-bucks-off/#{current_user.id}", "#{root_url}/twenty-bucks-off/#{current_user.id}"
+  %p{:style=>"font-size:80%"} KISSr account balance has no cash value. Limit 1 redemption per referral. Void where prohibited.
+  %p
+    = render 'shared/twitter_button', :url => "#{root_url}twenty-bucks-off/#{current_user.id}", :text =>"KISSr lets you host websites out of your Dropbox! Use this link to get $20 off a custom domain at KISSr"
+    = render 'shared/facebook_button', :url => "#{root_url}twenty-bucks-off/#{current_user.id}"

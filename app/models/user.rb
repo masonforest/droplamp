@@ -7,9 +7,11 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
-  after_create :notify_admin
+  after_create :create_stripe_user,:notify_admin
   
+  belongs_to :reffered_by, class_name: "User"
   has_many :sites, foreign_key: "owner_id"
+  has_many :subscriptions, :through => :sites
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -18,10 +20,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :provider,:uid, :password, :password_confirmation, :remember_me
  
-  def self.create_with_omniauth(auth)
-    logger.debug auth.inspect
+  def self.create_with_omniauth(auth,reffered_by_id)
     create do |user|
       user.provider = auth['provider']
+      user.reffered_by_id=reffered_by_id
       user.uid = auth['uid'].to_s
       user.dropbox_token=auth['extra']['access_token'].token
       user.dropbox_token_secret=auth['extra']['access_token'].secret
@@ -44,6 +46,29 @@ class User < ActiveRecord::Base
   def notify_admin
     puts "notifying admin!"
     AdminMailer.signup(self.id).deliver
+  end
+  def update_stripe_card(token)
+    customer = Stripe::Customer.retrieve(stripe_customer_id)
+    customer.card = token
+    customer.save
+  end
+  def create_stripe_user
+    update_attribute(:stripe_customer_id, Stripe::Customer.create(:description => email).id)
+  end
+  def credit(amount)
+    update_attribute(:balance, balance + amount)
+  end
+  def charge(amount)
+    update_attribute(:balance, balance - amount)
+    if balance < -50
+      Stripe::Charge.create(
+        :amount => -balance,
+        :currency => "usd",
+        :customer => stripe_customer_id
+      )
+      puts "charged #{-balance} to #{email}"
+      update_attribute(:balance, 0)
+    end
   end
 
 end

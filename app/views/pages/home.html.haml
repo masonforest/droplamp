@@ -10,7 +10,7 @@
     .welcome
       %h1 Welcome to KISSr
       =image_tag "play.png", class: "play"
-      %p KISSr lets you host websites out of your dropbox
+      %p KISSr lets you host websites out of your Dropbox
     .scene
       %h1 So you want your own domain name...
     .scene
@@ -51,7 +51,9 @@
     %h2{ style: "display:block;padding: 0 125px;"} or
 -#.well.alert.alert-info
   %h3 KISSr enables you to host websites out of your Dropbox
-
+-if (session[:reffered_by_id] && current_user.nil?) || (current_user && current_user.reffered_by.present? and current_user.subscriptions.count == 0)
+  .alert.alert-success
+    %h2.alert-success Thanks to #{User.find(session[:reffered_by_id]).first_name}, you can get your first custom domain for $20 off! Wahoo!
 =render 'sites/homepage_form'
 
 -##description.well
