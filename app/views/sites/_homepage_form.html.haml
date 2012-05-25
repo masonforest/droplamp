@@ -5,16 +5,42 @@
       delay = (ms, callback) ->
         clearTimeout timer
         timer = setTimeout(callback, ms)
+      $("#site_domain_attributes_tld").change ->
+        $(this).popover('show')
+      $("#site_domain_attributes_domain, #site_domain_attributes_tld").blur ->
+        $("#site_domain_attributes_tld").popover('hide')
+      $("#site_domain_attributes_domain").focus ->
+        $("#site_domain_attributes_tld").popover('show') 
+      $("#site_domain_attributes_tld").popover
+          placement: "bottom"
+          trigger: "manual"
+          width: 400
+          title: ->
+            if $(this).val() == "kissr.co"
+              "Free"
+            else
+              "Paid"
+          content: ->
+            console.log($(this).val())
+            if $(this).val() == "kissr.co"
+              "50mb Storage <br> 50mb Bandwidth"
+            else
+              "Unlimited Storage <br>Unlimited Bandwidth<br>Priority Support"
+
       $("#domain_preregistered,label[for=site_already_registered]").hide()
       $("#site_domain_attributes_domain").keyup -> domainChange() 
       $("#site_domain_attributes_tld").change -> domainChange() 
       $("[type=submit]").click (e)->
-        if $(".control-group").hasClass("error")
+        if $("#site_domain_attributes_domain").val() == ""
+          $("#blankDomain").modal("show")
+          e.preventDefault()
+        else
+          if $(".control-group").hasClass("error")
 
-          if $("#site_domain_attributes_tld").val() == "kissr.co"
-            $("#alreadyRegisteredKISSr").modal("show")
-          else
-            $("#alreadyRegistered").modal("show")
+            if $("#site_domain_attributes_tld").val() == "kissr.co"
+              $("#alreadyRegisteredKISSr").modal("show")
+            else
+              $("#alreadyRegistered").modal("show")
 
           e.preventDefault()
 
@@ -58,6 +84,7 @@
     .span4
       = f.submit "Try it!", :class => "btn btn-primary btn-huge"
 
+
 #alreadyRegistered.modal.hide
   .modal-header
     %a.close{"data-dismiss" => "modal"} ×
@@ -79,4 +106,11 @@
   .modal-footer
     %a.btn.btn-primary{:href => "#","data-dismiss" => "modal"} I'll Pick Another Domain
 
-
+#blankDomain.modal.hide
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3 Oops!
+  .modal-body
+    %p Please enter the domain name you would like to register.
+  .modal-footer
+    %a.btn.btn-primary{:href => "#","data-dismiss" => "modal"} Ok
