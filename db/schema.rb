@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523225421) do
+ActiveRecord::Schema.define(:version => 20120603203747) do
 
   create_table "assets", :force => true do |t|
     t.integer  "page_id"
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(:version => 20120523225421) do
   add_index "subscriptions", ["site_id"], :name => "index_subscriptions_on_site_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "provider"
     t.string   "uid"
     t.string   "dropbox_token"
@@ -101,10 +101,10 @@ ActiveRecord::Schema.define(:version => 20120523225421) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "delta_cursor"
-    t.string   "stripe_card_token"
     t.string   "stripe_customer_id"
     t.integer  "reffered_by_id"
     t.integer  "balance",                :default => 0
+    t.boolean  "stored_stripe_card",     :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

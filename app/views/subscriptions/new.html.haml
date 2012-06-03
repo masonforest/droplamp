@@ -7,7 +7,7 @@
       %p= msg
   = f.hidden_field :stripe_card_token
   = f.hidden_field :site_id, value: params[:site_id]
-  - if current_user.stripe_card_token.present?
+  - if current_user.stored_stripe_card
     Credit card has been provided.
   - else
     #stripe_error

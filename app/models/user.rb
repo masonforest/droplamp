@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
   end
   def create_stripe_user
     update_attribute(:stripe_customer_id, Stripe::Customer.create(:description => email).id)
+    update_attribute(:stored_stripe_card, true)
   end
   def credit(amount)
     update_attribute(:balance, balance + amount)
