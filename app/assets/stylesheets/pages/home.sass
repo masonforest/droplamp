@@ -1,8 +1,9 @@
 .player
   width: 480px
-  height: 190px
-  padding-top: 100px
+  height: 290px
   text-align: center
+.welcome, .scene
+  padding: 65px 0
 .play
   padding: 10px 30px
   border-radius: 5px
@@ -16,7 +17,7 @@
   .control-label
     width: 70px
   .controls
-    margin-left: 80px
+    margin-left: 0px
 
 .btn-huge
   padding: 27px 80px
@@ -30,8 +31,24 @@
   left: -20px
 
 .pages-home .control-group
-  margin-top: 28px
-  padding-top: 20px
+  input
+    text-align: right
+    font-size: 60px
+    height: 102px
+    margin-top: 0px
+    width: 240px
+    vertical-align: bottom
+    border-right: none
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f5f5f5))
+    background: -moz-linear-gradient(top, #fff, #f5f5f5)
+    background: -o-linear-gradient(top, #fff, #f5f5f5)
+    &::-webkit-input-placeholder
+      padding-top: 25px
+      text-align: right
+    &:-moz-placeholder
+      padding-top: 4px
+  #dk_container_site_domain_attributes_tld
+    font-size: 60px
 .scene
   display: none
 
@@ -44,4 +61,29 @@
   left: 25px
 .player
   position: relative
-  
+.nav-pills
+  padding-left: 5px
+.nav-pills a
+  text-align: center
+  width: 165px
+.dk_container
+  line-height: 80px
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-weight: normal
+  font-size: 60px
+  position: relative
+  left: -6px
+  ul,ol
+    margin: 0
+.dk_options a
+  padding: 0
+  font-size: 18px
+.dk_toggle
+  width: 220px !important
+  border-left: none
+  z-index: 10
+  padding: 15px 45px 15px 10px
+  border-radius: 0 5px 5px 0
+//input::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+//  color: blue !important
+

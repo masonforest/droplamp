@@ -7,7 +7,7 @@ Feature: New user creates site
   @dropbox_request
   Scenario: New user creates a site with a free domain on KISSr
     Given I am on the home page
-    And I fill in "Domain" with "mydomain" 
+    And I fill in "site[domain_attributes][domain]" with "mydomain" 
     And I select ".kissr.co" from "site_domain_attributes_tld"
 	  And I press "Try it!"
     Then I should see "Sign Out"
@@ -17,7 +17,7 @@ Feature: New user creates site
   @javascript @dropbox_request
   Scenario: New user creates a site with a paid domain on KISSr
     Given I am on the home page
-    And I fill in "Domain" with "mydomain" 
+    And I fill in "site[domain_attributes][domain]" with "mydomain" 
     And I select ".com" from "site_domain_attributes_tld"
     And I press "Try it!"
     And I fill in "card_number" with "4242424242424242"

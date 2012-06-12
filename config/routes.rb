@@ -25,5 +25,9 @@ Kissr::Application.routes.draw do
 
   match "/signout" => "sessions#destroy", :as => :signout 
   match "/twenty-bucks-off/:user_id" => "refferals#create"
+  match "/frequently-asked-questions" => 'high_voltage/pages#show', :id => 'frequently-asked-questions'
+  match "/compare" =>'high_voltage/pages#show', :id => 'compare'
+  match "/how-it-works" => 'high_voltage/pages#show', :id => 'how-it-works'
+  match "/blog" => 'high_voltage/pages#show', :id => 'blog'
 
 end

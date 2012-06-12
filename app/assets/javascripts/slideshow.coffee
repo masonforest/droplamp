@@ -35,6 +35,7 @@ $ ->
     $(".welcome").fadeOut ->
       $(".scene:first").fadeIn ->
         timeout = setTimeout("window.nextScene()",3100)
+
 window.nextScene = ->
   $thisScene = $(".scene:visible")
   if $thisScene.next().hasClass("scene")

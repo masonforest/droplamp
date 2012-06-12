@@ -18,9 +18,10 @@
   %body{:class => "#{controller_name}-#{action_name}"}
     .container
       %header
+        =render "shared/nav"
         %h5
           %a{:id=> "logo",:href=>"/"} KISSr
-        =render "shared/nav"
+        .tag-line Simple Web Hosting
       -#%nav
         %ul
           %li 
@@ -41,5 +42,5 @@
               = raw message
 
         = yield
-    -#=render "shared/footer"
+    =render "shared/footer"
     =render "shared/intercom"

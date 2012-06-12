@@ -1,28 +1,32 @@
 =content_for :head do
   :coffeescript
     $().ready ->
+      $('.dk').dropkick
+        change: ->
+          $("#dk_container_site_domain_attributes_tld").popover('show')
+          setTimeout ( -> $("#dk_container_site_domain_attributes_tld").popover('hide')), 5000
       timer = 0
       delay = (ms, callback) ->
         clearTimeout timer
         timer = setTimeout(callback, ms)
-      $("#site_domain_attributes_tld").change ->
-        $(this).popover('show')
-      $("#site_domain_attributes_domain, #site_domain_attributes_tld").blur ->
-        $("#site_domain_attributes_tld").popover('hide')
+      $(".dk_toggle").click ->
+        $("#dk_container_site_domain_attributes_tld").popover('hide')
+      $("#site_domain_attributes_domain, #dk_container_site_domain_attributes_tld").blur ->
+        $("#dk_container_site_domain_attributes_tld").popover('hide')
       $("#site_domain_attributes_domain").focus ->
-        $("#site_domain_attributes_tld").popover('show') 
-      $("#site_domain_attributes_tld").popover
+        $("#dk_container_site_domain_attributes_tld").popover('show') 
+      $("#dk_container_site_domain_attributes_tld").popover
           placement: "bottom"
           trigger: "manual"
           width: 400
           title: ->
-            if $(this).val() == "kissr.co"
+            if $("#site_domain_attributes_tld").val() == "kissr.co"
               "Free"
             else
-              "Paid"
+              "Premium - $99.99/year"
           content: ->
             console.log($(this).val())
-            if $(this).val() == "kissr.co"
+            if $("#site_domain_attributes_tld").val() == "kissr.co"
               "50mb Storage <br> 50mb Bandwidth"
             else
               "Unlimited Storage <br>Unlimited Bandwidth<br>Priority Support"
@@ -71,16 +75,15 @@
       %fieldset
         = f.fields_for :domain do |d|
           .control-group
-            =d.label :domain, :class=>"control-label"
             .controls
               .input-append
                 =d.text_field :domain, placeholder: "mysite", autocomplete: "off"
                 -if session[:reffered_by_id] 
-                  = d.select :tld, [".kissr.co - Free!",".com - $79.99 today (Down from $99.99)",".org - $79.99 today (Down from $99.99)",".net - $79.99 today (Down from $99.99)",".info - $79.99 today (Down from $99.99)"].zip(Domain::TLDS), html: {:class => "add-on"}
-                -else  
-                  = d.select :tld, [".kissr.co - Free!",".com - $99.99 per year",".org - $99.99 per year",".net - $99.99 per year",".info - $99.99 per year"].zip(Domain::TLDS), html: {:class => "add-on"}
+                  = d.select :tld, [".kissr.co - Free!",".com - $79.99 today (Down from $99.99)",".org - $79.99 today (Down from $99.99)",".net - $79.99 today (Down from $99.99)",".info - $79.99 today (Down from $99.99)"].zip(Domain::TLDS),{} , {:class => "add-on pretty dk"}                
+                -else
+                  = d.select :tld, [".kissr.co",".com",".org",".net",".info"].zip(Domain::TLDS),{} , {:class => "add-on pretty dk"}
 
-              %p.help-block The domain you want to point to your Dropbox
+              %p.help-block The domain you want to register 
     .span4
       = f.submit "Try it!", :class => "btn btn-primary btn-huge"
 

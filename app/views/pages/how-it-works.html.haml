@@ -1,0 +1,26 @@
+:coffeescript
+  $ ->
+    $("#cat-website").draggable({containment: 'parent'})
+    $("#dropbox").droppable
+      drop : ->
+        #$(".drag-container").fadeOut().slideUp ->
+        $("#cat-website").css 'top', $("#cat-website").offset().top 
+        $("#cat-website").css 'left', $("#cat-website").offset().left
+        $("#cat-website").css 'position','absolute'
+        $("#drag-instructions, #dropbox").fadeOut('slow')
+        $("#cat-website").animate
+          'top': $("#kissr-cloud").offset().top - 10 + "px"
+          'left': $("#kissr-cloud").offset().left + 100 + "px"
+          'width': "100px"
+        #$(".thats-it").text("That's it!")
+        #$(".thats-it").hide().fadeIn()
+%h1 How it works
+%p When you create a site on KISSr it will create a folder at Dropbox/Apps/&lt;youdomain.com&gt;. If are using iWeb you can publish to that folder. If you want to edit your site's html manually you can edit  Dropbox/Apps/&lt;youdomain.com&gt;/index.html. As soon as you update the files in that folder Dropbox will syncronize its contents to KISSr's web servers. KISSr's web servers run on top of the amazon cloud platform so your site will be higly reliable and scalable!
+%h1 Demo
+%p{style: "text-align: center"}
+  =image_tag "kissr-cloud.png",  id: "kissr-cloud"
+.drag-container{style: "height:300px"}
+  =image_tag "your-cats-website.png", style: "float:left", id: "cat-website"
+  %h1{:style => "font-size:2em;display:block;float:left;width: 550px;margin-top:50px;margin-left:10px", :id => "drag-instructions" } » Drag your Cat's website to your Dropbox » 
+  =image_tag "dropbox.png", style: "float:left", id: "dropbox"
+%h1.thats-it
