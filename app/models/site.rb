@@ -16,7 +16,7 @@ class Site < ActiveRecord::Base
     heroku = Heroku::Client.new(ENV['HEROKU_USERNAME'],ENV['HEROKU_PASSWORD'])
     heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s)# if Rails.env.eql? 'production'
     if not self.domain.free?
-      heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s+".kissr.co")
+      heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s+".kissr.com")
     end
   end
   def remove_heroku_domain

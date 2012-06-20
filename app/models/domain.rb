@@ -1,6 +1,6 @@
 require 'resolv'
 class Domain < ActiveRecord::Base
-  TLDS=["kissr.co","com","org","net","info"]
+  TLDS=["kissr.com","com","org","net","info"]
   validates_uniqueness_of :domain, :scope => :tld
   validates_presence_of :domain
   def to_s
@@ -10,7 +10,7 @@ class Domain < ActiveRecord::Base
     self.to_s
   end
   def free?
-    tld == "kissr.co"
+    tld == "kissr.com"
   end
   def self.available(domain,tld)
     begin
@@ -20,7 +20,7 @@ class Domain < ActiveRecord::Base
     end
   end
   def self.status(domain,tld)
-    return :available  if tld=="kissr.co" and !Domain.where(domain: domain, tld: tld ).exists?
+    return :available  if tld=="kissr.com" and !Domain.where(domain: domain, tld: tld ).exists?
     if available(domain,tld) 
     #   return ("75.101.163.44" "75.101.145.87" "174.129.212.2").include?(Resolv.getaddress("www.#{domain}.#{tld}")) ? :pointed : :taken
       :available

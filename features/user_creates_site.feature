@@ -8,11 +8,11 @@ Feature: New user creates site
   Scenario: New user creates a site with a free domain on KISSr
     Given I am on the home page
     And I fill in "site[domain_attributes][domain]" with "mydomain" 
-    And I select ".kissr.co" from "site_domain_attributes_tld"
+    And I select ".kissr.com" from "site_domain_attributes_tld"
 	  And I press "Try it!"
     Then I should see "Sign Out"
     Then I should see "Mason Fischer"
-    And I should see "mydomain.kissr.co"
+    And I should see "mydomain.kissr.com"
 
   @javascript @dropbox_request
   Scenario: New user creates a site with a paid domain on KISSr
