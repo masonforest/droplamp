@@ -23,7 +23,7 @@
             if $("#site_domain_attributes_tld").val() == "kissr.com"
               "Free"
             else
-              "Premium - $99.99/year"
+              "Premium - $10 per month"
           content: ->
             console.log($(this).val())
             if $("#site_domain_attributes_tld").val() == "kissr.com"
@@ -79,7 +79,7 @@
               .input-append
                 =d.text_field :domain, placeholder: "mysite", autocomplete: "off"
                 -if session[:reffered_by_id] 
-                  = d.select :tld, [".kissr.com - Free!",".com - $79.99 today (Down from $99.99)",".org - $79.99 today (Down from $99.99)",".net - $79.99 today (Down from $99.99)",".info - $79.99 today (Down from $99.99)"].zip(Domain::TLDS),{} , {:class => "add-on pretty dk"}                
+                  = d.select :tld, [".kissr.com - Free!",".com - $10 per month",".org - $10 per month",".net - $10 per month",".info - $10 per month"].zip(Domain::TLDS),{} , {:class => "add-on pretty dk"}                
                 -else
                   = d.select :tld, [".kissr.com",".com",".org",".net",".info"].zip(Domain::TLDS),{} , {:class => "add-on pretty dk"}
 

@@ -1,5 +1,5 @@
 .well.alert.alert-info
-  You will be charged #{number_to_currency @subscription.signup_price/100} today and #{number_to_currency @subscription.monthly_price/100}  every year until you cancel this plan.
+  You will be charged #{number_to_currency @subscription.signup_price/100} today and #{number_to_currency @subscription.monthly_price/100}  every month until you cancel this plan.
 
 =form_for @subscription do |f|
   -if @subscription.errors.any?

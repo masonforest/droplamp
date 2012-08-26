@@ -2,10 +2,10 @@ class Subscription < ActiveRecord::Base
   attr_accessor :stripe_card_token
   belongs_to :site
   after_create :charge_for_signup
-  MONTHLY_PRICE=9999
-  SIGNUP_PRICE=9999
-  SIGNUP_PRICE_WITH_REFFERAL=7999
-  REFFERAL_BOUNTY=20000
+  MONTHLY_PRICE=1000
+  SIGNUP_PRICE=1000
+  SIGNUP_PRICE_WITH_REFFERAL=500
+  REFFERAL_BOUNTY=500
 
   def charge_for_signup
     if site.owner.reffered_by.present? and site.owner.subscriptions.count == 1

@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  
+
   after_create :create_stripe_user,:notify_admin
-  
+
   belongs_to :reffered_by, class_name: "User"
   has_many :sites, foreign_key: "owner_id"
   has_many :subscriptions, :through => :sites
@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   def admin?
     self.name=="Mason Fischer"
   end
+
   def first_name
     self.name.nil? ? "" : self.name.split(' ')[0]
   end
@@ -43,22 +44,27 @@ class User < ActiveRecord::Base
   def last_name
     self.name.split(' ')[1..-1].join('.')
   end
+
   def notify_admin
     puts "notifying admin!"
     AdminMailer.signup(self.id).deliver
   end
+
   def update_stripe_card(token)
     customer = Stripe::Customer.retrieve(stripe_customer_id)
     customer.card = token
     customer.save
     update_attribute(:stored_stripe_card, true)
   end
+
   def create_stripe_user
     update_attribute(:stripe_customer_id, Stripe::Customer.create(:description => email).id)
   end
+
   def credit(amount)
     update_attribute(:balance, balance + amount)
   end
+
   def charge(amount)
     update_attribute(:balance, balance - amount)
     if balance < -50
