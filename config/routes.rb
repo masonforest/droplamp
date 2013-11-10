@@ -1,6 +1,4 @@
 Kissr::Application.routes.draw do
-  devise_for :users
-
   mount Resque::Server, :at => "/resque"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
@@ -10,8 +8,7 @@ Kissr::Application.routes.draw do
   
 
 
-  match '/auth/:provider/callback' => 'sessions#create'
-  resources :pages
+  get '/auth/:provider/callback' => 'sessions#create', as: 'omniauth_callback'
   resources :subscriptions
   resources :domains do
     get 'status', :on => :collection
@@ -21,13 +18,14 @@ Kissr::Application.routes.draw do
     get 'upgrade', :on => :member
   end
   
-  root :to =>'pages#home'
+  root :to =>'pages#home', as: :home
 
-  match "/signout" => "sessions#destroy", :as => :signout 
-  match "/twenty-bucks-off/:user_id" => "refferals#create"
-  match "/frequently-asked-questions" => 'high_voltage/pages#show', :id => 'frequently-asked-questions'
-  match "/compare" =>'high_voltage/pages#show', :id => 'compare'
-  match "/how-it-works" => 'high_voltage/pages#show', :id => 'how-it-works'
-  match "/blog" => 'high_voltage/pages#show', :id => 'blog'
+  get "/signout" => "sessions#destroy", :as => :signout 
+  get "/twenty-bucks-off/:user_id" => "refferals#create"
+  get "/frequently-asked-questions" => 'high_voltage/pages#show', :id => 'frequently-asked-questions'
+  get "/compare" =>'high_voltage/pages#show', :id => 'compare'
+  get "/how-it-works" => 'high_voltage/pages#show', :id => 'how-it-works'
+  get "/blog" => 'high_voltage/pages#show', :id => 'blog'
 
+  resources :pages
 end

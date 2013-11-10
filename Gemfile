@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.1'
+gem 'rails', '4.0.1'
 gem 'haml'
 gem 'devise'
 gem 'pry'
@@ -11,9 +11,8 @@ end
 gem 'simplehttp'
 gem 'resque_mailer'
 gem 'jquery-rails'
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+gem 'rails_admin', github: 'davebrace/rails_admin', branch: 'use-static-bootstrap-2'
 gem 'haml'
-gem 'coffee-filter'
 gem 'high_voltage'
 gem 'resque', :require => "resque/server"
 gem 'dropbox-sdk'
@@ -26,6 +25,7 @@ gem 'RedCloth', ">= 4.2.7"
 gem 'rdiscount'
 gem 'liquid'
 gem 'liquid-inheritance'
+gem 'protected_attributes'
 gem 'dalli'
 gem "aws-s3"
 gem 'fakeweb'
@@ -38,7 +38,6 @@ gem 'nokogiri'
 gem 'pg'
 gem 'name-dot-com'
 gem 'thin'
-gem 'twitter_bootstrap_form_for'
 gem 'stripe'
 
 group :test, :development do

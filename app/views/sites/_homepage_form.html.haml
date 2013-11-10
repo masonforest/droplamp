@@ -1,93 +1,38 @@
-=content_for :head do
-  :coffeescript
-    $().ready ->
-      $('.dk').dropkick
-        change: ->
-          $("#dk_container_site_domain_attributes_tld").popover('show')
-          setTimeout ( -> $("#dk_container_site_domain_attributes_tld").popover('hide')), 5000
-      timer = 0
-      delay = (ms, callback) ->
-        clearTimeout timer
-        timer = setTimeout(callback, ms)
-      $(".dk_toggle").click ->
-        $("#dk_container_site_domain_attributes_tld").popover('hide')
-      $("#site_domain_attributes_domain, #dk_container_site_domain_attributes_tld").blur ->
-        $("#dk_container_site_domain_attributes_tld").popover('hide')
-      $("#site_domain_attributes_domain").focus ->
-        $("#dk_container_site_domain_attributes_tld").popover('show') 
-      $("#dk_container_site_domain_attributes_tld").popover
-          placement: "bottom"
-          trigger: "manual"
-          width: 400
-          title: ->
-            if $("#site_domain_attributes_tld").val() == "kissr.com"
-              "Free"
-            else
-              "Premium - $10 per month"
-          content: ->
-            console.log($(this).val())
-            if $("#site_domain_attributes_tld").val() == "kissr.com"
-              "50mb Storage <br> 50mb Bandwidth"
-            else
-              "Unlimited Storage <br>Unlimited Bandwidth<br>Priority Support"
-
-      $("#domain_preregistered,label[for=site_already_registered]").hide()
-      $("#site_domain_attributes_domain").keyup -> domainChange() 
-      $("#site_domain_attributes_tld").change -> domainChange() 
-      $("[type=submit]").click (e)->
-        if $("#site_domain_attributes_domain").val() == ""
-          $("#blankDomain").modal("show")
-          e.preventDefault()
-        else
-          if $(".control-group").hasClass("error")
-
-            if $("#site_domain_attributes_tld").val() == "kissr.com"
-              $("#alreadyRegisteredKISSr").modal("show")
-            else
-              $("#alreadyRegistered").modal("show")
-
-            e.preventDefault()
-
-      domainChange = -> 
-        delay(500, ->
-          domain = $("#site_domain_attributes_domain").val()
-          tld = $("#site_domain_attributes_tld").val()
-          $.get "/domains/status?domain=\#{domain}&tld=\#{tld}", (response) ->
-            if response == "taken"
-              $("#site_domain_attributes_domain").parent().parent().find('.help-block').text("Taken")
-              $(".control-group").addClass("error")
-              $(".control-group").removeClass("success")
-            else
-              $("#site_domain_attributes_domain").parent().parent().find('.help-block').text("Available")
-              $(".control-group").removeClass("error")
-              $(".control-group").addClass("success")
-
-        )
-        $(".ownership_verified").click ->
-          $(".control-group").removeClass("error")
-          $("form").submit()
+%h1 KISSr is Simple Dropbox Web Hosting.
+= form_for @site, html: { class: "form-horizontal" } do |f|
+  -if @site.errors.any?
+    -@site.errors.full_messages.each do |msg|
+      %p.alert.alert-box= msg
+  %fieldset
+    .form-group
+      .row
+        .col-sm-5.col-sm-offset-3
+          = f.fields_for :domain do |d|
+            .input-group.input-group-lg
+              .input-group-addon http://
+              = d.text_field :domain, placeholder: "mysite", class: 'form-control'
+              .input-group-addon .kissr.com/
+        .col-sm-2
+          = f.submit "Try it!", :class => "btn btn-primary btn-lg"
 .row
-  =form_for @site, html: { class: "form-horizontal" } do |f|
-    .span7
-      -if @site.errors.any?
-        -@site.errors.full_messages.each do |msg|
-          %p.alert.alert-box= msg
-      %fieldset
-        = f.fields_for :domain do |d|
-          .control-group
-            .controls
-              .input-append
-                =d.text_field :domain, placeholder: "mysite", autocomplete: "off"
-                -if session[:reffered_by_id] 
-                  = d.select :tld, [".kissr.com - Free!",".com - $10 per month",".org - $10 per month",".net - $10 per month",".info - $10 per month"].zip(Domain::TLDS),{} , {:class => "add-on pretty dk"}                
-                -else
-                  = d.select :tld, [".kissr.com",".com",".org",".net",".info"].zip(Domain::TLDS),{} , {:class => "add-on pretty dk"}
-
-              %p.help-block The domain you want to register 
-    .span4
-      = f.submit "Try it!", :class => "btn btn-primary btn-huge"
-
-
+  .col-sm-4
+    %h3
+      %span.glyphicon.glyphicon-cloud-upload
+      Upload with Dropbox
+    %p
+      KISSr will create a folder in your Dropbox. When you update the files in your Dropbox the changes will be copied to KISSr's webservers and your site will be updated!
+  .col-sm-4
+    %h3
+      %span.glyphicon.glyphicon-flash
+      Unlimited Everything
+    %p
+      KISSr has no restrictions on bandwidth or storage. KISSr is built to scale. If your site suddenly gets a spike in traffic KISSr will be able to handle the traffic.
+  .col-sm-4
+    %h3
+      %span.glyphicon.glyphicon-thumbs-up
+      Affordable
+    %p
+      KISSr is free for the first 3 months while you evaluate the service. After that it costs #{content_tag :span, '$0.99 per month', class: 'label label-success'} per site.
 #alreadyRegistered.modal.hide
   .modal-header
     %a.close{"data-dismiss" => "modal"} ×

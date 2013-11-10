@@ -17,11 +17,11 @@
     = csrf_meta_tag
   %body{:class => "#{controller_name}-#{action_name}"}
     .container
-      %header
-        =render "shared/nav"
-        %h5
-          %a{:id=> "logo",:href=>"/"} KISSr
-        .tag-line Simple Web Hosting
+      %header.clearfix
+        %h1
+          -# %a{:id=> "logo",:href=>"/"}
+          KISS#{content_tag :span, 'r', class: 'r'}
+        = render "shared/nav"
       -#%nav
         %ul
           %li 
@@ -32,8 +32,6 @@
             %a{href: 'https://vimeo.com/user11705925/videos'} Sceencasts
           %li 
             %a{href: '/'} FAQ
-
-       
       .content
         - flash.each do |type, message|
           %div.alert.fade.in{ "data-alert" => "alert", :class => twitterized_flash_type(type) }
@@ -42,5 +40,5 @@
               = raw message
 
         = yield
-    =render "shared/footer"
+    -# =render "shared/footer"
     =render "shared/intercom"

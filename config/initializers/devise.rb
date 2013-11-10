@@ -5,12 +5,12 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
-
+  config.secret_key = '4fa47e4c562d2f66af109c84c1bed7e076b56ae8eef81104188f10b2f5398c073fbf841f70cac05464c44b698e6229bcd73cdd1f698bb15b848d6e48f9f1f91f'
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
 
   # Automatically apply schema changes in tableless databases
-  config.apply_schema = false
+  # config.apply_schema = false
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -113,7 +113,7 @@ Devise.setup do |config|
 
   # If true, uses the password salt as remember token. This should be turned
   # to false if you are not using database authenticatable.
-  config.use_salt_as_remember_token = true
+  # config.use_salt_as_remember_token = true
 
   # Options to be passed to the created cookie. For instance, you can set
   # :secure => true in order to force SSL only cookies.

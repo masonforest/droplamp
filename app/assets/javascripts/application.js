@@ -6,7 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require bootstrap
 //= require soundmanager2-nodebug-jsmin
 //= require_tree .
