@@ -1,5 +1,8 @@
 require 'resolv'
+
 class Domain < ActiveRecord::Base
+  attr_accessible :domain, :tld
+
   TLDS=["kissr.com","com","org","net","info"]
   validates_uniqueness_of :domain, :scope => :tld
   validates_presence_of :domain

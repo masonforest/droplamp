@@ -8,4 +8,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require soundmanager2-nodebug-jsmin
+//= require utils
 //= require_tree .

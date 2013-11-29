@@ -1,5 +1,6 @@
 require 'dropbox_sdk'
 class Site < ActiveRecord::Base
+  attr_accessible :domain_attributes, :owner_id, :dropbox_folder
   after_create :create_heroku_domain, :if => Proc.new { |site| site.domain.free? }
   after_create :create_dropbox_folder, :if => Proc.new { |site| site.domain.free? }
 
@@ -14,7 +15,7 @@ class Site < ActiveRecord::Base
   
   def create_heroku_domain
     heroku = Heroku::Client.new(ENV['HEROKU_USERNAME'],ENV['HEROKU_PASSWORD'])
-    heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s.downcase)# if Rails.env.eql? 'production'
+    heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s.downcase) if Rails.env.eql? 'production'
     if not self.domain.free?
       heroku.add_domain(ENV['KISSR_SERVER'],self.domain.to_s+".kissr.com")
     end

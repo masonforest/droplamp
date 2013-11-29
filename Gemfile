@@ -1,44 +1,43 @@
 source 'http://rubygems.org'
-gem 'rails', '4.0.1'
-gem 'haml'
-gem 'devise'
-gem 'pry'
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-end
-gem 'simplehttp'
-gem 'resque_mailer'
-gem 'jquery-rails'
-gem 'rails_admin', github: 'davebrace/rails_admin', branch: 'use-static-bootstrap-2'
-gem 'haml'
-gem 'high_voltage'
-gem 'resque', :require => "resque/server"
-gem 'dropbox-sdk'
-gem 'bourbon'
-gem 'bootstrap-sass'
-gem 'formtastic'
-gem 'heroku'
-gem 'redcarpet'
+
+gem "aws-s3"
+gem "tweet-button"
 gem 'RedCloth', ">= 4.2.7"
-gem 'rdiscount'
+gem 'bootstrap-sass'
+gem 'bourbon'
+gem 'coffee-rails'
+gem 'dalli'
+gem 'devise'
+gem 'dropbox-sdk'
+gem 'dotenv-rails'
+gem 'fakeweb'
+gem 'formtastic'
+gem 'haml'
+gem 'haml'
+gem 'heroku'
+gem 'high_voltage'
+gem 'jquery-rails'
 gem 'liquid'
 gem 'liquid-inheritance'
-gem 'protected_attributes'
-gem 'dalli'
-gem "aws-s3"
-gem 'fakeweb'
-gem 'omniauth', :git => "git://github.com/intridea/omniauth"
-gem 'omniauth-oauth', :git =>  "git://github.com/intridea/omniauth-oauth"
-gem 'omniauth-contrib', :git => 'git://github.com/intridea/omniauth-contrib'
-gem "tweet-button"
-
-gem 'nokogiri'
-gem 'pg'
 gem 'name-dot-com'
-gem 'thin'
+gem 'nokogiri'
+gem 'omniauth', :git => "git://github.com/intridea/omniauth"
+gem 'omniauth-contrib', :git => 'git://github.com/intridea/omniauth-contrib'
+gem 'omniauth-oauth', :git =>  "git://github.com/intridea/omniauth-oauth"
+gem 'pg'
+gem 'protected_attributes'
+gem 'pry'
+gem 'rails', '4.0.1'
+gem 'rails_admin', github: 'davebrace/rails_admin', branch: 'use-static-bootstrap-2'
+gem 'rdiscount'
+gem 'redcarpet'
+gem 'resque', :require => "resque/server"
+gem 'resque_mailer'
+gem 'sass-rails'
+gem 'simplehttp'
 gem 'stripe'
+gem 'thin'
+gem 'uglifier'
 
 group :test, :development do
   gem 'sqlite3'

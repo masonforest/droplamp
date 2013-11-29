@@ -21,11 +21,9 @@ Kissr::Application.routes.draw do
   root :to =>'pages#home', as: :home
 
   get "/signout" => "sessions#destroy", :as => :signout 
-  get "/twenty-bucks-off/:user_id" => "refferals#create"
+  get "/twenty-bucks-off/:user_id" => "refferals#create", :as => 'twenty_bucks_off'
   get "/frequently-asked-questions" => 'high_voltage/pages#show', :id => 'frequently-asked-questions'
-  get "/compare" =>'high_voltage/pages#show', :id => 'compare'
-  get "/how-it-works" => 'high_voltage/pages#show', :id => 'how-it-works'
-  get "/blog" => 'high_voltage/pages#show', :id => 'blog'
-
-  resources :pages
+  get "/compare" =>'high_voltage/pages#show', :id => 'compare', :as => 'compare'
+  get "/how-it-works" => 'high_voltage/pages#show', :id => 'how-it-works', :as => 'how_it_works'
+  get "/blog" => 'high_voltage/pages#show', :id => 'blog', :as => 'blog'
 end
